@@ -12,7 +12,7 @@ from __main__ import send_cmd_help, settings
 
 
 # Import the copypasta data
-with open('data/Bulbacore/copypasta.json') as copypasta_file:    
+with open('./data/Bulbacore/copypasta.json') as copypasta_file:    
     copypastas = json.load(copypasta_file)
 
 
