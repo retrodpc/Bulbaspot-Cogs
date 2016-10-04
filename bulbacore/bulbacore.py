@@ -4,6 +4,7 @@ from random import randint
 from math import floor
 from base64 import *
 import json
+import os
 from string import ascii_letters, digits
 
 from discord.ext import commands
