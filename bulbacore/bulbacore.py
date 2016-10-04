@@ -325,7 +325,6 @@ class Bulbacore:
             if (number != None):
                 this_string = this_gen(length)
                 yield from self.bot.say(this_string)
-        if (shiptoast_check(ctx)):
             else:
                 yield from self.bot.say("8================D")
 
