@@ -502,4 +502,4 @@ def check_files():
 
 
 def setup(bot):
-    bot.add_cog(This(bot))
+    bot.add_cog(Bulbacore(bot))
