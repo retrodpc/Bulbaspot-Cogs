@@ -1,0 +1,8 @@
+{
+    "AUTHOR" : "retrodpc/Bulbasalt",
+    "DESCRIPTION" : "Adds core commands formerly from Bulbaspot. This adds mostly expression and shiptoast commands.",
+    "DISABLED" : false,
+    "SHORT" : "Port of Bulbaspot commands.",
+    "NAME" : "Bulbacore",
+    "INSTALL_MSG" : "oh wtf you actually installed this????"
+}
