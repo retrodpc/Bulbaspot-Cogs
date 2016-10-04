@@ -12,7 +12,7 @@ from __main__ import send_cmd_help, settings
 
 
 # Import the copypasta data
-with open('./data/Bulbacore/copypasta.json') as copypasta_file:    
+with open('data/bulbacore/copypasta.json') as copypasta_file:    
     copypastas = json.load(copypasta_file)
 
 
@@ -203,7 +203,7 @@ class Bulbacore:
 
     def __init__(self, bot):
         self.bot = bot
-        self.settings = fileIO("data/Bulbacore/settings.json", 'load')
+        self.settings = fileIO("data/bulbacore/settings.json", 'load')
 
     @commands.command(pass_context=True)
     @shiptoast_check(ctx)
@@ -470,7 +470,7 @@ class Bulbacore:
 
 
 def check_folders():
-    folders = ("data/Bulbacore")
+    folders = ("data/bulbacore")
     for folder in folders:
         if not os.path.exists(folder):
             print("Creating " + folder + " folder...")
@@ -483,7 +483,7 @@ def check_files():
         'botspam', 'breakfast-mondays', 'nicken-chugget', 'nsfw_jesus_christ',
         'hell', 'savespam'],
         "shiptoast_id": ['157614304059850752']}
-    settings_path = "data/Bulbacore/settings.json"
+    settings_path = "data/bulbacore/settings.json"
 
     if not os.path.isfile(settings_path):
         print("Creating default Bulbacore settings.json...")
