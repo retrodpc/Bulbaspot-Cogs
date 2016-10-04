@@ -9,6 +9,7 @@ from string import ascii_letters, digits
 from discord.ext import commands
 
 from __main__ import send_cmd_help, settings
+from cogs.utils import checks
 
 
 # Import the copypasta data
