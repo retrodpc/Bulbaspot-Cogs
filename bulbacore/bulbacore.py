@@ -472,6 +472,105 @@ class Bulbacore:
         """Just... try it."""
         yield from self.bot.say("https://www.mattandreko.com/images/brainpan2_preview.png")
 
+    # Parse !amkspeed verbiage
+    @commands.command(pass_context=False, description='Calculates AddMusicK speed based on a tempo. Also gives a rounded speed and tempo if given tempo results in a non-integer speed.')
+    @asyncio.coroutine
+    def amkspeed(self, tempo):
+        """Calculates AddMusicK speed based on a tempo"""
+        try:
+            if (not is_float(tempo)):
+                raise ValueError("Nice Number !")
+            tempo = float(tempo)
+            if (tempo <= 0):
+                raise ValueError("Error: Tempo must be positive.")
+            amkspeed = tempo * 256 / 625
+            amkspeedtest = amkspeed % 1
+            if (amkspeedtest != 0):
+                amkspeedrounded = int(round(amkspeed))
+                amktempo = float(amkspeedrounded) * 625 / 256
+                yield from self.bot.say("The AMK speed is about {:.0f}. The yielded tempo is {:g} BPM.".format(amkspeedrounded, amktempo))
+            else:
+                yield from self.bot.say("The AMK speed is {:.0f}.".format(amkspeed))
+        except ValueError as err:
+            # Display error message to channel
+            yield from self.bot.say(err)
+
+    # Parse !clockspeed verbiage
+    @commands.command(pass_context=False, description='Calculates clock speed based on first the desired tempo and then the tick speed.')
+    @asyncio.coroutine
+    def clockspeed(self, tempo, speed):
+        """Calculates clock speed"""
+        try:
+            if (not is_float(tempo)):
+                raise ValueError("Nice Numbers !")
+            if (not is_float(speed)):
+                raise ValueError("Nice Numbers !")
+            tempo = float(tempo)
+            speed = float(speed)
+            if (tempo <= 0):
+                raise ValueError("Error: Tempo must be positive.")
+            if (speed <= 0):
+                raise ValueError("Error: Tick speed must be positive.")
+            constant = 15 / speed
+            clockspeed = tempo / constant
+            yield from self.bot.say("The clock speed is {:g} Hz.".format(clockspeed))
+        except ValueError as err:
+            # Display error message to channel
+            yield from self.bot.say(err)
+
+    # Parse !tickspeed verbiage
+    @commands.command(pass_context=False, description='Calculates tick speed based on first the desired tempo and then the clock speed.')
+    @asyncio.coroutine
+    def tickspeed(self, tempo, clock):
+        """Calculates tick speed"""
+        try:
+            if (not is_float(tempo)):
+                raise ValueError("Nice Numbers !")
+            if (not is_float(clock)):
+                raise ValueError("Nice Numbers !")
+            tempo = float(tempo)
+            clock = float(clock)
+            if (tempo <= 0):
+                raise ValueError("Error: Tempo must be positive.")
+            if (tempo <= 0):
+                raise ValueError("Error: Clock speed must be positive.")
+            tickspeed = 15 * clock / tempo
+            # if the tickspeed is non-int it'll print past the period
+            yield from self.bot.say("The tick speed is {:g}.".format(tickspeed))
+        except ValueError as err:
+            # Display error message to channel
+            yield from self.bot.say(err)
+
+    # Parse !celsius verbiage
+    @commands.command(pass_context=False, description='Converts to Celsius from Fahrenheit.')
+    @asyncio.coroutine
+    def celsius(self, fahrenheit):
+        """Converts to Celsius from Fahrenheit"""
+        try:
+            if (not is_float(fahrenheit)):
+                raise ValueError("Nice Number !")
+            fahrenheit = float(fahrenheit)
+            celsius = (fahrenheit - 32) * (5 / 9)
+            yield from self.bot.say("{:g}°F is {:g}°C.".format(fahrenheit, celsius))
+        except ValueError as err:
+            # Display error message to channel
+            yield from self.bot.say(err)
+
+    # Parse !fahrenheit verbiage
+    @commands.command(pass_context=False, description='Converts to Fahrenheit from Celsius.')
+    @asyncio.coroutine
+    def fahrenheit(self, celsius):
+        """Converts to Fahrenheit from Celsius"""
+        try:
+            if (not is_float(celsius)):
+                raise ValueError("Nice Number !")
+            celsius = float(celsius)
+            fahrenheit = celsius * (9 / 5) + 32
+            yield from self.bot.say("{:g}°C is {:g}°F.".format(celsius, fahrenheit))
+        except ValueError as err:
+            # Display error message to channel
+            yield from self.bot.say(err)
+
 
 def check_folders():
     folders = ("data/bulbacore")
