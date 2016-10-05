@@ -85,33 +85,5 @@ class Pix:
                 yield from self.bot.say('This user has no picture saved.')
 
 
-def check_folders():
-    folders = ("data/pix")
-    for folder in folders:
-        if not os.path.exists(folder):
-            print("Creating " + folder + " folder...")
-            os.makedirs(folder)
-
-
-def check_files():
-    default = {"server": {}}
-    pix_path = "data/pix/pix.json"
-
-    if not os.path.isfile(pix_path):
-        print("Creating default pix.json...")
-        fileIO(pix_path, "save", default)
-    else:  # consistency check
-        current = fileIO(pix_path, "load")
-        if current.keys() != default.keys():
-            for key in default.keys():
-                if key not in current.keys():
-                    current[key] = default[key]
-                    print(
-                        "Adding " + str(key) + " field to pix.json")
-            fileIO(pix_path, "save", current)
-
-
 def setup(bot):
-    check_folders()
-    check_files()
     bot.add_cog(Pix(bot))
