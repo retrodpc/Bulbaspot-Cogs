@@ -41,7 +41,7 @@ def name_sanitize(name):
 def is_int(s):
     try:
         int(s)
-        if int(s) == s:
+        if int(s) == float(s):
             return True
         else:
             return False
@@ -103,26 +103,22 @@ def this_gen(length):
     if (is_int(length) is False):
         return "8================D"
     else:
-        length = float(length)
-        if (float(length) % 1 != 0):
-            return "8================D"
+        length = int(length)
+        if (length <= 1998 and length >= 0):
+            this_thing = "8"
+            for i in range(length):
+                this_thing = this_thing + "="
+            this_thing = this_thing + "D"
+            return this_thing
+        elif (length >= -1998 and length < 0):
+            new_length = -length
+            this_thing = "D"
+            for i in range(new_length):
+                this_thing = this_thing + "="
+            this_thing = this_thing + "8"
+            return this_thing
         else:
-            length = int(length)
-            if (length <= 1998 and length >= 0):
-                this_thing = "8"
-                for i in range(length):
-                    this_thing = this_thing + "="
-                this_thing = this_thing + "D"
-                return this_thing
-            elif (length >= -1998 and length < 0):
-                new_length = -length
-                this_thing = "D"
-                for i in range(new_length):
-                    this_thing = this_thing + "="
-                this_thing = this_thing + "8"
-                return this_thing
-            else:
-                return "Sorry bud, but my dick won't fit in here. **_: )_**"
+            return "Sorry bud, but my dick won't fit in here. **_: )_**"
 
 
 # Generates a wow at a given length
@@ -130,27 +126,23 @@ def wow_gen(length):
     if (is_int(length) is False):
         return "***__~~woooooooooooooooooooooooooooooow~~__***"
     else:
-        length = float(length)
-        if (length % 1 != 0):
-            return "***__~~woooooooooooooooooooooooooooooow~~__***"
+        length = int(length)
+        if (length <= 1984 and length >= 0):
+            wow_thing = "***__~~w"
+            for i in range(length):
+                wow_thing = wow_thing + "o"
+            wow_thing = wow_thing + "w~~__***"
+            return wow_thing
+        elif (length >= -1984 and length < 0):
+            new_length = -length
+            wow_thing = "***__~~ʍ"
+            for i in range(new_length):
+                wow_thing = wow_thing + "o"
+            wow_thing = wow_thing + "ʍ~~__***"
+            return wow_thing
         else:
-            length = int(length)
-            if (length <= 1984 and length >= 0):
-                wow_thing = "***__~~w"
-                for i in range(length):
-                    wow_thing = wow_thing + "o"
-                wow_thing = wow_thing + "w~~__***"
-                return wow_thing
-            elif (length >= -1984 and length < 0):
-                new_length = -length
-                wow_thing = "***__~~ʍ"
-                for i in range(new_length):
-                    wow_thing = wow_thing + "o"
-                wow_thing = wow_thing + "ʍ~~__***"
-                return wow_thing
-            else:
-                return "Sorry bud, but your wow is too much for me to handle.\n" \
-                "Here's a doge for now: https://upload.wikimedia.org/wikipedia/en/5/5f/Original_Doge_meme.jpg **_: (_**"
+            return "Sorry bud, but your wow is too much for me to handle.\n" \
+            "Here's a doge for now: https://upload.wikimedia.org/wikipedia/en/5/5f/Original_Doge_meme.jpg **_: (_**"
 
 
 # Metal commands will generate a "metal" song represented in text.
@@ -328,7 +320,7 @@ class Bulbacore:
     def this(self, ctx, length: str = None):
         """Generates a text penis with a given length."""
         if (shiptoast_check(self, ctx.message)):
-            if (number != None):
+            if (length != None):
                 this_string = this_gen(length)
                 yield from self.bot.say(this_string)
             else:
