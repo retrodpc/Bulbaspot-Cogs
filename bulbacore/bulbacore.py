@@ -35,7 +35,7 @@ def not_shiptoast_check(self, message):
 
 
 def name_sanitize(name):
-    return "".join([ch for ch in InputString if ch in (ascii_letters + digits + "-_")])
+    return "".join([ch for ch in name if ch in (ascii_letters + digits + "-_")])
 
 
 def is_int(s):
@@ -208,6 +208,9 @@ class Bulbacore:
         self.bot = bot
         self.settings = fileIO("data/bulbacore/settings.json", 'load')
 
+    def save_settings(self):
+        fileIO('data/bulbacore/settings.json', 'save', self.settings)
+
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def zalgo(self, ctx, *, message):
@@ -376,7 +379,7 @@ class Bulbacore:
             else:
                 channel_name = ctx.message.channel.name
         else:
-            channel_name = "#" + sanitized
+            channel_name = sanitized
         self.settings["shiptoast_name"].append(channel_name)
         self.save_settings()
         yield from self.bot.say("Channel {} added.".format(channel_name))
@@ -392,9 +395,9 @@ class Bulbacore:
         if sanitized is None:
             channel_name = ctx.message.channel.name
         else:
-            channel_name = "#" + sanitized
+            channel_name = sanitized
         if channel_name in self.settings["shiptoast_name"]:
-            self.settings["shiptoast_name"].append(channel_name)
+            self.settings["shiptoast_name"].remove(channel_name)
             self.save_settings()
             yield from self.bot.say("Channel {} removed.".format(channel_name))
         else:
@@ -571,11 +574,12 @@ class Bulbacore:
             # Display error message to channel
             yield from self.bot.say(err)
 
-    async def on_message(self, message):
+    @asyncio.coroutine
+    def on_message(self, message):
         if (message.content.lower().startswith('ok')
         and (shiptoast_check(self, message))
         and (message.author != self.bot.user)):
-            await self.bot.send_message(message.channel, 'ok')
+            yield from self.bot.send_message(message.channel, 'ok')
 
 
 def check_folders():
