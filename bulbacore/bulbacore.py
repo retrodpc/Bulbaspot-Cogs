@@ -571,6 +571,13 @@ class Bulbacore:
             # Display error message to channel
             yield from self.bot.say(err)
 
+    @asyncio.coroutine
+    def on_message(self, message):
+        if (message.content.lower().startswith('ok')
+            and (shiptoast_check(self, ctx))
+            and (message.author != bot.user):
+            yield from self.bot.send_message(message.channel, 'ok')
+
 
 def check_folders():
     folders = ("data/bulbacore")
