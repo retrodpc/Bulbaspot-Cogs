@@ -3,6 +3,6 @@
     "DESCRIPTION" : "Adds Bulbaspot's profile module. This lets users store a personal profile per server.",
     "DISABLED" : false,
     "SHORT" : "Port of Bulbaspot's profile module.",
-    "NAME" : "Bulbacore",
+    "NAME" : "Bulbapix",
     "INSTALL_MSG" : "Successfully installed pix.py. Hope you find it useful c: ~dpc"
 }

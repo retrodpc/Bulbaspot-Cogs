@@ -575,7 +575,7 @@ class Bulbacore:
 
 
 def check_folders():
-    folders = ("data/bulbacore")
+    folders = ["data/bulbacore"]
     for folder in folders:
         if not os.path.exists(folder):
             print("Creating " + folder + " folder...")

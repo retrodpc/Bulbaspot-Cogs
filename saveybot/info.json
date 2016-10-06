@@ -1,0 +1,8 @@
+{
+    "AUTHOR" : "retrodpc/Bulbasalt",
+    "DESCRIPTION" : "Adds Bulbaspot's SaveyBot module. This lets users save a message to a slot.",
+    "DISABLED" : false,
+    "SHORT" : "Port of Bulbaspot's SaveyBot module.",
+    "NAME" : "SaveyBot",
+    "INSTALL_MSG" : "Successfully installed saveybot.py. If you're good at efficiency tweaking, submit a pull request on this module. Thanks! ~dpc"
+}
