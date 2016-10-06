@@ -21,6 +21,28 @@ def is_int(s):
         return False
 
 
+def check_folders():
+    folders = ["data/saveybot"]
+    for folder in folders:
+        if not os.path.exists(folder):
+            print("Creating " + folder + " folder...")
+            os.makedirs(folder)
+
+
+def check_files():
+    default = [{"slot": "0", "name": "Bulbasalt", "message": "lol self-insert xddd"}]
+    settings_path = "data/saveybot/saveybot.json"
+
+    if not os.path.isfile(settings_path):
+        print("Creating default saveybot.json...")
+        fileIO(settings_path, "save", default)
+
+
+# idk why i need this here but ahhh well -_-
+check_folders()
+check_files()
+
+
 with open('data/saveybot/saveybot.json','r') as saveybot_file:    
     save_data = json.load(saveybot_file)
 
@@ -405,23 +427,6 @@ class SaveyBot:
             if len(content) > 1998:
                 content = content[:1998]
             yield from self.bot.say("~ " + content)
-
-
-def check_folders():
-    folders = ["data/saveybot"]
-    for folder in folders:
-        if not os.path.exists(folder):
-            print("Creating " + folder + " folder...")
-            os.makedirs(folder)
-
-
-def check_files():
-    default = [{"slot": "0", "name": "Bulbasalt", "message": "lol self-insert xddd"}]
-    settings_path = "data/saveybot/saveybot.json"
-
-    if not os.path.isfile(settings_path):
-        print("Creating default saveybot.json...")
-        fileIO(settings_path, "save", default)
 
 
 def setup(bot):
