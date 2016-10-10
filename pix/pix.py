@@ -4,6 +4,28 @@ import json
 from discord.ext import commands
 
 
+def check_folders():
+    folders = ["data/pix"]
+    for folder in folders:
+        if not os.path.exists(folder):
+            print("Creating " + folder + " folder...")
+            os.makedirs(folder)
+
+
+def check_files():
+    default = {"server": {}}
+    settings_path = "data/pix/pix.json"
+
+    if not os.path.isfile(settings_path):
+        print("Creating default pix.json...")
+        fileIO(settings_path, "save", default)
+
+
+# idk why i need this here but ahhh well -_-
+check_folders()
+check_files()
+
+
 with open('data/pix/pix.json') as pix_file:
     pixies = json.load(pix_file)
 
@@ -89,4 +111,6 @@ class Pix:
 
 
 def setup(bot):
+    check_folders()
+    check_files()
     bot.add_cog(Pix(bot))
