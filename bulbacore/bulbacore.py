@@ -280,6 +280,20 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["howard"]), tts=True)
 
+    @commands.command(pass_context=True)
+    @asyncio.coroutine
+    def cah(self, ctx):
+        """Cards against Humanity cue generator.\n This command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("``" + random.choice(copypastas["cues"]) + "``")
+
+    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["cahtts"])
+    @asyncio.coroutine
+    def cah_tts(self, ctx):
+        """Howard RP quote generator read aloud :P\n This command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say(random.choice(copypastas["cues"]), tts=True)
+
     @commands.group(pass_context=True)
     @asyncio.coroutine
     def sloth(self, ctx):

@@ -53,14 +53,15 @@ class Pix:
     @asyncio.coroutine
     def remove(self, ctx):
         """Removes your personal profile from this server."""
-        if (ctx.message.author.id in pixies["server"][ctx.message.server.id]["user"]):
-            data_index = pixies["server"][ctx.message.server.id]["user"].index(ctx.message.author.id)
-            del pixies["server"][ctx.message.server.id]["user"][data_index]
-            del pixies["server"][ctx.message.server.id]["content"][data_index]
-            save(pixies)
-            yield from self.bot.say('Picture removed.')
-        else:
-            yield from self.bot.say("You can't remove something that doesn't exist!")
+        if (ctx.message.server.id in pixies["server"]):
+            if (ctx.message.author.id in pixies["server"][ctx.message.server.id]["user"]):
+                data_index = pixies["server"][ctx.message.server.id]["user"].index(ctx.message.author.id)
+                del pixies["server"][ctx.message.server.id]["user"][data_index]
+                del pixies["server"][ctx.message.server.id]["content"][data_index]
+                save(pixies)
+                yield from self.bot.say('Picture removed.')
+                return
+        yield from self.bot.say("You can't remove something that doesn't exist!")
 
     @pix.command(pass_context=True, no_pm=True)
     @asyncio.coroutine
@@ -83,6 +84,8 @@ class Pix:
                 yield from self.bot.say("``Loading profile of " + user_object.name + "...``\n\n" + pixies["server"][ctx.message.server.id]["content"][data_index])
             else:
                 yield from self.bot.say('This user has no picture saved.')
+        else:
+            yield from self.bot.say("This server has no pictures saved.")
 
 
 def setup(bot):
