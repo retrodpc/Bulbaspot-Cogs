@@ -41,7 +41,7 @@ def name_sanitize(name):
 def is_int(s):
     try:
         int(s)
-        if int(s) == float(s):
+        if float(s) % 1 == 0:
             return True
         else:
             return False
@@ -333,23 +333,21 @@ class Bulbacore:
     @asyncio.coroutine
     def this(self, ctx, length: str = None):
         """Generates a text penis with a given length."""
-        if (shiptoast_check(self, ctx.message)):
-            if (length != None):
-                this_string = this_gen(length)
-                yield from self.bot.say(this_string)
-            else:
-                yield from self.bot.say("8================D")
+        if (length != None):
+            this_string = this_gen(length)
+            yield from self.bot.say(this_string)
+        else:
+            yield from self.bot.say("8================D")
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def wow(self, ctx, number: str = None):
         """Generates an emphatic wow with a given length."""
-        if (shiptoast_check(self, ctx.message)):
-            if (number != None):
-                wow_string = wow_gen(number)
-                yield from self.bot.say(wow_string)
-            else:
-                yield from self.bot.say("***__~~woooooooooooooooooooooooooooooow~~__***")
+        if (number != None):
+            wow_string = wow_gen(number)
+            yield from self.bot.say(wow_string)
+        else:
+            yield from self.bot.say("***__~~woooooooooooooooooooooooooooooow~~__***")
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
@@ -368,7 +366,6 @@ class Bulbacore:
             yield from self.bot.say(metal_crazy_a(), tts=True)
             yield from self.bot.say("***AND NOW THE SOLO!!!***", tts=True)
             yield from self.bot.say("**___~~" + metal_crazy_b() + "~~___**", tts=True)
-            yield from self.bot.say(metal())
 
     @commands.command(pass_context=True, aliases=["add_shiptoast"])
     @checks.is_owner()
@@ -580,12 +577,12 @@ class Bulbacore:
             # Display error message to channel
             yield from self.bot.say(err)
 
-    @asyncio.coroutine
-    def on_message(self, message):
-        if (message.content.lower().startswith('ok')
-        and (shiptoast_check(self, message))
-        and (message.author != self.bot.user)):
-            yield from self.bot.send_message(message.channel, 'ok')
+    #@asyncio.coroutine
+    #def on_message(self, message):
+        #if (message.content.lower().startswith('ok')
+        #and (shiptoast_check(self, message))
+        #and (message.author != self.bot.user)):
+            #yield from self.bot.send_message(message.channel, 'ok')
 
 
 def check_folders():
