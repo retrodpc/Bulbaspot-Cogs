@@ -206,14 +206,14 @@ class Bulbacore:
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def zalgo(self, ctx, *, message):
-        """spoopy\n This command doesn't work in all channels."""
+        """spoopy\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(zalgo_gen(message))
 
     @commands.group(pass_context=True)
     @asyncio.coroutine
     def bulba(self, ctx):
-        """Bulba's quote generator\n This command doesn't work in all channels."""
+        """Bulba's quote generator\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             if ctx.invoked_subcommand is None:
                 yield from self.bot.say(random.choice(copypastas["bulbaquotes"]))
@@ -221,21 +221,22 @@ class Bulbacore:
     @bulba.command(pass_context=True)
     @asyncio.coroutine
     def list(self, ctx):
-        """Bulba's quote list\n This command doesn't work in all channels."""
-        yield from self.bot.say('http://pastebin.com/dvH26JwB')
+        """Bulba's quote list\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say('http://pastebin.com/dvH26JwB')
 
     @commands.command(pass_context=True, hidden=True, 
             description="wait how the fuck did you find this lmao", aliases=["bulbatts"])
     @asyncio.coroutine
     def bulba_tts(self, ctx):
-        """Bulba's quote generator read aloud :P\n This command doesn't work in all channels."""
+        """Bulba's quote generator read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["bulbaquotes"]), tts=True)
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def cheng(self, ctx):
-        """Cheng generator\n This command doesn't work in all channels."""
+        """Cheng generator\nThis command doesn't work in all channels."""
         cheng = (random.choice(copypastas["cheng_intro"])
                 + random.choice(copypastas["cheng_middle"])
                 + random.choice(copypastas["cheng_end"]))
@@ -245,7 +246,7 @@ class Bulbacore:
     @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["chengtts"])
     @asyncio.coroutine
     def cheng_tts(self, ctx):
-        """Cheng generator read aloud :P\n This command doesn't work in all channels."""
+        """Cheng generator read aloud :P\nThis command doesn't work in all channels."""
         cheng = (random.choice(copypastas["cheng_intro"])
                 + random.choice(copypastas["cheng_middle"])
                 + random.choice(copypastas["cheng_end"]))
@@ -255,49 +256,49 @@ class Bulbacore:
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def deward(self, ctx):
-        """Deward RP quote generator\n This command doesn't work in all channels."""
+        """Deward RP quote generator\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["deward"]))
 
     @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["dewardtts"])
     @asyncio.coroutine
     def deward_tts(self, ctx):
-        """deward RP quote generator read aloud :P\n This command doesn't work in all channels."""
+        """deward RP quote generator read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["deward"]), tts=True)
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def howard(self, ctx):
-        """Howard RP quote generator\n This command doesn't work in all channels."""
+        """Howard RP quote generator\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["howard"]))
 
     @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["howardtts"])
     @asyncio.coroutine
     def howard_tts(self, ctx):
-        """Howard RP quote generator read aloud :P\n This command doesn't work in all channels."""
+        """Howard RP quote generator read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["howard"]), tts=True)
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def cah(self, ctx):
-        """Cards against Humanity cue generator.\n This command doesn't work in all channels."""
+        """Cards against Humanity cue generator.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("``" + random.choice(copypastas["cues"]) + "``")
 
     @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["cahtts"])
     @asyncio.coroutine
     def cah_tts(self, ctx):
-        """Howard RP quote generator read aloud :P\n This command doesn't work in all channels."""
+        """Howard RP quote generator read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["cues"]), tts=True)
 
     @commands.group(pass_context=True)
     @asyncio.coroutine
     def sloth(self, ctx):
-        """Sloth quote generator\n This command doesn't work in all channels."""
+        """Sloth quote generator\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             if ctx.invoked_subcommand is None:
                 yield from self.bot.say(random.choice(copypastas["sloth"]))
@@ -305,39 +306,41 @@ class Bulbacore:
     @sloth.command(pass_context=True)
     @asyncio.coroutine
     def original(self, ctx):
-        """Sloth's original!\n This command doesn't work in all channels."""
-        yield from self.bot.say(copypastas["sloth"][0])
+        """Sloth's original!\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say(copypastas["sloth"][0])
 
     @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["slothtts"])
     @asyncio.coroutine
     def sloth_tts(self, ctx):
-        """Sloth quote generator read aloud :P\n This command doesn't work in all channels."""
+        """Sloth quote generator read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["sloth"]), tts=True)
 
     @commands.command(pass_context=True,aliases=["nomanssky","nomansky"])
     @asyncio.coroutine
     def nms(self, ctx):
-        """THE ABSOLUTELY CRINGIEST COMMAND EVER\n This command doesn't work in all channels."""
+        """THE ABSOLUTELY CRINGIEST COMMAND EVER\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["nms"]))
 
     @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["nomanssky_tts","nomansky_tts","nomansskytts","nomanskytts","nmstts"])
     @asyncio.coroutine
     def nms_tts(self, ctx):
-        """... If you like to hear verbally spoken cringe.\n This command doesn't work in all channels."""
+        """... If you like to hear verbally spoken cringe.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["nms"]), tts=True)
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def this(self, ctx, length: str = None):
-        """Generates a text penis with a given length."""
-        if (length != None):
-            this_string = this_gen(length)
-            yield from self.bot.say(this_string)
-        else:
-            yield from self.bot.say("8================D")
+        """Generates a text penis with a given length.\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            if (length != None):
+                this_string = this_gen(length)
+                yield from self.bot.say(this_string)
+            else:
+                yield from self.bot.say("8================D")
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
@@ -409,8 +412,9 @@ class Bulbacore:
     @commands.command(pass_context=False, aliases=['triple_a','aaa'])
     @asyncio.coroutine
     def trippleaaa(self):
-        """TrippleAAA in a nutshell."""
-        yield from self.bot.say("https://cdn.discordapp.com/attachments/190191670304833536/201368263203094528/10a.png")
+        """TrippleAAA in a nutshell.\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("https://cdn.discordapp.com/attachments/190191670304833536/201368263203094528/10a.png")
 
     @commands.command(pass_context=False, aliases=['mad'])
     @asyncio.coroutine
@@ -421,14 +425,16 @@ class Bulbacore:
     @commands.command(pass_context=False)
     @asyncio.coroutine
     def clap(self):
-        """Displays the Skype clap emote."""
-        yield from self.bot.say("https://i.imgur.com/3es8mZ6.gif")
+        """Displays the Skype clap emote.\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("https://i.imgur.com/3es8mZ6.gif")
 
     @commands.command(pass_context=False)
     @asyncio.coroutine
     def cry(self):
-        """Displays the Skype crying emote."""
-        yield from self.bot.say("https://puu.sh/l3bnv.gif")
+        """Displays the Skype crying emote.\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("https://puu.sh/l3bnv.gif")
 
     @commands.command(pass_context=False,aliases=['kerathumbs'])
     @asyncio.coroutine
@@ -451,32 +457,37 @@ class Bulbacore:
     @commands.command(pass_context=False,aliases=['approve'])
     @asyncio.coroutine
     def seal(self):
-        """Displays a seal of approval."""
-        yield from self.bot.say("https://cdn.discordapp.com/attachments/158305327035449344/159801148642033667/Joltik_Seal_of_Approval.png")
+        """Displays a seal of approval.\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("https://cdn.discordapp.com/attachments/158305327035449344/159801148642033667/Joltik_Seal_of_Approval.png")
 
     @commands.command(pass_context=False,aliases=['asleep','assleap'])
     @asyncio.coroutine
     def sleep(self):
-        """Displays a sleeping emote."""
-        yield from self.bot.say("https://cdn.discordapp.com/attachments/125591492004806656/207330607997386753/leap.gif")
+        """Displays a sleeping emote.\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("https://cdn.discordapp.com/attachments/125591492004806656/207330607997386753/leap.gif")
 
     @commands.command(pass_context=False,aliases=['mogamen','humour'])
     @asyncio.coroutine
     def notfunny(self):
-        """When something just ain't funny."""
-        yield from self.bot.say("https://cdn.discordapp.com/attachments/202817966570471426/219488871602192384/notfunny.png")
+        """When something just ain't funny.\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("https://cdn.discordapp.com/attachments/202817966570471426/219488871602192384/notfunny.png")
 
     @commands.command(pass_context=False,aliases=['somethinghappened','something_happened'])
     @asyncio.coroutine
     def something(self):
-        """Something happened."""
-        yield from self.bot.say("https://cdn.discordapp.com/attachments/130833169724342272/202122586740490241/3dtq5QP.png")
+        """Something happened.\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("https://cdn.discordapp.com/attachments/130833169724342272/202122586740490241/3dtq5QP.png")
     
     @commands.command(pass_context=False,aliases=['disclaimer'])
     @asyncio.coroutine
     def gift(self):
-        """Just... try it."""
-        yield from self.bot.say("https://www.mattandreko.com/images/brainpan2_preview.png")
+        """Just... try it.\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("https://www.mattandreko.com/images/brainpan2_preview.png")
 
     # Parse !amkspeed verbiage
     @commands.command(pass_context=False, description='Calculates AddMusicK speed based on a tempo. Also gives a rounded speed and tempo if given tempo results in a non-integer speed.')
