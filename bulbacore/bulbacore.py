@@ -422,16 +422,16 @@ class Bulbacore:
         """Displays an angry emoticon."""
         yield from self.bot.say("**___~~>:C~~___**")
 
-    @commands.command(pass_context=False)
+    @commands.command(pass_context=True)
     @asyncio.coroutine
-    def clap(self):
+    def clap(self, ctx):
         """Displays the Skype clap emote.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://i.imgur.com/3es8mZ6.gif")
 
-    @commands.command(pass_context=False)
+    @commands.command(pass_context=True)
     @asyncio.coroutine
-    def cry(self):
+    def cry(self, ctx):
         """Displays the Skype crying emote.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://puu.sh/l3bnv.gif")
@@ -454,30 +454,30 @@ class Bulbacore:
         """Displays the pedobear face."""
         yield from self.bot.say("ʕ•͡ᴥ•ʔ")
 
-    @commands.command(pass_context=False,aliases=['approve'])
+    @commands.command(pass_context=True,aliases=['approve'])
     @asyncio.coroutine
-    def seal(self):
+    def seal(self, ctx):
         """Displays a seal of approval.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/158305327035449344/159801148642033667/Joltik_Seal_of_Approval.png")
 
-    @commands.command(pass_context=False,aliases=['asleep','assleap'])
+    @commands.command(pass_context=True,aliases=['asleep','assleap'])
     @asyncio.coroutine
-    def sleep(self):
+    def sleep(self, ctx):
         """Displays a sleeping emote.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/125591492004806656/207330607997386753/leap.gif")
 
-    @commands.command(pass_context=False,aliases=['mogamen','humour'])
+    @commands.command(pass_context=True,aliases=['mogamen','humour'])
     @asyncio.coroutine
-    def notfunny(self):
+    def notfunny(self, ctx):
         """When something just ain't funny.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/202817966570471426/219488871602192384/notfunny.png")
 
-    @commands.command(pass_context=False,aliases=['somethinghappened','something_happened'])
+    @commands.command(pass_context=True,aliases=['somethinghappened','something_happened'])
     @asyncio.coroutine
-    def something(self):
+    def something(self, ctx):
         """Something happened.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/130833169724342272/202122586740490241/3dtq5QP.png")
