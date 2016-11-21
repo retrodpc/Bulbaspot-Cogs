@@ -409,9 +409,9 @@ class Bulbacore:
         else:
             yield from self.bot.say("Channel {} not found in list.".format(channel_name))
 
-    @commands.command(pass_context=False, aliases=['triple_a','aaa'])
+    @commands.command(pass_context=True, aliases=['triple_a','aaa'])
     @asyncio.coroutine
-    def trippleaaa(self):
+    def trippleaaa(self, ctx):
         """TrippleAAA in a nutshell.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/190191670304833536/201368263203094528/10a.png")
@@ -482,7 +482,7 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/130833169724342272/202122586740490241/3dtq5QP.png")
     
-    @commands.command(pass_context=False,aliases=['disclaimer'])
+    @commands.command(pass_context=True,aliases=['disclaimer'])
     @asyncio.coroutine
     def gift(self):
         """Just... try it.\nThis command doesn't work in all channels."""
@@ -587,6 +587,34 @@ class Bulbacore:
         except ValueError as err:
             # Display error message to channel
             yield from self.bot.say(err)
+
+    @commands.group(pass_context=True)
+    @asyncio.coroutine
+    def base64(self, ctx):
+        """Base64 commands"""
+        if ctx.invoked_subcommand is None:
+            yield from send_cmd_help(ctx)
+            yield from self.bot.say('u idiot what did you expect me to do')
+
+    @base64.command(pass_context=False)
+    @asyncio.coroutine
+    def encode(self, *, message):
+        """Encodes Base64"""
+        encoded = str(standard_b64encode(message.encode('utf-8')))
+        if len(encoded) <= 1997:
+            yield from self.bot.say("```~ " + encoded[2:len(encoded)-1] + "```")
+        else:
+            yield from self.bot.say("Sorry bud, but my encode won't fit in here. **_: )_**")
+
+    @base64.command(pass_context=False)
+    @asyncio.coroutine
+    def decode(self, *, message):
+        """Decodes Base64"""
+        decoded = str(standard_b64decode(message))
+        if len(decoded) <= 1999:
+            yield from self.bot.say("```~ " + decoded[2:len(decoded)-1] + "```")
+        else:
+            yield from self.bot.say("Sorry bud, but my decode won't fit in here. **_: )_**")
 
     #@asyncio.coroutine
     #def on_message(self, message):
