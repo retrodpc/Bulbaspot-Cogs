@@ -481,10 +481,17 @@ class Bulbacore:
         """Something happened.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/130833169724342272/202122586740490241/3dtq5QP.png")
+
+    @commands.command(pass_context=True,aliases=['somethinghappened','something_happened'])
+    @asyncio.coroutine
+    def woody(self, ctx):
+        """Returns a random Woody picture hosted on dpc's website.\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("http://dpc.hol.es/woody/{}.jpg".format(randint(1,3201)))
     
     @commands.command(pass_context=True,aliases=['disclaimer'])
     @asyncio.coroutine
-    def gift(self):
+    def gift(self, ctx):
         """Just... try it.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://www.mattandreko.com/images/brainpan2_preview.png")
