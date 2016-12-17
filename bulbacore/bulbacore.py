@@ -487,7 +487,11 @@ class Bulbacore:
     def woody(self, ctx):
         """Returns a random Woody picture hosted on dpc's website.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say("http://dpc.hol.es/woody/{}.jpg".format(randint(1,3201)))
+            woody_count = randint(1,3201)
+            if woody_count in [348, 475, 481, 530, 1492, 1549, 2500]:
+                yield from self.bot.say("http://dpc.hol.es/woody/{}.gif".format(woody_count))
+            else:
+                yield from self.bot.say("http://dpc.hol.es/woody/{}.jpg".format(woody_count))
     
     @commands.command(pass_context=True,aliases=['disclaimer'])
     @asyncio.coroutine

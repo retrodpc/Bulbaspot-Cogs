@@ -13,7 +13,7 @@ from cogs.utils.dataIO import fileIO
 def is_int(s):
     try:
         int(s)
-        if int(s) == float(s):
+        if float(s) % 1 == 0:
             return True
         else:
             return False
