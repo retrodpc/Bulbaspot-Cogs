@@ -21,14 +21,14 @@ with open('data/bulbacore/copypasta.json') as copypasta_file:
 
 # Checks from Bulbaspot
 def shiptoast_check(self, message):
-    if (message.channel.id in self.settings["shiptoast_id"]) or (message.channel.name in self.settings["shiptoast_name"]) or message.channel.is_private:
+    if (message.channel.id in self.settings["shiptoast"]) or (message.channel.name in self.settings["shiptoast"]) or message.channel.is_private:
         return True
     else:
         return False
 
 
 def not_shiptoast_check(self, message):
-    if (message.channel.id in self.settings["shiptoast_id"]) or (message.channel.name in self.settings["shiptoast_name"]):
+    if (message.channel.id in self.settings["shiptoast"]) or (message.channel.name in self.settings["shiptoast"]):
         return False
     else:
         return True
@@ -379,14 +379,14 @@ class Bulbacore:
         Without a channel specified, it will add the current channel."""
         sanitized = name_sanitize(channel)
         if sanitized is None:
-            if ctx.message.channel.name in self.settings["shiptoast_name"]:
+            if ctx.message.channel.name in self.settings["shiptoast"]:
                 yield from self.bot.say("This channel is already in the shiptoast list!")
                 return
             else:
                 channel_name = ctx.message.channel.name
         else:
             channel_name = sanitized
-        self.settings["shiptoast_name"].append(channel_name)
+        self.settings["shiptoast"].append(channel_name)
         self.save_settings()
         yield from self.bot.say("Channel {} added.".format(channel_name))
 
@@ -402,8 +402,8 @@ class Bulbacore:
             channel_name = ctx.message.channel.name
         else:
             channel_name = sanitized
-        if channel_name in self.settings["shiptoast_name"]:
-            self.settings["shiptoast_name"].remove(channel_name)
+        if channel_name in self.settings["shiptoast"]:
+            self.settings["shiptoast"].remove(channel_name)
             self.save_settings()
             yield from self.bot.say("Channel {} removed.".format(channel_name))
         else:
@@ -484,10 +484,11 @@ class Bulbacore:
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
-    def woody(self, ctx):
+    def woody(self, ctx, woody_count: int = randint(1,3201)):
         """Returns a random Woody picture hosted on dpc's website.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
-            woody_count = randint(1,3201)
+            if !(0 < woody_count < 3202):
+                woody_count = = randint(1,3201)
             if woody_count in [348, 475, 481, 530, 1492, 1549, 2500]:
                 yield from self.bot.say("http://dpc.hol.es/woody/{}.gif".format(woody_count))
             else:
@@ -644,11 +645,10 @@ def check_folders():
 
 
 def check_files():
-    default = {"shiptoast_name": ['bot-playground', 'shitposting',
+    default = {"shiptoast": ['bot-playground', 'shitposting',
         'shiptoasting', 'bot-operation', 'bot-test-and-dev', 'playground',
         'botspam', 'breakfast-mondays', 'nicken-chugget', 'nsfw_jesus_christ',
-        'hell', 'savespam'],
-        "shiptoast_id": ['157614304059850752']}
+        'hell', 'savespam','157614304059850752']}
     settings_path = "data/bulbacore/settings.json"
 
     if not os.path.isfile(settings_path):
