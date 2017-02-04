@@ -341,7 +341,7 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["nms"]), tts=True)
 
-    @commands.command(pass_context=True)
+    @commands.command(pass_context=True,aliases=["dong","penis","cock"])
     @asyncio.coroutine
     def this(self, ctx, length: str = None):
         """Generates a text penis with a given length.\nThis command doesn't work in all channels."""
