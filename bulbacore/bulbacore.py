@@ -498,7 +498,7 @@ class Bulbacore:
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
-    def woody(self, ctx, woody_count: int = randint(1,3201)):
+    def woody(self, ctx, woody_count: int = 9001):
         """Returns a random Woody picture hosted on dpc's website.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             if (woody_count < 0) or (woody_count > 3202):
