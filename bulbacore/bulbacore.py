@@ -19,7 +19,7 @@ from cogs.utils.dataIO import fileIO
 
 
 def save_logs(filename, data):
-    full_path = Path('data/logger/invoked_logs/' + filename)
+    full_path = Path('data/bulbacore/' + filename)
     if full_path.is_file():
         with open(str(full_path), "ab") as log_file:
             log_file.write(data.encode("utf8"))
@@ -653,10 +653,10 @@ class Bulbacore:
         async for message in self.bot.logs_from(ctx.message.channel, messages):
             save_logs(filename, "[{0:04d}/{1:02d}/{2:02d}-{3:02d}:{4:02d}:{5:02d}] <{6}> {7}\n".format(message.timestamp.year, message.timestamp.month, message.timestamp.day, message.timestamp.hour, message.timestamp.minute, message.timestamp.second, message.author.name.encode('ascii', 'backslashreplace').decode('ascii'), message.content.encode('ascii', 'backslashreplace').decode('ascii')))
         
-        with open("data/logger/invoked_logs/"+filename,"rb") as f_in, gzip.open("data/logger/invoked_logs/"+filename+'.gz', 'wb') as f_out:
+        with open("data/bulbacore/"+filename,"rb") as f_in, gzip.open("data/bulbacore/"+filename+'.gz', 'wb') as f_out:
             f_out.writelines(f_in)
         
-        with open("data/logger/invoked_logs/"+filename+".gz","rb") as f_out:
+        with open("data/bulbacore/"+filename+".gz","rb") as f_out:
             await self.bot.send_file(ctx.message.channel, f_out, content="Bulbasaur is going to be pissed at you.")
 
     #@asyncio.coroutine
