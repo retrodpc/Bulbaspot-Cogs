@@ -14,6 +14,16 @@ from cogs.utils import checks
 from cogs.utils.dataIO import fileIO
 
 
+def save_logs(filename, data):
+    full_path = Path('data/logger/invoked_logs/' + filename)
+    if full_path.is_file():
+        with open(str(full_path), "ab") as log_file:
+            log_file.write(data.encode("utf8"))
+    else:
+        with open(str(full_path), "wb") as log_file:
+            log_file.write(data.encode("utf8"))
+
+
 # Import the copypasta data
 with open('data/bulbacore/copypasta.json') as copypasta_file:    
     copypastas = json.load(copypasta_file)
@@ -627,6 +637,23 @@ class Bulbacore:
             yield from self.bot.say("```~ " + decoded[2:len(decoded)-1] + "```")
         else:
             yield from self.bot.say("Sorry bud, but my decode won't fit in here. **_: )_**")
+
+    @commands.command(pass_context=True, no_pm=True, aliases=["loglast"])
+    async def log_last(self, ctx, messages: int = 100):
+        """Logs previous messages in a channel.\nDefaults to 100 messages but has no limit."""
+        await self.bot.say("Starting logging...")
+
+        filename = 'log-{6}-{7}-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.server.name, ctx.message.channel.name)
+        save_logs(filename, "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} in channel {7} on server {8}, for no reason other than to piss Bulbasaur off.\nUser ID: {9}\nChannel ID: {10}\nServer ID: {11}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, str(ctx.message.author), str(ctx.message.channel), str(ctx.message.server), ctx.message.author.id, ctx.message.channel.id, ctx.message.server.id))
+        
+        async for message in self.bot.logs_from(ctx.message.channel, messages):
+            save_logs(filename, "[{0:04d}/{1:02d}/{2:02d}-{3:02d}:{4:02d}:{5:02d}] <{6}> {7}\n".format(message.timestamp.year, message.timestamp.month, message.timestamp.day, message.timestamp.hour, message.timestamp.minute, message.timestamp.second, message.author.name.encode('ascii', 'backslashreplace').decode('ascii'), message.content.encode('ascii', 'backslashreplace').decode('ascii')))
+        
+        with open("data/logger/invoked_logs/"+filename,"rb") as f_in, gzip.open("data/logger/invoked_logs/"+filename+'.gz', 'wb') as f_out:
+            f_out.writelines(f_in)
+        
+        with open("data/logger/invoked_logs/"+filename+".gz","rb") as f_out:
+            await self.bot.send_file(ctx.message.channel, f_out, content="Bulbasaur is going to be pissed at you.")
 
     #@asyncio.coroutine
     #def on_message(self, message):
