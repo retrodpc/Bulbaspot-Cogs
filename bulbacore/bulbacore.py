@@ -338,6 +338,13 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["nms"]))
 
+    @commands.command(pass_context=True,aliases=["minimacro"])
+    @asyncio.coroutine
+    def bs(self, ctx):
+        """Just... try it ;^D\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("https://youtu.be/r427LYKA8zY")
+
     @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["nomanssky_tts","nomansky_tts","nomansskytts","nomanskytts","nmstts"])
     @asyncio.coroutine
     def nms_tts(self, ctx):
