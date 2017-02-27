@@ -469,6 +469,12 @@ class Bulbacore:
         """Displays the lenny face."""
         yield from self.bot.say("( ͡° ͜ʖ ͡°)")
 
+    @commands.command(pass_context=False,aliases=['snivvy','snivvi'])
+    @asyncio.coroutine
+    def snivi(self):
+        """Displays the lenny face."""
+        yield from self.bot.say("***__>;v__***")
+
     @commands.command(pass_context=False,aliases=['bear','pedobear'])
     @asyncio.coroutine
     def pedo(self):
@@ -666,12 +672,12 @@ class Bulbacore:
         with open("data/bulbacore/"+filename+".gz","rb") as f_out:
             await self.bot.send_file(ctx.message.channel, f_out, content="Bulbasaur is going to be pissed at you.")
 
-    #@asyncio.coroutine
-    #def on_message(self, message):
-        #if (message.content.lower().startswith('ok')
-        #and (shiptoast_check(self, message))
-        #and (message.author != self.bot.user)):
-            #yield from self.bot.send_message(message.channel, 'ok')
+    @asyncio.coroutine
+    def on_message(self, message):
+        if (message.content.lower().startswith('ok')
+        and (shiptoast_check(self, message))
+        and (message.author != self.bot.user)):
+            yield from self.bot.send_message(message.channel, 'ok')
 
 
 def check_folders():
