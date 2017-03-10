@@ -514,12 +514,21 @@ class Bulbacore:
     def woody(self, ctx, woody_count: int = 9001):
         """Returns a random Woody picture hosted on dpc's website.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
-            if (woody_count < 0) or (woody_count > 3202):
+            if (woody_count < 1) or (woody_count > 3202):
                 woody_count = randint(1,3201)
             if woody_count in [348, 475, 481, 530, 1492, 1549, 2500]:
                 yield from self.bot.say("http://dpc.hol.es/woody/{}.gif".format(woody_count))
             else:
                 yield from self.bot.say("http://dpc.hol.es/woody/{}.jpg".format(woody_count))
+
+    @commands.command(pass_context=True,aliases=['cute'])
+    @asyncio.coroutine
+    def animal(self, ctx, animal_count: int = 9001):
+        """Returns a random animal GIF hosted on dpc's website.\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            if (animal_count < 1) or (animal_count > 104):
+                animal_count = randint(1,104)
+            yield from self.bot.say("http://dpc.hol.es/Animal/{}.gif".format(animal_count))
     
     @commands.command(pass_context=True,aliases=['disclaimer'])
     @asyncio.coroutine
@@ -676,7 +685,8 @@ class Bulbacore:
     def on_message(self, message):
         if (message.content.lower().startswith('ok')
         and (shiptoast_check(self, message))
-        and (message.author != self.bot.user)):
+        and (message.author != self.bot.user)
+        and (message.channel.id != "222432649472376832")):
             yield from self.bot.send_message(message.channel, 'ok')
 
 
