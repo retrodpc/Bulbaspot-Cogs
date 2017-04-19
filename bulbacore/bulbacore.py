@@ -309,6 +309,20 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["cues"]), tts=True)
 
+    @commands.command(pass_context=True)
+    @asyncio.coroutine
+    def merio(self, ctx):
+        """Merio's Journal.\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("Today on #meriosjournal\n\n" + random.choice(copypastas["merio"]))
+
+    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["meriotts"])
+    @asyncio.coroutine
+    def merio_tts(self, ctx):
+        """Merio's Journal read aloud :P\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("Today on #meriosjournal\n\n" + random.choice(copypastas["merio"]), tts=True)
+
     @commands.group(pass_context=True)
     @asyncio.coroutine
     def sloth(self, ctx):
