@@ -270,7 +270,7 @@ def fucc():
     for i in range(metal_length):
         if randint(0, 10) < 6:
             metal_crusher = metal_crusher + primary_metal_chara[randint(0, len(primary_metal_chara)-1)]
-        elif:
+        else:
             metal_crusher = metal_crusher + secondary_metal_chara[randint(0, len(secondary_metal_chara)-1)]
     return metal_crusher
 
