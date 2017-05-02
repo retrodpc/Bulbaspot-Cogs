@@ -206,6 +206,74 @@ def metal_crazy_b():
             han_solo = han_solo + secondary_solo_frisk[randint(0, len(secondary_solo_frisk)-1)]
     return han_solo
 
+def fucc():
+    primary_metal_chara =  ["\ud83d\ude00", "\ud83d\ude03", "\ud83d\ude04",
+                            "\ud83d\ude01", "\ud83d\ude06", "\ud83d\ude05",
+                            "\ud83d\ude02", "\ud83e\udd23", "\u263a",
+                            "\ud83d\ude0a", "\ud83d\ude07", "\ud83d\ude42",
+                            "\ud83d\ude43", "\ud83d\ude09", "\ud83d\ude0c",
+                            "\ud83d\ude0d", "\ud83d\ude18", "\ud83d\ude17",
+                            "\ud83d\ude19", "\ud83d\ude1a", "\ud83d\ude0b",
+                            "\ud83d\ude1c", "\ud83d\ude1d", "\ud83d\ude1b",
+                            "\ud83e\udd11", "\ud83e\udd17", "\ud83e\udd13",
+                            "\ud83d\ude0e", "\ud83e\udd21", "\ud83e\udd20",
+                            "\ud83d\ude0f", "\ud83d\ude12", "\ud83d\ude1e",
+                            "\ud83d\ude14", "\ud83d\ude1f", "\ud83d\ude15",
+                            "\ud83d\ude41", "\u2639", "\ud83d\ude23",
+                            "\ud83d\ude16", "\ud83d\ude2b", "\ud83d\ude29",
+                            "\ud83d\ude24", "\ud83d\ude20", "\ud83d\ude21",
+                            "\ud83d\ude36", "\ud83d\ude10", "\ud83d\ude11",
+                            "\ud83d\ude2f", "\ud83d\ude26", "\ud83d\ude27",
+                            "\ud83d\ude2e", "\ud83d\ude32", "\ud83d\ude35",
+                            "\ud83d\ude33", "\ud83d\ude31", "\ud83d\ude30",
+                            "\ud83d\ude28", "\ud83d\ude22", "\ud83d\ude25",
+                            "\ud83e\udd24", "\ud83d\ude2d", "\ud83d\ude13",
+                            "\ud83d\ude2a", "\ud83d\ude34", "\ud83d\ude44",
+                            "\ud83e\udd14", "\ud83e\udd25", "\ud83d\ude2c",
+                            "\ud83e\udd10", "\ud83e\udd22", "\ud83e\udd27",
+                            "\ud83d\ude37", "\ud83e\udd12", "\ud83e\udd15",
+                            "\ud83d\ude08", "\ud83d\udc7f", "\ud83d\udc7f",
+                            "\ud83d\udc79", "\ud83d\udc7a", "\ud83d\udc7a",
+                            "\ud83d\udca9", "\ud83d\udc7b", "\ud83d\udc80",
+                            "\u2620", "\ud83d\udc7d", "\ud83d\udc7e",
+                            "\ud83e\udd16", "\ud83c\udf83"]
+    secondary_metal_chara = ["\ud83d\udc36", "\ud83d\udc31", "\ud83d\udc2d",
+                             "\ud83d\udc39", "\ud83d\udc30", "\ud83e\udd8a",
+                             "\ud83d\udc3b", "\ud83d\udc3c", "\ud83d\udc28",
+                             "\ud83d\udc2f", "\ud83e\udd81", "\ud83d\udc2e",
+                             "\ud83d\udc37", "\ud83d\udc3d", "\ud83d\udc38",
+                             "\ud83d\udc35", "\ud83d\ude48", "\ud83d\ude49",
+                             "\ud83d\ude4a", "\ud83d\udc12", "\ud83d\udc27",
+                             "\ud83d\udc14", "\ud83d\udc26", "\ud83d\udc24",
+                             "\ud83d\udc23", "\ud83d\udc25", "\ud83e\udd86",
+                             "\ud83e\udd85", "\ud83e\udd89", "\ud83e\udd87",
+                             "\ud83d\udc3a", "\ud83d\udc17", "\ud83d\udc34",
+                             "\ud83e\udd84", "\ud83c\udf4f", "\ud83c\udf4e",
+                             "\ud83c\udf50", "\ud83c\udf4a", "\ud83c\udf4b",
+                             "\ud83c\udf4c", "\ud83c\udf49", "\ud83c\udf47",
+                             "\ud83c\udf53", "\ud83c\udf48", "\ud83c\udf3d",
+                             "\ud83e\udd55", "\ud83c\udf46", "\ud83e\udd52",
+                             "\ud83c\udf45", "\ud83e\udd51", "\ud83e\udd5d",
+                             "\ud83c\udf4d", "\ud83c\udf51", "\ud83c\udf52",
+                             "\ud83c\udf36", "\ud83e\udd54", "\ud83c\udf60",
+                             "\ud83c\udf30", "\ud83e\udd5c", "\ud83c\udf6f",
+                             "\ud83e\udd50", "\ud83c\udf5e", "\ud83e\udd56",
+                             "\ud83e\uddc0", "\ud83c\udf54", "\ud83c\udf2d",
+                             "\ud83c\udf55", "\ud83c\udf56", "\ud83c\udf64",
+                             "\ud83e\udd5e", "\ud83e\udd53", "\ud83c\udf73",
+                             "\ud83e\udd5a", "\ud83c\udf66", "\ud83c\udf70",
+                             "\ud83c\udf82", "\ud83c\udf6e", "\ud83c\udf6d",
+                             "\ud83c\udf6c", "\ud83c\udf6b", "\ud83c\udf7f",
+                             "\ud83c\udf69", "\ud83c\udf6a"]
+    metal_length = randint(100, 150)
+    metal_crusher = "FUCK ON ME!!!!!!!!!!!!!!!!!!!!! "
+    for i in range(metal_length):
+        if randint(0, 10) < 6:
+            metal_crusher = metal_crusher + primary_metal_chara[randint(0, len(primary_metal_chara)-1)]
+        elif:
+            metal_crusher = metal_crusher + secondary_metal_chara[randint(0, len(secondary_metal_chara)-1)]
+    return metal_crusher
+
 
 class Bulbacore:
     """Bulbasalt's commands ported over from the old Bulbaspot. Please don't abuse."""
@@ -314,14 +382,14 @@ class Bulbacore:
     def merio(self, ctx):
         """Merio's Journal.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say("Today on #meriosjournal\n\n" + random.choice(copypastas["merio"]))
+            yield from self.bot.say(random.choice(copypastas["merio"]))
 
     @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["meriotts"])
     @asyncio.coroutine
     def merio_tts(self, ctx):
         """Merio's Journal read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say("Today on #meriosjournal\n\n" + random.choice(copypastas["merio"]), tts=True)
+            yield from self.bot.say(random.choice(copypastas["merio"]), tts=True)
 
     @commands.group(pass_context=True)
     @asyncio.coroutine
@@ -386,6 +454,21 @@ class Bulbacore:
             yield from self.bot.say(wow_string)
         else:
             yield from self.bot.say("***__~~woooooooooooooooooooooooooooooow~~__***")
+
+    @commands.command(pass_context=True, hidden = True)
+    @asyncio.coroutine
+    def fuck(self, ctx):
+        """FUCK ON ME!!!!!!!!!!\nThis command only works in certain channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say(fucc())
+
+    @commands.command(pass_context=True, hidden = True,
+        description='WARNING: THIS WILL DRIVE YOUR SERVER INSANE', aliases=["fucktts"])
+    @asyncio.coroutine
+    def fuck_tts(self, ctx):
+        """FUCK ON ME!!!!!!!!!!\nThis command only works in certain channels."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say(fucc())
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
