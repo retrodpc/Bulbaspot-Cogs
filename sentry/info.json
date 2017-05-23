@@ -1,0 +1,8 @@
+{
+    "AUTHOR" : "retrodpc/Bulbasalt",
+    "DESCRIPTION" : "Adds commands for Kirby25 chat.",
+    "DISABLED" : false,
+    "SHORT" : "Adds commands for Kirby25 chat.",
+    "NAME" : "Needle",
+    "INSTALL_MSG" : "oh wtf you actually installed this????"
+}
