@@ -94,8 +94,8 @@ class Needle:
             if ("y'all" in word_list) or ("yall" in word_list):
                 yield from self.bot.send_message(message.channel, '*you all')
             elif ((message.content.lower().startswith('ok') != True) and
-                    ((message.author.id == "220438641439277056")  or (randint(1,25) == 13)) and
-                    ((len(word_list) == 1) or (randint(1,25) == 13))):
+                    (message.author.id == "220438641439277056") and
+                    (len(word_list) == 1)):
                 yield from self.bot.send_message(message.channel, 'hi liam')
 
 
