@@ -540,11 +540,19 @@ class Bulbacore:
         """Displays an angry emoticon."""
         yield from self.bot.say("**___~~>:C~~___**")
 
+    @commands.command(pass_context=False, aliases=['megadrive'], hidden = True)
+    @asyncio.coroutine
+    def genesis(self):
+        """..."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("Why would someone initiate the genesis of such a horrid contraption?")
+
     @commands.command(pass_context=False, aliases=['love'])
     @asyncio.coroutine
     def hyena(self):
-        """Displays an angry emoticon."""
-        yield from self.bot.say("I have never kissed a girl. I have a tendency to lie awake at night and hope that someday that changes, but that would take a miracle. I wish I could go back in time and choose a different set of hobbies, but that probably is not going to happen. If it did, I would spend more time being active. I have a malformed body. I will probably die before my time because I liked to look at television sets and computer monitors instead of admiring the natural beauty of the outdoors. I want to wake up in my bed to the sound of a girl's breathing. I want to feel her body heat at my back. That's me.")
+        """..."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("I have never kissed a girl. I have a tendency to lie awake at night and hope that someday that changes, but that would take a miracle. I wish I could go back in time and choose a different set of hobbies, but that probably is not going to happen. If it did, I would spend more time being active. I have a malformed body. I will probably die before my time because I liked to look at television sets and computer monitors instead of admiring the natural beauty of the outdoors. I want to wake up in my bed to the sound of a girl's breathing. I want to feel her body heat at my back. That's me.")
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
