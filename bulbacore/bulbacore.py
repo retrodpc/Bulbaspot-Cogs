@@ -540,14 +540,14 @@ class Bulbacore:
         """Displays an angry emoticon."""
         yield from self.bot.say("**___~~>:C~~___**")
 
-    @commands.command(pass_context=False, aliases=['megadrive'], hidden = True)
+    @commands.command(pass_context=True, aliases=['megadrive'], hidden = True)
     @asyncio.coroutine
     def genesis(self):
         """..."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("Why would someone initiate the genesis of such a horrid contraption?")
 
-    @commands.command(pass_context=False, aliases=['love'])
+    @commands.command(pass_context=True, aliases=['love'])
     @asyncio.coroutine
     def hyena(self):
         """..."""
