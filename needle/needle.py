@@ -89,9 +89,6 @@ class Needle:
 
     @asyncio.coroutine
     def on_message(self, message):
-        if (message.author != self.bot.user) and (message.content.lower().find("case in point") != -1):
-            yield from self.bot.send_message(message.channel, '👉💼 point in case')
-
         if ((kirby25_check(self, message)) and (message.author != self.bot.user)):
             word_list = message.content.lower().split()
             if ("y'all" in word_list) or ("yall" in word_list):

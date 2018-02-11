@@ -794,11 +794,13 @@ class Bulbacore:
 
     @asyncio.coroutine
     def on_message(self, message):
-        if (message.content.lower().startswith('ok')
-        and (shiptoast_check(self, message))
-        and (message.author != self.bot.user)
-        and (message.channel.id != "222432649472376832")):
-            yield from self.bot.send_message(message.channel, 'ok')
+        if (message.author != self.bot.user)
+        and (shiptoast_check(self, message)):
+            if (message.content.lower().find("case in point") != -1):
+                yield from self.bot.send_message(message.channel, 'ðŸ‘‰ðŸ’¼ point in case')
+            elif (message.content.lower().startswith('ok')
+            and (message.channel.id != "222432649472376832")):
+                yield from self.bot.send_message(message.channel, 'ok')
 
 
 def check_folders():
