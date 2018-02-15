@@ -166,7 +166,8 @@ class Logger:
         filename = 'log-{6}-{7}-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.server.name, ctx.message.channel.name)
 
         async for message in self.bot.logs_from(ctx.message.channel, messages):
-            save_logs(filename, "[{0:04d}/{1:02d}/{2:02d}-{3:02d}:{4:02d}:{5:02d}] <{6}> {7}\n".format(message.timestamp.year, message.timestamp.month, message.timestamp.day, message.timestamp.hour, message.timestamp.minute, message.timestamp.second, message.author.name.encode('ascii', 'backslashreplace').decode('ascii'), message.content.encode('ascii', 'backslashreplace').decode('ascii')))
+            save_logs(filename, make_message(message))
+            #save_logs(filename, "[{0:04d}/{1:02d}/{2:02d}-{3:02d}:{4:02d}:{5:02d}] <{6}> {7}\n".format(message.timestamp.year, message.timestamp.month, message.timestamp.day, message.timestamp.hour, message.timestamp.minute, message.timestamp.second, message.author.name.encode('ascii', 'backslashreplace').decode('ascii'), message.content.encode('ascii', 'backslashreplace').decode('ascii')))
 
         save_logs(filename, "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} in channel {7} on server {8}.\nUser ID: {9}\nChannel ID: {10}\nServer ID: {11}\nChannel type: {12}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, str(ctx.message.author), str(ctx.message.channel), str(ctx.message.server), ctx.message.author.id, ctx.message.channel.id, ctx.message.server.id, ctx.message.channel.type))
 
