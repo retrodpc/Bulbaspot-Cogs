@@ -1,8 +1,0 @@
-{
-    "AUTHOR" : "Chaithi, dpc",
-    "DESCRIPTION" : "A port of Chaithi's dice rolling bot as a module. This single module is under CC-NC-SA license. ",
-    "DISABLED" : false,
-    "SHORT" : "Port of Chaithi's dice rolling bot.",
-    "NAME" : "Dice",
-    "INSTALL_MSG" : "Successfully installed diceroll.py. If you find Chaithi anywhere, feel free to thank him for making this in the first place. ~dpc"
-}
