@@ -106,7 +106,7 @@ class Sentry:
                     save(bans_path, sentry_bans)
                     yield from self.bot.say("User has been pre-banned from this server.")
             else:
-                sentry_bans[ctx.message.server.id] = [user_id]
+                sentry_bans[ctx.message.server.id] = {user_id}
                 save(bans_path, sentry_bans)
                 yield from self.bot.say("User has been pre-banned from this server.")
         else:
@@ -150,7 +150,7 @@ class Sentry:
             return
 
         # assigns the announce channel
-        if (ctx.message.server in joinleave_data):
+        if (ctx.message.server.id in joinleave_data):
             joinleave_data[ctx.message.server.id]["announce_channel"] = channel_id
             save(joinleave_path, joinleave_data)
             yield from self.bot.say("Saved announce channel with ID {}.".format(channel_id))
@@ -165,7 +165,7 @@ class Sentry:
         """Sets the bot to *not* announce new arrivals in this server.\n"""
         """Only admins may use this command."""
         # assigns the announce channel
-        if (ctx.message.server in joinleave_data):
+        if (ctx.message.server.id in joinleave_data):
             joinleave_data[ctx.message.server.id]["announce_channel"] = ""
             yield from self.bot.say("Removed announce channel for this server.")
         else:
@@ -175,15 +175,15 @@ class Sentry:
     @asyncio.coroutine
     def on_member_join(self, member):
         member_inspection(self, member)
-        if (ctx.message.server in joinleave_data):
-            yield from self.bot.send_message(get_channel(),"{0}#{1}, with user ID {2}, just joined {3}!".format(member.name, member.discriminator, member.id, member.server.name))
+        if (member.server.id in joinleave_data):
+            yield from self.bot.send_message(get_channel(joinleave_data[ctx.message.server.id]["announce_channel"]),"{0}#{1}, with user ID {2}, just joined {3}!".format(member.name, member.discriminator, member.id, member.server.name))
 
 
     @asyncio.coroutine
     def on_member_leave(self, member):
         member_inspection(self, member)
-        if (ctx.message.server in joinleave_data):
-            yield from self.bot.send_message(get_channel(),"{0}#{1}, with user ID {2} just left {3}!".format(member.name, member.discriminator, member.id, member.server.name))
+        if (member.server.id in joinleave_data):
+            yield from self.bot.send_message(get_channel(joinleave_data[ctx.message.server.id]["announce_channel"]),"{0}#{1}, with user ID {2} just left {3}!".format(member.name, member.discriminator, member.id, member.server.name))
 
 
     @asyncio.coroutine

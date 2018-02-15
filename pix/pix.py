@@ -65,7 +65,6 @@ class Pix:
             if (ctx.message.author.id in pixies["server"][ctx.message.server.id]["user"]):
                 data_index = pixies["server"][ctx.message.server.id]["user"].index(ctx.message.author.id)
                 pixies["server"][ctx.message.server.id]["content"][data_index] = message
-                ctx.message.server.id
                 save(pixies)
                 yield from self.bot.say('Picture saved.')
             else:
