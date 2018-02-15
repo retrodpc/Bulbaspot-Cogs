@@ -64,35 +64,36 @@ def save(path, data):
     with open(path, "w") as file:
         json.dump(data, file, indent=4)
 
-
-def full_inspection(self):
-    for server in self.bot.servers:
-        if (server.id in sentry_bans):
-            for member in server.members:
-                if (member.id in sentry_bans[server.id]):
-                    yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
-                    yield from (asyncio.sleep(2))
-                    yield from self.bot.ban(member, 7)
-                    print("Banning user {0}#{2} with ID {3} from {1}...".format(member.name, server.name, member.discriminator, member.id))
-
-
-def member_inspection(self, member):
-    if (member.server.id in sentry_bans):
-        if (member.id in sentry_bans[member.server.id]):
-            yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
-            yield from (asyncio.sleep(2))
-            yield from self.bot.ban(member, 7)
-            print("Banning user {0} from {1}...".format(member.name, member.server.name, member.discriminator, member.id))
-        else:
-            print("coast is clear 2")
-    else:
-        print("coast is clear 1")
-
 class Sentry:
     """Adds various sentry commands.\nThis module was written specifically for a few servers."""
 
     def __init__(self, bot):
         self.bot = bot
+
+
+    def full_inspection(self):
+        for server in self.bot.servers:
+            if (server.id in sentry_bans):
+                for member in server.members:
+                    if (member.id in sentry_bans[server.id]):
+                        yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
+                        yield from (asyncio.sleep(2))
+                        yield from self.bot.ban(member, 7)
+                        print("Banning user {0}#{2} with ID {3} from {1}...".format(member.name, server.name, member.discriminator, member.id))
+
+
+    def member_inspection(self, member):
+        if (member.server.id in sentry_bans):
+            if (member.id in sentry_bans[member.server.id]):
+                yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
+                yield from (asyncio.sleep(2))
+                yield from self.bot.ban(member, 7)
+                print("Banning user {0} from {1}...".format(member.name, member.server.name, member.discriminator, member.id))
+            else:
+                print("coast is clear 2")
+        else:
+            print("coast is clear 1")
+
 
     @commands.command(pass_context=True, no_pm=True)
     @checks.admin_or_permissions(ban_members=True)
