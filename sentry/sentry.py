@@ -14,7 +14,7 @@ from cogs.utils import checks
 from cogs.utils.dataIO import fileIO
 
 
-ban_message = "``Omae wa mou shindeiru.``"
+ban_message = ""
 joinleave_path = 'data/sentry/joinleave.json'
 bans_path = 'data/sentry/bans.json'
 
