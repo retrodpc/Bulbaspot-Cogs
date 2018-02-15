@@ -218,9 +218,9 @@ class Sentry:
 
         # assigns the announce channel
         if (ctx.message.server.id in joinleave_data):
-            joinleave_data[ctx.message.server.id]["leave_announce"] = join
+            joinleave_data[ctx.message.server.id]["leave_announce"] = leave
             save(joinleave_path, joinleave_data)
-            yield from self.bot.say("Setting for leave announcement set to ``{}``.".format(join))
+            yield from self.bot.say("Setting for leave announcement set to ``{}``.".format(leave))
         else:
             yield from self.bot.say("Server data not found. Set an announcement channel with ``?setannounce`` first.")
 
