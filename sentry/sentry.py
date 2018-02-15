@@ -181,14 +181,14 @@ class Sentry:
     def on_member_join(self, member):
         member_inspection(self, member)
         if (member.server.id in joinleave_data):
-            yield from self.bot.send_message(member.server.get_channel(joinleave_data[member.server.id]["announce_channel"]),"{0}#{1}, with user ID {2}, just joined {3}!".format(member.name, member.discriminator, member.id, member.server.name))
+            yield from self.bot.send_message(member.server.get_channel(joinleave_data[member.server.id]["announce_channel"]),"**{0}#{1}**, with user ID {2}, just joined {3}!".format(member.name, member.discriminator, member.id, member.server.name))
 
 
     @asyncio.coroutine
-    def on_member_leave(self, member):
+    def on_member_remove(self, member):
         member_inspection(self, member)
         if (member.server.id in joinleave_data):
-            yield from self.bot.send_message(member.server.get_channel(joinleave_data[member.server.id]["announce_channel"]),"{0}#{1}, with user ID {2} just left {3}!".format(member.name, member.discriminator, member.id, member.server.name))
+            yield from self.bot.send_message(member.server.get_channel(joinleave_data[member.server.id]["announce_channel"]),"**{0}#{1}**, with user ID {2} just left {3}!".format(member.name, member.discriminator, member.id, member.server.name))
 
 
     @asyncio.coroutine
