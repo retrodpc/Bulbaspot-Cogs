@@ -120,7 +120,8 @@ class Sentry:
     @asyncio.coroutine
     def unban(self, ctx, *, uid: str = None):
         """Removes a ban from the server.\n\nOnly admins may use this command."""
-        yield from self.bot.unban(ctx.message.server, yield from self.bot.get_user_info(uid))
+        user = yield from self.bot.get_user_info(uid)
+        yield from self.bot.unban(ctx.message.server, user)
         yield from self.bot.say('User {} unbanned.'.format(user_object.name))
 
 
