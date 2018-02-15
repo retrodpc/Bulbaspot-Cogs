@@ -70,7 +70,7 @@ class Bulbautils:
                 yield from self.bot.say("The AMK speed is {:.0f}.".format(amkspeed))
         except ValueError as err:
             # Display error message to channel
-            yield from self.bot.say(err)
+            yield from self.bot.say("{} Type ``?help amkspeed`` for proper usage.".format(err))
 
     @commands.command(pass_context=False, description='Calculates clock speed based on first the desired tempo and then the tick speed.')
     @asyncio.coroutine
@@ -92,7 +92,7 @@ class Bulbautils:
             yield from self.bot.say("The clock speed is {:g} Hz.".format(clockspeed))
         except ValueError as err:
             # Display error message to channel
-            yield from self.bot.say(err)
+            yield from self.bot.say("{} Type ``?help clockspeed`` for proper usage.".format(err))
 
     @commands.command(pass_context=False, description='Calculates tick speed based on first the desired tempo and then the clock speed.')
     @asyncio.coroutine
@@ -114,7 +114,7 @@ class Bulbautils:
             yield from self.bot.say("The tick speed is {:g}.".format(tickspeed))
         except ValueError as err:
             # Display error message to channel
-            yield from self.bot.say(err)
+            yield from self.bot.say("{} Type ``?help tickspeed`` for proper usage.".format(err))
 
     @commands.command(pass_context=False, description='Converts to Celsius from Fahrenheit.')
     @asyncio.coroutine
@@ -128,7 +128,7 @@ class Bulbautils:
             yield from self.bot.say("{:g}°F is {:g}°C.".format(fahrenheit, celsius))
         except ValueError as err:
             # Display error message to channel
-            yield from self.bot.say(err)
+            yield from self.bot.say("{} Type ``?help celsius`` for proper usage.".format(err))
 
     @commands.command(pass_context=False, description='Converts to Fahrenheit from Celsius.')
     @asyncio.coroutine
@@ -142,27 +142,27 @@ class Bulbautils:
             yield from self.bot.say("{:g}°C is {:g}°F.".format(celsius, fahrenheit))
         except ValueError as err:
             # Display error message to channel
-            yield from self.bot.say(err)
+            yield from self.bot.say("{} Type ``?help fahrenheit`` for proper usage.".format(err))
 
     @commands.command(pass_context=True, no_pm=False)
     @asyncio.coroutine
     def deltapcm(self, ctx, semitone_change: int=0, rate: float=31250.0):
         """Deflemask SegaPCM Delta Calculator."""
         if (semitone_change == 0 and rate == 31250.0):
-            yield from self.bot.say("Type ?help deltapcm to get usage information.")
+            yield from self.bot.say("Type ``?help deltapcm`` to get usage information.")
             return
         elif (rate <= 0 or rate > 31250):
-            yield from self.bot.say("Sample rate needs to be between 1 Hz and 31250 Hz...")
+            yield from self.bot.say("Sample rate needs to be between 1 Hz and 31250 Hz... Type ``?help deltapcm`` to get usage information.")
         
         try:
             convertedHex = calcDeltaHex(semitone_change, rate)
         except OverflowError as err:
-            yield from self.bot.say(err)
+            yield from self.bot.say("{} Type ``?help deltapcm`` for proper usage.".format(err))
         
         if (convertedHex == ""):		# Check if hex value smaller than 00 or over FF and report to user
-            yield from self.bot.say("ERROR: Underflow !")
+            yield from self.bot.say("ERROR: Underflow ! Type ``?help deltapcm`` to get usage information.")
         elif (len(convertedHex) > 2):    
-            yield from self.bot.say("ERROR: Overflow !")
+            yield from self.bot.say("ERROR: Overflow ! Type ``?help deltapcm`` to get usage information.")
         else:
             if (len(convertedHex) == 1):    # Check if value not less than 10 (in hex) and add 0 if so
                 convertedHex += "0"
