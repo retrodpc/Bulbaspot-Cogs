@@ -166,7 +166,7 @@ class Logger:
     def save_settings(self):
         fileIO('data/logger/settings.json', 'save', self.settings)
 
-    @commands.command(pass_context=True, no_pm=True, aliases=["loglast"])
+    @commands.command(pass_context=True, aliases=["loglast"])
     @checks.admin_or_permissions(ban_members=True)
     async def log_last(self, ctx, messages: int = 100):
         """Logs previous messages in a channel.\nDefaults to 100 messages but has no limit (theoretically)."""
