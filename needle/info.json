@@ -1,8 +1,8 @@
 {
-    "AUTHOR" : "retrodpc/Bulbasalt",
+    "AUTHOR" : "Ivysalt (dpc)",
     "DESCRIPTION" : "Adds commands for Kirby25 chat.",
     "DISABLED" : false,
     "SHORT" : "Adds commands for Kirby25 chat.",
     "NAME" : "Needle",
-    "INSTALL_MSG" : "oh wtf you actually installed this????"
+    "INSTALL_MSG" : "the needle\n\ntears a hole"
 }

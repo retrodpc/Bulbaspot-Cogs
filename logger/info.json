@@ -1,0 +1,8 @@
+{
+    "AUTHOR" : "Ivysalt (dpc)",
+    "DESCRIPTION" : "Adds logger.",
+    "DISABLED" : false,
+    "SHORT" : "Adds logger.",
+    "NAME" : "Needle",
+    "INSTALL_MSG" : "Successfully installed logger. Enjoy! ~dpc"
+}

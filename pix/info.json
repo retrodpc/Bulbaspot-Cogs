@@ -1,8 +1,8 @@
 {
-    "AUTHOR" : "retrodpc/Bulbasalt",
+    "AUTHOR" : "Ivysalt (dpc)",
     "DESCRIPTION" : "Adds Bulbaspot's profile module. This lets users store a personal profile per server.",
     "DISABLED" : false,
     "SHORT" : "Port of Bulbaspot's profile module.",
-    "NAME" : "Bulbapix",
+    "NAME" : "Pix",
     "INSTALL_MSG" : "Successfully installed pix.py. Hope you find it useful c: ~dpc"
 }

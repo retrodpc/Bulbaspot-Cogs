@@ -1,3 +1,10 @@
+# Saveybot as a discord.py module
+# LICENSE: This single module is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# @category   Tools
+# @copyright  Copyright (c) 2018 dpc
+# @version    1.1
+# @author     dpc
+
 import asyncio
 from random import randint
 import random
@@ -102,8 +109,8 @@ def fetch_all_content():  # returns the content of every goddamned save ever
 def fetch_content(slots: list):  # returns an array full of saves that match the given slots
     content = []
     for slot in slots:
-        slot_index = yield from slot_index(slot)
-        save_content = save_data[slot_index]["message"]
+        index = yield from slot_index(slot)
+        save_content = save_data[index]["message"]
         content.append(save_content)
     return content
 
@@ -163,7 +170,7 @@ def owner(owner: str, **kwargs):  # using name as well as id to maintain compati
 @asyncio.coroutine
 def get_random(array: list, count: int):
     random_array = []
-    for i in range(0,count):
+    for _ in range(0,count):
         random_array.append(random.choice(array))
     return random_array
 

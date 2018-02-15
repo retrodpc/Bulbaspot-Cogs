@@ -1,8 +1,12 @@
+# Adds core commands formerly from Bulbaspot. This adds mostly expression and shiptoast commands.
+# LICENSE: This module is licenced under Apache License 2.0
+# @category   Tools
+# @copyright  Copyright (c) 2018 dpc
+# @version    1.1
+# @author     dpc
+
 import asyncio
-from base64 import *
-from datetime import datetime
-from datetime import timezone
-import gzip
+from base64 import standard_b64decode, standard_b64encode
 import json
 from math import floor
 import os
@@ -13,19 +17,8 @@ from string import ascii_letters, digits
 
 from discord.ext import commands
 
-from __main__ import send_cmd_help, settings
 from cogs.utils import checks
 from cogs.utils.dataIO import fileIO
-
-
-def save_logs(filename, data):
-    full_path = Path('data/bulbacore/' + filename)
-    if full_path.is_file():
-        with open(str(full_path), "ab") as log_file:
-            log_file.write(data.encode("utf8"))
-    else:
-        with open(str(full_path), "wb") as log_file:
-            log_file.write(data.encode("utf8"))
 
 
 # Import the copypasta data
@@ -63,14 +56,6 @@ def is_int(s):
         return False
 
 
-def is_float(s):
-    try:
-        float(s)
-    except ValueError:
-        return False
-    return True
-
-
 def zalgo_gen(text):
     text = str(text)
     if len(text) <= 666:
@@ -104,7 +89,7 @@ def zalgo_gen(text):
             top_kek = 25
         for i in range(len(text)):
             character_set.append(text[i])
-            for j in range(top_kek-1):
+            for _ in range(top_kek-1):
                 character_set[i] = character_set[i] + chara[randint(0,len(chara)-1)]
             final_output = final_output + character_set[i]
         return final_output
@@ -120,14 +105,14 @@ def this_gen(length):
         length = int(length)
         if (length <= 1998 and length >= 0):
             this_thing = "8"
-            for i in range(length):
+            for _ in range(length):
                 this_thing = this_thing + "="
             this_thing = this_thing + "D"
             return this_thing
         elif (length >= -1998 and length < 0):
             new_length = -length
             this_thing = "D"
-            for i in range(new_length):
+            for _ in range(new_length):
                 this_thing = this_thing + "="
             this_thing = this_thing + "8"
             return this_thing
@@ -143,16 +128,16 @@ def wow_gen(length):
         length = int(length)
         if (length <= 1984 and length >= 0):
             wow_thing = "***__~~w"
-            for i in range(length):
+            for _ in range(length):
                 wow_thing = wow_thing + "o"
-            wow_thing = wow_thing + "w~~__***"
+            wow_thing += "w~~__***"
             return wow_thing
         elif (length >= -1984 and length < 0):
             new_length = -length
             wow_thing = "***__~~ʍ"
-            for i in range(new_length):
+            for _ in range(new_length):
                 wow_thing = wow_thing + "o"
-            wow_thing = wow_thing + "ʍ~~__***"
+            wow_thing += wow_thing + "ʍ~~__***"
             return wow_thing
         else:
             return "Sorry bud, but your wow is too much for me to handle.\n" \
@@ -169,12 +154,12 @@ def metal():
     solo_length = randint(250, 300)
     metal_crusher = ""
     han_solo = ""
-    for i in range(metal_length):
+    for _ in range(metal_length):
         if randint(0, 9) < 9:
             metal_crusher = metal_crusher + primary_metal_chara[randint(0, len(primary_metal_chara)-1)]
         else:
             metal_crusher = metal_crusher + secondary_metal_chara[randint(0, len(secondary_metal_chara)-1)]
-    for i in range(solo_length):
+    for _ in range(solo_length):
         if randint(0, 19) < 19:
             han_solo = han_solo + primary_solo_frisk[randint(0, len(primary_solo_frisk)-1)]
         else:
@@ -187,7 +172,7 @@ def metal_crazy_a():
     secondary_metal_chara = "        !\"#$%&/()=|"
     metal_length = randint(250, 300)
     metal_crusher = ""
-    for i in range(metal_length):
+    for _ in range(metal_length):
         if randint(0, 9) < 9:
             metal_crusher = metal_crusher + primary_metal_chara[randint(0, len(primary_metal_chara)-1)]
         else:
@@ -199,7 +184,7 @@ def metal_crazy_b():
     secondary_solo_frisk = "        ABCDEGHIJKNÑQRSVWXYZTOMFULP"
     solo_length = randint(400, 500)
     han_solo = ""
-    for i in range(solo_length):
+    for _ in range(solo_length):
         if randint(0, 19) < 19:
             han_solo = han_solo + primary_solo_frisk[randint(0, len(primary_solo_frisk)-1)]
         else:
@@ -267,7 +252,7 @@ def fucc():
                              "\ud83c\udf69", "\ud83c\udf6a"]
     metal_length = randint(100, 150)
     metal_crusher = "FUCK ON ME!!!!!!!!!!!!!!!!!!!!! "
-    for i in range(metal_length):
+    for _ in range(metal_length):
         if randint(0, 10) < 6:
             metal_crusher = metal_crusher + primary_metal_chara[randint(0, len(primary_metal_chara)-1)]
         else:
@@ -276,7 +261,7 @@ def fucc():
 
 
 class Bulbacore:
-    """Bulbasalt's commands ported over from the old Bulbaspot. Please don't abuse."""
+    """Ivysalt's misc. commands ported over from the old Bulbaspot. Please don't abuse."""
 
     def __init__(self, bot):
         self.bot = bot
@@ -583,7 +568,7 @@ class Bulbacore:
     @commands.command(pass_context=False,aliases=['snivvy','snivvi'])
     @asyncio.coroutine
     def snivi(self):
-        """Displays the lenny face."""
+        """Displays the snivi face."""
         yield from self.bot.say("***__>;v__***")
 
     @commands.command(pass_context=False,aliases=['bear','pedobear'])
@@ -648,111 +633,11 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://www.mattandreko.com/images/brainpan2_preview.png")
 
-    # Parse !amkspeed verbiage
-    @commands.command(pass_context=False, description='Calculates AddMusicK speed based on a tempo. Also gives a rounded speed and tempo if given tempo results in a non-integer speed.')
-    @asyncio.coroutine
-    def amkspeed(self, tempo):
-        """Calculates AddMusicK speed based on a tempo"""
-        try:
-            if (not is_float(tempo)):
-                raise ValueError("Nice Number !")
-            tempo = float(tempo)
-            if (tempo <= 0):
-                raise ValueError("Error: Tempo must be positive.")
-            amkspeed = tempo * 256 / 625
-            amkspeedtest = amkspeed % 1
-            if (amkspeedtest != 0):
-                amkspeedrounded = int(round(amkspeed))
-                amktempo = float(amkspeedrounded) * 625 / 256
-                yield from self.bot.say("The AMK speed is about {:.0f}. The yielded tempo is {:g} BPM.".format(amkspeedrounded, amktempo))
-            else:
-                yield from self.bot.say("The AMK speed is {:.0f}.".format(amkspeed))
-        except ValueError as err:
-            # Display error message to channel
-            yield from self.bot.say(err)
-
-    # Parse !clockspeed verbiage
-    @commands.command(pass_context=False, description='Calculates clock speed based on first the desired tempo and then the tick speed.')
-    @asyncio.coroutine
-    def clockspeed(self, tempo, speed):
-        """Calculates clock speed"""
-        try:
-            if (not is_float(tempo)):
-                raise ValueError("Nice Numbers !")
-            if (not is_float(speed)):
-                raise ValueError("Nice Numbers !")
-            tempo = float(tempo)
-            speed = float(speed)
-            if (tempo <= 0):
-                raise ValueError("Error: Tempo must be positive.")
-            if (speed <= 0):
-                raise ValueError("Error: Tick speed must be positive.")
-            constant = 15 / speed
-            clockspeed = tempo / constant
-            yield from self.bot.say("The clock speed is {:g} Hz.".format(clockspeed))
-        except ValueError as err:
-            # Display error message to channel
-            yield from self.bot.say(err)
-
-    # Parse !tickspeed verbiage
-    @commands.command(pass_context=False, description='Calculates tick speed based on first the desired tempo and then the clock speed.')
-    @asyncio.coroutine
-    def tickspeed(self, tempo, clock):
-        """Calculates tick speed"""
-        try:
-            if (not is_float(tempo)):
-                raise ValueError("Nice Numbers !")
-            if (not is_float(clock)):
-                raise ValueError("Nice Numbers !")
-            tempo = float(tempo)
-            clock = float(clock)
-            if (tempo <= 0):
-                raise ValueError("Error: Tempo must be positive.")
-            if (tempo <= 0):
-                raise ValueError("Error: Clock speed must be positive.")
-            tickspeed = 15 * clock / tempo
-            # if the tickspeed is non-int it'll print past the period
-            yield from self.bot.say("The tick speed is {:g}.".format(tickspeed))
-        except ValueError as err:
-            # Display error message to channel
-            yield from self.bot.say(err)
-
-    # Parse !celsius verbiage
-    @commands.command(pass_context=False, description='Converts to Celsius from Fahrenheit.')
-    @asyncio.coroutine
-    def celsius(self, fahrenheit):
-        """Converts to Celsius from Fahrenheit"""
-        try:
-            if (not is_float(fahrenheit)):
-                raise ValueError("Nice Number !")
-            fahrenheit = float(fahrenheit)
-            celsius = (fahrenheit - 32) * (5 / 9)
-            yield from self.bot.say("{:g}°F is {:g}°C.".format(fahrenheit, celsius))
-        except ValueError as err:
-            # Display error message to channel
-            yield from self.bot.say(err)
-
-    # Parse !fahrenheit verbiage
-    @commands.command(pass_context=False, description='Converts to Fahrenheit from Celsius.')
-    @asyncio.coroutine
-    def fahrenheit(self, celsius):
-        """Converts to Fahrenheit from Celsius"""
-        try:
-            if (not is_float(celsius)):
-                raise ValueError("Nice Number !")
-            celsius = float(celsius)
-            fahrenheit = celsius * (9 / 5) + 32
-            yield from self.bot.say("{:g}°C is {:g}°F.".format(celsius, fahrenheit))
-        except ValueError as err:
-            # Display error message to channel
-            yield from self.bot.say(err)
-
     @commands.group(pass_context=True)
     @asyncio.coroutine
     def base64(self, ctx):
         """Base64 commands"""
         if ctx.invoked_subcommand is None:
-            yield from send_cmd_help(ctx)
             yield from self.bot.say('u idiot what did you expect me to do')
 
     @base64.command(pass_context=False)
@@ -775,27 +660,9 @@ class Bulbacore:
         else:
             yield from self.bot.say("Sorry bud, but my decode won't fit in here. **_: )_**")
 
-    @commands.command(pass_context=True, no_pm=True, aliases=["loglast"])
-    async def log_last(self, ctx, messages: int = 100):
-        """Logs previous messages in a channel.\nDefaults to 100 messages but has no limit."""
-        await self.bot.say("Starting logging...")
-
-        filename = 'log-{6}-{7}-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.server.name, ctx.message.channel.name)
-        save_logs(filename, "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} in channel {7} on server {8}, for no reason other than to piss Bulbasaur off.\nUser ID: {9}\nChannel ID: {10}\nServer ID: {11}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, str(ctx.message.author), str(ctx.message.channel), str(ctx.message.server), ctx.message.author.id, ctx.message.channel.id, ctx.message.server.id))
-        
-        async for message in self.bot.logs_from(ctx.message.channel, messages):
-            save_logs(filename, "[{0:04d}/{1:02d}/{2:02d}-{3:02d}:{4:02d}:{5:02d}] <{6}> {7}\n".format(message.timestamp.year, message.timestamp.month, message.timestamp.day, message.timestamp.hour, message.timestamp.minute, message.timestamp.second, message.author.name.encode('ascii', 'backslashreplace').decode('ascii'), message.content.encode('ascii', 'backslashreplace').decode('ascii')))
-        
-        with open("data/bulbacore/"+filename,"rb") as f_in, gzip.open("data/bulbacore/"+filename+'.gz', 'wb') as f_out:
-            f_out.writelines(f_in)
-        
-        with open("data/bulbacore/"+filename+".gz","rb") as f_out:
-            await self.bot.send_file(ctx.message.channel, f_out, content="Bulbasaur is going to be pissed at you.")
-
     @asyncio.coroutine
     def on_message(self, message):
-        if (message.author != self.bot.user)
-        and (shiptoast_check(self, message)):
+        if (message.author != self.bot.user) and (shiptoast_check(self, message)):
             if (message.content.lower().find("case in point") != -1):
                 yield from self.bot.send_message(message.channel, 'ðŸ‘‰ðŸ’¼ point in case')
             elif (message.content.lower().startswith('ok')

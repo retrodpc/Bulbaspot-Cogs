@@ -1,5 +1,5 @@
 {
-    "AUTHOR" : "retrodpc/Bulbasalt",
+    "AUTHOR" : "Ivysalt (dpc)",
     "DESCRIPTION" : "Adds Bulbaspot's SaveyBot module. This lets users save a message to a slot.",
     "DISABLED" : false,
     "SHORT" : "Port of Bulbaspot's SaveyBot module.",

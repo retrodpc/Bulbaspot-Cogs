@@ -1,0 +1,8 @@
+{
+    "AUTHOR" : "Ivysalt (dpc)",
+    "DESCRIPTION" : "Adds core commands formerly from Bulbaspot. This adds utility commands.",
+    "DISABLED" : false,
+    "SHORT" : "Port of Bulbaspot utilities.",
+    "NAME" : "Bulbautils",
+    "INSTALL_MSG" : "Bulbautils installed. Enjoy! ~dpc"
+}

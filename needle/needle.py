@@ -1,10 +1,17 @@
+# Kirby25: the module
+# LICENSE: This module is licenced under Apache License 2.0
+# @category   Tools
+# @copyright  Copyright (c) 2018 dpc
+# @version    1.1
+# @author     dpc
+
 import asyncio
 import json
 import os
 from random import randint
 
 from discord.ext import commands
-from .utils import checks
+from cogs.utils import checks
 from cogs.utils.dataIO import fileIO
 
 
