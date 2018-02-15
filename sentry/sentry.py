@@ -123,7 +123,7 @@ class Sentry:
         """Removes a ban from the server.\n\nOnly admins may use this command."""
         user = yield from self.bot.get_user_info(uid)
         yield from self.bot.unban(ctx.message.server, user)
-        yield from self.bot.say('User {} unbanned.'.format(user_object.name))
+        yield from self.bot.say('User {} unbanned.'.format(user.name))
 
 
     @commands.command(pass_context=True, no_pm=True)
