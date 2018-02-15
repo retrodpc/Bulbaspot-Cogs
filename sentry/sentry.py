@@ -118,6 +118,26 @@ class Sentry:
             yield from self.bot.say("User is not pre-banned on this server.")
 
 
+    @commands.command(pass_context=True, no_pm=True, description=
+            "Note: users that have been already banned will not be unbanned.")
+    @checks.admin_or_permissions(ban_members=True)
+    @asyncio.coroutine
+    def listpreban(self, ctx, user_id: str):
+        """Users removed with this command will not be banned on sight.\n\nOnly admins may use this command."""
+        if (ctx.message.server.id in sentry_bans):
+            if len(sentry_bans[ctx.message.server.id]) > 0:
+                user_id_list = "```\n=== Prebans in server {} ===\n".format(ctx.message.server.name)
+                for user_id in sentry_bans[ctx.message.server.id]:
+                    user_id_list += user_id
+                    user_id_list += "\n"
+                user_id_list += "```"
+                self.bot.send_message(ctx.message.author, user_id_list)
+            else:
+                yield from self.bot.say("No pre-bans on this server.")
+        else:
+            yield from self.bot.say("No pre-bans on this server.")
+
+
     @commands.command(pass_context=True, no_pm=True)
     @checks.admin_or_permissions(ban_members=True)
     @asyncio.coroutine
