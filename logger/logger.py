@@ -58,7 +58,7 @@ def clean_filename(string):
 # It is affixed to the log directory set in config.py
 def make_filename(self, message):
     if message.channel.type == ChannelType.text:
-        return "{0}/{1}-{2}/#{3}-{4}.txt".format(
+        return "{0}/{2}-{1}/#{4}-{3}.txt".format(
             self.settings["log_dir"],
             clean_filename(message.server.name),
             message.server.id,
@@ -66,13 +66,13 @@ def make_filename(self, message):
             message.channel.id
         )
     elif message.channel.type == ChannelType.private:
-        return "{0}/DM/{1}-{2}.txt".format(
+        return "{0}/DM/{2}-{1}.txt".format(
             self.settings["log_dir"],
             clean_filename(message.channel.user.name),
             message.channel.user.id
         )
     elif message.channel.type == ChannelType.group:
-        return "{0}/GROUP/{1}-{2}.txt".format(
+        return "{0}/GROUP/{2}-{1}.txt".format(
             self.settings["log_dir"],
             clean_filename(message.channel.name),
             message.channel.id
