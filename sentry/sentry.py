@@ -156,7 +156,7 @@ class Sentry:
             save(joinleave_path, joinleave_data)
             yield from self.bot.say("Saved announce channel {}.".format(channel_object.mention))
         else:
-            joinleave_data[ctx.message.server.id] = {"announce_channel": channel_id, "autoassign_role": "", "join_announce" = False, "leave_announce" = True}
+            joinleave_data[ctx.message.server.id] = {"announce_channel": channel_id, "autoassign_role": "", "join_announce": False, "leave_announce": True}
             save(joinleave_path, joinleave_data)
             yield from self.bot.say("Saved announce channel {}.".format(channel_object.mention))
 
