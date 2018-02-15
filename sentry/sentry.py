@@ -41,10 +41,10 @@ def check_files():
     default = {}
     if not os.path.isfile(joinleave_path):
         print("Creating joinleave.json")
-        fileIO(settings_path, "save", default)
+        fileIO(joinleave_path, "save", default)
     if not os.path.isfile(bans_path):
         print("Creating bans.json")
-        fileIO(settings_path, "save", default)
+        fileIO(bans_path, "save", default)
 
 
 # validating data
