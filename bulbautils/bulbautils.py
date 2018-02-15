@@ -146,10 +146,10 @@ class Bulbautils:
 
     @commands.command(pass_context=True, no_pm=False)
     @asyncio.coroutine
-    def deltapcm(self, ctx, rate: float=31250, semitone_change: int=0):
+    def deltapcm(self, ctx, semitone_change: int=0, rate: float=31250):
         """Deflemask SegaPCM Delta Calculator."""
-        if (rate <= 0):
-            print("Sample rate needs to be atleast 1 Hz... \n\n")
+        if (rate <= 0 or rate > 31250):
+            yield from self.bot.say("Sample rate needs to be between 1 Hz and 31250 Hz... \n\n")
         
         try:
             convertedHex = calcDeltaHex(semitone_change, rate)
@@ -157,9 +157,9 @@ class Bulbautils:
             yield from self.bot.say(err)
         
         if (convertedHex == ""):		# Check if hex value smaller than 00 or over FF and report to user
-            print("Underflow !")     
+            yield from self.bot.say("ERROR: Underflow !")
         elif (len(convertedHex) > 2):    
-            print("Overflow !")
+            yield from self.bot.say("ERROR: Overflow !")
         else:
             if (len(convertedHex) == 1):    # Check if value not less than 10 (in hex) and add 0 if so
                 convertedHex += "0"
