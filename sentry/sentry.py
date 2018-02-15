@@ -71,33 +71,6 @@ class Sentry:
         self.bot = bot
 
 
-    def full_inspection(self):
-        for server in self.bot.servers:
-            print(server.id)
-            if (server.id in sentry_bans):
-                print(server.id)
-                for member in server.members:
-                    print(member.id)
-                    if (member.id in sentry_bans[server.id]):
-                        yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
-                        yield from (asyncio.sleep(2))
-                        yield from self.bot.ban(member, 7)
-                        print("Banning user {0}#{2} with ID {3} from {1}...".format(member.name, server.name, member.discriminator, member.id))
-
-
-    def member_inspection(self, member):
-        if (member.server.id in sentry_bans):
-            if (member.id in sentry_bans[member.server.id]):
-                yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
-                yield from (asyncio.sleep(2))
-                yield from self.bot.ban(member, 7)
-                print("Banning user {0} from {1}...".format(member.name, member.server.name, member.discriminator, member.id))
-            else:
-                print("coast is clear 2")
-        else:
-            print("coast is clear 1")
-
-
     @commands.command(pass_context=True, no_pm=True)
     @checks.admin_or_permissions(ban_members=True)
     @asyncio.coroutine
@@ -121,7 +94,11 @@ class Sentry:
             yield from self.bot.say("Improper command usage.")
         # checking if user's already in the server, and banning them if they are
         for member in ctx.message.server.members:
-            self.member_inspection(member)
+            if (member.id in sentry_bans[member.server.id]):
+                yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
+                yield from (asyncio.sleep(2))
+                yield from self.bot.ban(member, 7)
+                print("Banning user {0}#{2} with id {3} from {1}...".format(member.name, member.server.name, member.discriminator, member.id))
 
     @commands.command(pass_context=True, no_pm=True, description=
             "Note: users that have been already banned will not be unbanned.")
@@ -183,21 +160,35 @@ class Sentry:
 
     @asyncio.coroutine
     def on_member_join(self, member):
-        self.member_inspection(member)
+        if (member.server.id in sentry_bans):
+            if (member.id in sentry_bans[member.server.id]):
+                yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
+                yield from (asyncio.sleep(2))
+                yield from self.bot.ban(member, 7)
+                print("Banning user {0}#{2} with ID {3} from {1}...".format(member.name, member.server.name, member.discriminator, member.id))
         if (member.server.id in joinleave_data):
             yield from self.bot.send_message(member.server.get_channel(joinleave_data[member.server.id]["announce_channel"]),"**{0}#{1}**, with user ID {2}, just joined {3}!".format(member.name, member.discriminator, member.id, member.server.name))
 
 
     @asyncio.coroutine
     def on_member_remove(self, member):
-        self.member_inspection(member)
         if (member.server.id in joinleave_data):
             yield from self.bot.send_message(member.server.get_channel(joinleave_data[member.server.id]["announce_channel"]),"**{0}#{1}**, with user ID {2} just left {3}!".format(member.name, member.discriminator, member.id, member.server.name))
 
 
     @asyncio.coroutine
     def on_ready(self):
-        self.full_inspection()
+        for server in self.bot.servers:
+            print(server.id)
+            if (server.id in sentry_bans):
+                print(server.id)
+                for member in server.members:
+                    print(member.id)
+                    if (member.id in sentry_bans[server.id]):
+                        yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
+                        yield from (asyncio.sleep(2))
+                        yield from self.bot.ban(member, 7)
+                        print("Banning user {0}#{2} with ID {3} from {1}...".format(member.name, server.name, member.discriminator, member.id))
 
 
 def setup(bot):
