@@ -178,7 +178,7 @@ class Sentry:
     @commands.command(pass_context=True, no_pm=True)
     @checks.admin_or_permissions(ban_members=True)
     @asyncio.coroutine
-    def announcejoin(self, ctx, join: bool  = False):
+    def announcejoin(self, ctx, join: bool = False):
         """Sets the bot to announce server's new arrivals.\n\nOnly admins may use this command."""
 
         # assigns the announce channel
@@ -193,7 +193,7 @@ class Sentry:
     @commands.command(pass_context=True, no_pm=True)
     @checks.admin_or_permissions(ban_members=True)
     @asyncio.coroutine
-    def announceleave(self, ctx, leave: bool  = true):
+    def announceleave(self, ctx, leave: bool = True):
         """Sets the bot to announce server's new arrivals.\n\nOnly admins may use this command."""
 
         # assigns the announce channel
