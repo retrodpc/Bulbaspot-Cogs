@@ -14,7 +14,7 @@ from cogs.utils import checks
 from cogs.utils.dataIO import fileIO
 
 
-ban_message = ""
+ban_message = "``Omae wa mou shindeiru.``"
 joinleave_path = 'data/sentry/joinleave.json'
 bans_path = 'data/sentry/bans.json'
 
@@ -95,7 +95,7 @@ class Sentry:
         # checking if user's already in the server, and banning them if they are
         for member in ctx.message.server.members:
             if (member.id in sentry_bans[member.server.id]):
-                yield from self.bot.send_message(member, ban_message)
+                #yield from self.bot.send_message(member, ban_message)
                 yield from (asyncio.sleep(2))
                 yield from self.bot.ban(member, 7)
                 print("Banning user {0}#{2} with id {3} from {1}...".format(member.name, member.server.name, member.discriminator, member.id))
@@ -169,7 +169,7 @@ class Sentry:
     def on_member_join(self, member):
         if (member.server.id in sentry_bans):
             if (member.id in sentry_bans[member.server.id]):
-                yield from self.bot.send_message(member, ban_message)
+                #yield from self.bot.send_message(member, ban_message)
                 yield from (asyncio.sleep(2))
                 yield from self.bot.ban(member, 7)
                 print("Banning user {0}#{2} with ID {3} from {1}...".format(member.name, member.server.name, member.discriminator, member.id))
@@ -189,7 +189,7 @@ class Sentry:
             if (server.id in sentry_bans):
                 for member in server.members:
                     if (member.id in sentry_bans[server.id]):
-                        yield from self.bot.send_message(member, ban_message)
+                        #yield from self.bot.send_message(member, ban_message)
                         yield from (asyncio.sleep(2))
                         yield from self.bot.ban(member, 7)
                         print("Banning user {0}#{2} with ID {3} from {1}...".format(member.name, server.name, member.discriminator, member.id))
