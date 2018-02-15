@@ -118,24 +118,10 @@ class Sentry:
     @commands.command(pass_context=True, no_pm=True)
     @checks.admin_or_permissions(ban_members=True)
     @asyncio.coroutine
-    def unban(self, ctx, *, user: str = None):
+    def unban(self, ctx, *, uid: str = None):
         """Removes a ban from the server.\n\nOnly admins may use this command."""
-        if (user is None):
-            yield from self.bot.say('You can\'t unban the void!')
-            return
-        elif (len(ctx.message.mentions) == 1):
-            user_object = ctx.message.mentions[0]
-        elif (len(ctx.message.mentions) > 1):
-            yield from self.bot.say('One person at a time please!')
-            return
-        else:
-            user_object = ctx.message.server.get_member_named(user)
-
-        if (user_object is None):
-            yield from self.bot.say('User not found.')
-        else:
-            yield from self.bot.unban(ctx.message.server, user_object)
-            yield from self.bot.say('User {} unbanned.'.format(user_object.name))
+        yield from self.bot.unban(ctx.message.server, self.bot.get_user_info(uid))
+        yield from self.bot.say('User {} unbanned.'.format(user_object.name))
 
 
     @commands.command(pass_context=True, no_pm=True)
