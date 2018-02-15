@@ -110,7 +110,7 @@ class Sentry:
                     save(bans_path, sentry_bans)
                     yield from self.bot.say("User has been pre-banned from this server.")
             else:
-                sentry_bans[ctx.message.server.id] = {user_id}
+                sentry_bans[ctx.message.server.id] = [user_id]
                 save(bans_path, sentry_bans)
                 yield from self.bot.say("User has been pre-banned from this server.")
         else:
@@ -160,6 +160,7 @@ class Sentry:
             yield from self.bot.say("Saved announce channel with ID {}.".format(channel_id))
         else:
             joinleave_data[ctx.message.server.id] = {"announce_channel": channel_id, "autoassign_role": ""}
+            save(joinleave_path, joinleave_data)
             yield from self.bot.say("Saved announce channel with ID {}.".format(channel_id))
 
     @commands.command(pass_context=True, no_pm=True)
