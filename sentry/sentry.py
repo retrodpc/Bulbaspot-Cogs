@@ -117,6 +117,7 @@ class Sentry:
         else:
             yield from self.bot.say("Improper command usage.")
         # checking if user's already in the server, and banning them if they are
+        print("ok")
         for member in ctx.message.server.members:
             self.member_inspection(member)
 
