@@ -146,10 +146,12 @@ class Bulbautils:
 
     @commands.command(pass_context=True, no_pm=False)
     @asyncio.coroutine
-    def deltapcm(self, ctx, semitone_change: int=0, rate: float=31250):
+    def deltapcm(self, ctx, semitone_change: int=0, rate: float=31250.0):
         """Deflemask SegaPCM Delta Calculator."""
-        if (rate <= 0 or rate > 31250):
-            yield from self.bot.say("Sample rate needs to be between 1 Hz and 31250 Hz... \n\n")
+        if (semitone_change == 0 and rate == 31250.0):
+            yield from self.bot.say("Type ?help deltapcm to get usage information.")
+        elif (rate <= 0 or rate > 31250):
+            yield from self.bot.say("Sample rate needs to be between 1 Hz and 31250 Hz...")
         
         try:
             convertedHex = calcDeltaHex(semitone_change, rate)
