@@ -39,13 +39,12 @@ def check_folders():
 
 def check_files():
     default = {}
-    folder = "data/sentry"
-    files = ["bans.json","joinleave.json"]
-    for file in files:
-        settings_path = folder + file
-        if not os.path.isfile(settings_path):
-            print("Creating " + file)
-            fileIO(settings_path, "save", default)
+    if not os.path.isfile(joinleave_path):
+        print("Creating joinleave.json")
+        fileIO(settings_path, "save", default)
+    if not os.path.isfile(bans_path):
+        print("Creating bans.json")
+        fileIO(settings_path, "save", default)
 
 
 # validating data
