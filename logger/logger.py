@@ -57,31 +57,39 @@ def clean_filename(string):
 #   based on the channel type of the message.
 # It is affixed to the log directory set in config.py
 def make_filename(self, message):
+    if message.edited_timestamp:
+        time = message.edited_timestamp
+    else:
+        time = message.timestamp
+    timestamp = time.strftime('%F')
     if message.channel.type == ChannelType.text:
-        return "{0}/{2}-{1}/#{4}-{3}.txt".format(
+        return "{0}/{2}-{1}/#{4}-{3}/{5}.log".format(
             self.settings["log_dir"],
             clean_filename(message.server.name),
             message.server.id,
             clean_filename(message.channel.name),
-            message.channel.id
+            message.channel.id,
+            timestamp
         )
     elif message.channel.type == ChannelType.private:
-        return "{0}/DM/{2}-{1}.txt".format(
+        return "{0}/DM/{2}-{1}/{5}.log".format(
             self.settings["log_dir"],
             clean_filename(message.channel.user.name),
-            message.channel.user.id
+            message.channel.user.id,
+            timestamp
         )
     elif message.channel.type == ChannelType.group:
-        return "{0}/GROUP/{2}-{1}.txt".format(
+        return "{0}/GROUP/{2}-{1}/{5}.log".format(
             self.settings["log_dir"],
             clean_filename(message.channel.name),
-            message.channel.id
+            message.channel.id,
+            timestamp
         )
 
 
 # Uses a Message object to build a very pretty string.
 # Format:
-#   (messageid) [2018-12-25 21:30] <user#0000> hello world
+#   (messageid) [21:30:00] <user#0000> hello world
 # Message ID will be base64-encoded since it becomes shorter that way.
 # If the message was edited, prefix messageid with E:
 #   and use the edited timestamp and not the original.
@@ -89,10 +97,10 @@ def make_message(self, message):
     # Wrap the message ID in brackets, and prefix E: if the message was edited.
     # Also, base64-encode the message ID, because it's shorter.
     #   This uses less space on disk, and is easier to read in console.
-    id = '(E:' if message.edited_timestamp else '('
-    id += "{})".format(base64.b64encode(
+    message_id = '[E:' if message.edited_timestamp else '['
+    message_id += "{}]".format(base64.b64encode(
         int(message.id).to_bytes(8, byteorder='little')
-    ).decode('ASCII'))
+    ).decode('utf-8'))
 
     # Get the datetime from the message
     # If necessary, tell the naive datetime object it's in UTC
@@ -104,8 +112,8 @@ def make_message(self, message):
     if self.settings["use_localtime"]:
         time = time.replace(tzinfo=timezone.utc).astimezone(tz=None)
 
-    # Convert the datetime to a string in [21:30] format
-    timestamp = time.strftime('[%F %H:%M]')
+    # Convert the datetime to a string in [21:30:00] format
+    timestamp = time.strftime('[%H:%M:%S]')
 
     # Get the author's name, in distinct form, and wrap it
     # in IRC-style brackets
@@ -116,16 +124,20 @@ def make_message(self, message):
 
     # Get the message content. Use `.clean_content` to
     #   substitute mentions for a nicer format
-    content = message.clean_content
+    content = message.clean_content.replace('\n', '\n(newline) ')
 
     # If the message has attachments, grab their URLs
-    attachments = ' '.join(
-        [attachment['url'] for attachment in message.attachments]
-    )
+    # attachments = '\n(attach) '.join(
+    #     [attachment['url'] for attachment in message.attachments]
+    # )
+    attachments = ''
+    if message.attachments:
+        for attach in message.attachments:
+            attachments += '\n(attach) {0[url]}'.format(attach)
 
     # Use all of this to return as one string
     return("{} {} {} {} {}".format(
-        id,
+        message_id,
         timestamp,
         author,
         content,
@@ -137,7 +149,8 @@ def make_message(self, message):
 def write(filename, string):
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, 'a', encoding='utf8') as file:
-        print(string, file=file)
+        file.write(string + "\n") 
+        #print(string, file=file)
 
 # Panopticon functions end here
 
@@ -166,7 +179,7 @@ class Logger:
         filename = 'log-{6}-{7}-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.server.name, ctx.message.channel.name)
 
         async for message in self.bot.logs_from(ctx.message.channel, messages):
-            save_logs(filename, make_message(self, message))
+            save_logs(filename, make_message(self, message) + "\n")
             #save_logs(filename, "[{0:04d}/{1:02d}/{2:02d}-{3:02d}:{4:02d}:{5:02d}] <{6}> {7}\n".format(message.timestamp.year, message.timestamp.month, message.timestamp.day, message.timestamp.hour, message.timestamp.minute, message.timestamp.second, message.author.name.encode('ascii', 'backslashreplace').decode('ascii'), message.content.encode('ascii', 'backslashreplace').decode('ascii')))
 
         save_logs(filename, "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} in channel {7} on server {8}.\nUser ID: {9}\nChannel ID: {10}\nServer ID: {11}\nChannel type: {12}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, str(ctx.message.author), str(ctx.message.channel), str(ctx.message.server), ctx.message.author.id, ctx.message.channel.id, ctx.message.server.id, ctx.message.channel.type))
