@@ -122,7 +122,7 @@ class Sentry:
             "Note: users that have been already banned will not be unbanned.")
     @checks.admin_or_permissions(ban_members=True)
     @asyncio.coroutine
-    def listpreban(self, ctx, user_id: str):
+    def listpreban(self, ctx):
         """Users removed with this command will not be banned on sight.\n\nOnly admins may use this command."""
         if (ctx.message.server.id in sentry_bans):
             if len(sentry_bans[ctx.message.server.id]) > 0:
@@ -131,7 +131,7 @@ class Sentry:
                     user_id_list += user_id
                     user_id_list += "\n"
                 user_id_list += "```"
-                self.bot.send_message(ctx.message.author, user_id_list)
+                yield from self.bot.send_message(ctx.message.author, user_id_list)
             else:
                 yield from self.bot.say("No pre-bans on this server.")
         else:
