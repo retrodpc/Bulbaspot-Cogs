@@ -54,7 +54,7 @@ class Bulbautils:
 
     @commands.command(pass_context=False, description='Calculates AddMusicK speed based on a tempo. Also gives a rounded speed and tempo if given tempo results in a non-integer speed.')
     @asyncio.coroutine
-    def amkspeed(self, tempo):
+    def amkspeed(self, tempo: float):
         """Calculates AddMusicK speed based on a tempo"""
         try:
             if (not is_float(tempo)):
@@ -167,7 +167,7 @@ class Bulbautils:
             if (len(convertedHex) == 1):    # Check if value not less than 10 (in hex) and add 0 if so
                 convertedHex += "0"
                 convertedHex = reverseString(convertedHex)
-            yield from self.bot.say("Your delta command is;  20{}".format(convertedHex))
+            yield from self.bot.say("Your delta command is: ``20{}``".format(convertedHex))
 
 
 def setup(bot):
