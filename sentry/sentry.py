@@ -83,6 +83,7 @@ class Sentry:
 
 
     def member_inspection(self, member):
+        print("coast is clear 3")
         if (member.server.id in sentry_bans):
             if (member.id in sentry_bans[member.server.id]):
                 yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
@@ -117,7 +118,6 @@ class Sentry:
         else:
             yield from self.bot.say("Improper command usage.")
         # checking if user's already in the server, and banning them if they are
-        print("ok")
         for member in ctx.message.server.members:
             self.member_inspection(member)
 
