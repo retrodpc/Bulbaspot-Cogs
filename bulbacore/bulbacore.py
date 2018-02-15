@@ -654,6 +654,9 @@ class Bulbacore:
     @asyncio.coroutine
     def decode(self, *, message):
         """Decodes Base64"""
+        if len(message) % 4 != 0:
+            yield from self.bot.say("Improper padding. Try adding one thru three of ``=`` signs at the end of your message.")
+            return
         decoded = str(standard_b64decode(message))
         if len(decoded) <= 1999:
             yield from self.bot.say("```~ " + decoded[2:len(decoded)-1] + "```")
