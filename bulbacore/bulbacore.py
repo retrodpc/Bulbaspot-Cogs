@@ -665,11 +665,13 @@ class Bulbacore:
         if (message.author != self.bot.user) and (shiptoast_check(self, message)):
             if (message.content.lower().find("case in point") != -1):
                 yield from self.bot.send_message(message.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
-            if (message.channel.id != "222432649472376832"):
+            elif (message.channel.id != "222432649472376832"):
                 if ("cum" in message.content.lower().split()):
                     yield from self.bot.send_message(message.channel, 'oi mate watch your fuckin language')
                 elif (message.content.lower().startswith('ok')):
                     yield from self.bot.send_message(message.channel, 'ok')
+            elif (message.author.id == "125110486650847232"):
+                yield from self.bot.send_message(message.channel, 'hi liam')
 
 
 def check_folders():
