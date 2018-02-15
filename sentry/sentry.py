@@ -118,7 +118,7 @@ class Sentry:
             yield from self.bot.say("Improper command usage.")
         # checking if user's already in the server, and banning them if they are
         for member in ctx.message.server.members:
-            self.member_inspection(self, member)
+            self.member_inspection(member)
 
     @commands.command(pass_context=True, no_pm=True, description=
             "Note: users that have been already banned will not be unbanned.")
@@ -180,21 +180,21 @@ class Sentry:
 
     @asyncio.coroutine
     def on_member_join(self, member):
-        self.member_inspection(self, member)
+        self.member_inspection(member)
         if (member.server.id in joinleave_data):
             yield from self.bot.send_message(member.server.get_channel(joinleave_data[member.server.id]["announce_channel"]),"**{0}#{1}**, with user ID {2}, just joined {3}!".format(member.name, member.discriminator, member.id, member.server.name))
 
 
     @asyncio.coroutine
     def on_member_remove(self, member):
-        self.member_inspection(self, member)
+        self.member_inspection(member)
         if (member.server.id in joinleave_data):
             yield from self.bot.send_message(member.server.get_channel(joinleave_data[member.server.id]["announce_channel"]),"**{0}#{1}**, with user ID {2} just left {3}!".format(member.name, member.discriminator, member.id, member.server.name))
 
 
     @asyncio.coroutine
     def on_ready(self):
-        self.full_inspection(self)
+        self.full_inspection()
 
 
 def setup(bot):
