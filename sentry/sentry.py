@@ -171,7 +171,7 @@ class Sentry:
             joinleave_data[ctx.message.server.id]["announce_channel"] = ""
             yield from self.bot.say("Removed announce channel for this server.")
         else:
-            joinleave_data[ctx.message.server.id] = {"announce_channel": "", "autoassign_role": "", "join_announce" = False, "leave_announce" = True}
+            joinleave_data[ctx.message.server.id] = {"announce_channel": "", "autoassign_role": "", "join_announce": False, "leave_announce": True}
             yield from self.bot.say("There was no announce channel for this server.")
 
 
