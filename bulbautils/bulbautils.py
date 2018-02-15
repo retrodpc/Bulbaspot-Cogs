@@ -150,6 +150,7 @@ class Bulbautils:
         """Deflemask SegaPCM Delta Calculator."""
         if (semitone_change == 0 and rate == 31250.0):
             yield from self.bot.say("Type ?help deltapcm to get usage information.")
+            return
         elif (rate <= 0 or rate > 31250):
             yield from self.bot.say("Sample rate needs to be between 1 Hz and 31250 Hz...")
         
