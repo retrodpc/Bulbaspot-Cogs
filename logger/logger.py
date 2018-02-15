@@ -72,14 +72,14 @@ def make_filename(self, message):
             timestamp
         )
     elif message.channel.type == ChannelType.private:
-        return "{0}/DM/{2}-{1}/{5}.log".format(
+        return "{0}/DM/{2}-{1}/{3}.log".format(
             self.settings["log_dir"],
             clean_filename(message.channel.user.name),
             message.channel.user.id,
             timestamp
         )
     elif message.channel.type == ChannelType.group:
-        return "{0}/GROUP/{2}-{1}/{5}.log".format(
+        return "{0}/GROUP/{2}-{1}/{3}.log".format(
             self.settings["log_dir"],
             clean_filename(message.channel.name),
             message.channel.id,
