@@ -670,8 +670,8 @@ class Bulbacore:
                     yield from self.bot.send_message(message.channel, 'oi mate watch your fuckin language')
                 elif (message.content.lower().startswith('ok')):
                     yield from self.bot.send_message(message.channel, 'ok')
-            elif (message.author.id == "125110486650847232"):
-                yield from self.bot.send_message(message.channel, 'hi liam')
+                elif (message.author.id == "125110486650847232"):
+                    yield from self.bot.send_message(message.channel, 'hi liam')
 
 
 def check_folders():
