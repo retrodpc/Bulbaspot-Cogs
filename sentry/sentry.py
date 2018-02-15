@@ -83,6 +83,10 @@ def member_inspection(self, member):
             yield from (asyncio.sleep(2))
             yield from self.bot.ban(member, 7)
             print("Banning user {0} from {1}...".format(member.name, member.server.name, member.discriminator, member.id))
+        else:
+            print("coast is clear 2")
+    else:
+        print("coast is clear 1")
 
 class Sentry:
     """Adds various sentry commands.\nThis module was written specifically for a few servers."""

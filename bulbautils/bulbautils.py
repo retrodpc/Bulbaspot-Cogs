@@ -164,7 +164,7 @@ class Bulbautils:
             if (len(convertedHex) == 1):    # Check if value not less than 10 (in hex) and add 0 if so
                 convertedHex += "0"
                 convertedHex = reverseString(convertedHex)
-            yield from self.bot.say("Your delta command is;  20"+convertedHex,"\n")
+            yield from self.bot.say("Your delta command is;  20{}".format(convertedHex))
 
 
 def setup(bot):
