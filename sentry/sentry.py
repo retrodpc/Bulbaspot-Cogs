@@ -186,11 +186,8 @@ class Sentry:
     @asyncio.coroutine
     def on_ready(self):
         for server in self.bot.servers:
-            print(server.id)
             if (server.id in sentry_bans):
-                print(server.id)
                 for member in server.members:
-                    print(member.id)
                     if (member.id in sentry_bans[server.id]):
                         yield from self.bot.send_message(member, ban_message)
                         yield from (asyncio.sleep(2))
