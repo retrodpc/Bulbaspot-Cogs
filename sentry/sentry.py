@@ -73,8 +73,11 @@ class Sentry:
 
     def full_inspection(self):
         for server in self.bot.servers:
+            print(server.id)
             if (server.id in sentry_bans):
+                print(server.id)
                 for member in server.members:
+                    print(member.id)
                     if (member.id in sentry_bans[server.id]):
                         yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
                         yield from (asyncio.sleep(2))
@@ -83,7 +86,6 @@ class Sentry:
 
 
     def member_inspection(self, member):
-        print("coast is clear 3")
         if (member.server.id in sentry_bans):
             if (member.id in sentry_bans[member.server.id]):
                 yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
