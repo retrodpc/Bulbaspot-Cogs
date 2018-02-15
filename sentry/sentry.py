@@ -14,6 +14,7 @@ from cogs.utils import checks
 from cogs.utils.dataIO import fileIO
 
 
+ban_message = "``Omae wa mou shindeiru.``"
 joinleave_path = 'data/sentry/joinleave.json'
 bans_path = 'data/sentry/bans.json'
 
@@ -94,7 +95,7 @@ class Sentry:
         # checking if user's already in the server, and banning them if they are
         for member in ctx.message.server.members:
             if (member.id in sentry_bans[member.server.id]):
-                yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
+                yield from self.bot.send_message(member, ban_message)
                 yield from (asyncio.sleep(2))
                 yield from self.bot.ban(member, 7)
                 print("Banning user {0}#{2} with id {3} from {1}...".format(member.name, member.server.name, member.discriminator, member.id))
@@ -168,18 +169,18 @@ class Sentry:
     def on_member_join(self, member):
         if (member.server.id in sentry_bans):
             if (member.id in sentry_bans[member.server.id]):
-                yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
+                yield from self.bot.send_message(member, ban_message)
                 yield from (asyncio.sleep(2))
                 yield from self.bot.ban(member, 7)
                 print("Banning user {0}#{2} with ID {3} from {1}...".format(member.name, member.server.name, member.discriminator, member.id))
         if (member.server.id in joinleave_data):
-            yield from self.bot.send_message(member.server.get_channel(joinleave_data[member.server.id]["announce_channel"]),"**{0}#{1}**, with user ID {2}, just joined {3}!".format(member.name, member.discriminator, member.id, member.server.name))
+            yield from self.bot.send_message(member.server.get_channel(joinleave_data[member.server.id]["announce_channel"]),"**{0}#{1}**, with user ID {2}, just joined **{3}**!".format(member.name, member.discriminator, member.id, member.server.name))
 
 
     @asyncio.coroutine
     def on_member_remove(self, member):
         if (member.server.id in joinleave_data):
-            yield from self.bot.send_message(member.server.get_channel(joinleave_data[member.server.id]["announce_channel"]),"**{0}#{1}**, with user ID {2} just left {3}!".format(member.name, member.discriminator, member.id, member.server.name))
+            yield from self.bot.send_message(member.server.get_channel(joinleave_data[member.server.id]["announce_channel"]),"**{0}#{1}**, with user ID {2}, just left **{3}**!".format(member.name, member.discriminator, member.id, member.server.name))
 
 
     @asyncio.coroutine
@@ -191,7 +192,7 @@ class Sentry:
                 for member in server.members:
                     print(member.id)
                     if (member.id in sentry_bans[server.id]):
-                        yield from self.bot.send_message(member, "```geeettttttt dunked on!!!\nif we're really friends, you won't come back.```")
+                        yield from self.bot.send_message(member, ban_message)
                         yield from (asyncio.sleep(2))
                         yield from self.bot.ban(member, 7)
                         print("Banning user {0}#{2} with ID {3} from {1}...".format(member.name, server.name, member.discriminator, member.id))
