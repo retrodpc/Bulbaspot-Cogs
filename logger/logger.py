@@ -166,9 +166,40 @@ class Logger:
     def save_settings(self):
         fileIO('data/logger/settings.json', 'save', self.settings)
 
-    @commands.command(pass_context=True, aliases=["loglast"])
+
+    @commands.command(pass_context=True, aliases=["loglastdisk"])
+    @checks.owner
+    async def log_last_disk(self, ctx, messages: int = 100):
+        """Logs previous messages in a channel.\nDefaults to 100 messages, limit is 1000."""
+        if messages < 1:
+            await self.bot.say("Nice try :P")
+            return
+        elif messages > 1000:
+            await self.bot.say("Yeah, I don't think so.")
+
+        await self.bot.say("Starting logging...")
+
+        if (str(ctx.message.channel.type) != "private"):
+            filename = '{6}-{7}-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.server.name, ctx.message.channel.name)
+        else:
+            filename = 'DM-{6}-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.user.name)
+
+        async for message in self.bot.logs_from(ctx.message.channel, messages):
+            save_logs(filename, make_message(self, message) + "\n")
+            #save_logs(filename, "[{0:04d}/{1:02d}/{2:02d}-{3:02d}:{4:02d}:{5:02d}] <{6}> {7}\n".format(message.timestamp.year, message.timestamp.month, message.timestamp.day, message.timestamp.hour, message.timestamp.minute, message.timestamp.second, message.author.name.encode('ascii', 'backslashreplace').decode('ascii'), message.content.encode('ascii', 'backslashreplace').decode('ascii')))
+
+        save_logs(filename, "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} in channel {7} on server {8}.\nUser ID: {9}\nChannel ID: {10}\nServer ID: {11}\nChannel type: {12}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, str(ctx.message.author), str(ctx.message.channel), str(ctx.message.server), ctx.message.author.id, ctx.message.channel.id, ctx.message.server.id, ctx.message.channel.type))
+
+        with open("data/logger/invoked_logs/"+filename,"rb") as f_in, gzip.open("data/logger/invoked_logs/"+filename+'.gz', 'wb') as f_out:
+            f_out.writelines(f_in)
+
+        with open("data/logger/invoked_logs/"+filename+".gz","rb") as f_out:
+            await self.bot.send_file(ctx.message.channel, f_out, content="Log successfuly written.")
+
+
+    @commands.command(pass_context=True, aliases=["loglastmem","loglast","log_last"])
     @checks.admin_or_permissions(ban_members=True)
-    async def log_last(self, ctx, messages: int = 100):
+    async def log_last_mem(self, ctx, messages: int = 100):
         """Logs previous messages in a channel.\nDefaults to 100 messages but has no limit (theoretically)."""
         if messages < 1:
             await self.bot.say("Nice try :P")
@@ -176,13 +207,16 @@ class Logger:
 
         await self.bot.say("Starting logging...")
 
-        filename = 'log-{6}-{7}-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.server.name, ctx.message.channel.name)
+        if (str(ctx.message.channel.type) != "private"):
+            filename = '{6}-{7}-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.server.name, ctx.message.channel.name)
+        else:
+            filename = 'DM-({6})-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.user.name)
 
+        log_content = ""
         async for message in self.bot.logs_from(ctx.message.channel, messages):
-            save_logs(filename, make_message(self, message) + "\n")
-            #save_logs(filename, "[{0:04d}/{1:02d}/{2:02d}-{3:02d}:{4:02d}:{5:02d}] <{6}> {7}\n".format(message.timestamp.year, message.timestamp.month, message.timestamp.day, message.timestamp.hour, message.timestamp.minute, message.timestamp.second, message.author.name.encode('ascii', 'backslashreplace').decode('ascii'), message.content.encode('ascii', 'backslashreplace').decode('ascii')))
+            log_content = make_message(self, message) + "\n" + log_content
 
-        save_logs(filename, "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} in channel {7} on server {8}.\nUser ID: {9}\nChannel ID: {10}\nServer ID: {11}\nChannel type: {12}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, str(ctx.message.author), str(ctx.message.channel), str(ctx.message.server), ctx.message.author.id, ctx.message.channel.id, ctx.message.server.id, ctx.message.channel.type))
+        save_logs(filename, "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} in channel {7} on server {8}.\nUser ID: {9}\nChannel ID: {10}\nServer ID: {11}\nChannel type: {12}\n{13}".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, str(ctx.message.author), str(ctx.message.channel), str(ctx.message.server), ctx.message.author.id, ctx.message.channel.id, ctx.message.server.id, ctx.message.channel.type, log_content))
 
         with open("data/logger/invoked_logs/"+filename,"rb") as f_in, gzip.open("data/logger/invoked_logs/"+filename+'.gz', 'wb') as f_out:
             f_out.writelines(f_in)
