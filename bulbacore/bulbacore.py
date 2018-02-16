@@ -645,7 +645,7 @@ class Bulbacore:
     def encode(self, *, message):
         """Encodes Base64"""
         encoded = str(standard_b64encode(message.encode('utf-8')))
-        if len(encoded) <= 1997:
+        if len(encoded) <= 1990:
             yield from self.bot.say("```~ " + encoded[2:len(encoded)-1] + "```")
         else:
             yield from self.bot.say("Sorry bud, but my encode won't fit in here. **_: )_**")
@@ -658,7 +658,7 @@ class Bulbacore:
             yield from self.bot.say("Improper padding. Try adding one thru three of ``=`` signs at the end of your message.")
             return
         decoded = str(standard_b64decode(message))
-        if len(decoded) <= 1999:
+        if len(decoded) <= 1990:
             yield from self.bot.say("```~ " + decoded[2:len(decoded)-1] + "```")
         else:
             yield from self.bot.say("Sorry bud, but my decode won't fit in here. **_: )_**")
