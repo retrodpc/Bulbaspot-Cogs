@@ -179,10 +179,18 @@ class Logger:
 
         await self.bot.say("Starting logging...")
 
-        if (str(ctx.message.channel.type) != "private"):
-            filename = '{6}-{7}-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.server.name, ctx.message.channel.name)
-        else:
-            filename = 'DM-{6}-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.user.name)
+        if (str(ctx.message.channel.type) = "private"):
+            recipients_list = []
+            for recipient in ctx.message.channel.recipients:
+                recipients_list += "{}#{}".format(recipient.name, recipient.discriminator)
+            filename = 'DM-({6})-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ",".join(recipients_list))
+        elif (str(ctx.message.channel.type) = "group"):
+            recipients_list = []
+            for recipient in ctx.message.channel.recipients:
+                recipients_list += "{}#{}".format(recipient.name, recipient.discriminator)
+            filename = 'Group-{6}-({7})-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.channel.name, ",".join(recipients_list))
+        elif (str(ctx.message.channel.type) != "private"):
+            filename = 'Server-{6}-{7}-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.server.name, ctx.message.channel.name)
 
         async for message in self.bot.logs_from(ctx.message.channel, messages):
             save_logs(filename, make_message(self, message) + "\n")
