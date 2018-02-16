@@ -237,7 +237,7 @@ class Logger:
         async for message in self.bot.logs_from(ctx.message.channel, messages):
             log_content = make_message(self, message, True) + "\n" + log_content
 
-        save_logs(filename, intro)
+        save_logs(filename, intro + log_content)
 
         with open("data/logger/invoked_logs/"+filename,"rb") as f_in, gzip.open("data/logger/invoked_logs/"+filename+'.gz', 'wb') as f_out:
             f_out.writelines(f_in)
