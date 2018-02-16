@@ -146,7 +146,7 @@ def make_message(self, message):
 
 
 # Get recipients of a private message
-def get_recipients(ctx)
+def get_recipients(ctx):
     recipients = ""
     for recipient in ctx.message.channel.recipients:
         recipients += "{}#{},".format(recipient.name, recipient.discriminator)
