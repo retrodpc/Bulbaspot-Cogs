@@ -167,8 +167,8 @@ class Logger:
         fileIO('data/logger/settings.json', 'save', self.settings)
 
 
-    @commands.command(pass_context=True, aliases=["loglastdisk"])
-    @checks.is_owner
+    @commands.command(pass_context=True, aliases=["loglastdisk"], hidden=True)
+    @checks.admin_or_permissions(ban_members=True)
     async def log_last_disk(self, ctx, messages: int = 100):
         """Logs previous messages in a channel.\nDefaults to 100 messages, limit is 1000."""
         if messages < 1:
