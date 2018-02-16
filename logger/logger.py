@@ -168,7 +168,7 @@ class Logger:
 
 
     @commands.command(pass_context=True, aliases=["loglastdisk"])
-    @checks.owner
+    @checks.is_owner
     async def log_last_disk(self, ctx, messages: int = 100):
         """Logs previous messages in a channel.\nDefaults to 100 messages, limit is 1000."""
         if messages < 1:
