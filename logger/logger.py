@@ -179,12 +179,12 @@ class Logger:
 
         await self.bot.say("Starting logging...")
 
-        if (str(ctx.message.channel.type) = "private"):
+        if (str(ctx.message.channel.type) == "private"):
             recipients_list = []
             for recipient in ctx.message.channel.recipients:
                 recipients_list += "{}#{}".format(recipient.name, recipient.discriminator)
             filename = 'DM-({6})-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ",".join(recipients_list))
-        elif (str(ctx.message.channel.type) = "group"):
+        elif (str(ctx.message.channel.type) == "group"):
             recipients_list = []
             for recipient in ctx.message.channel.recipients:
                 recipients_list += "{}#{}".format(recipient.name, recipient.discriminator)
@@ -215,12 +215,12 @@ class Logger:
 
         await self.bot.say("Starting logging...")
 
-        if (str(ctx.message.channel.type) = "private"):
+        if (str(ctx.message.channel.type) == "private"):
             recipients_list = []
             for recipient in ctx.message.channel.recipients:
                 recipients_list += "{}#{}".format(recipient.name, recipient.discriminator)
             filename = 'DM-({6})-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ",".join(recipients_list))
-        elif (str(ctx.message.channel.type) = "group"):
+        elif (str(ctx.message.channel.type) == "group"):
             recipients_list = []
             for recipient in ctx.message.channel.recipients:
                 recipients_list += "{}#{}".format(recipient.name, recipient.discriminator)
