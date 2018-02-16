@@ -180,17 +180,11 @@ class Logger:
         await self.bot.say("Starting logging...")
 
         if (str(ctx.message.channel.type) == "private"):
-            recipients_list = []
-            for recipient in ctx.message.channel.recipients:
-                recipients_list += "{}#{}".format(recipient.name, recipient.discriminator)
-            filename = 'DM-({6})-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ",".join(recipients_list))
-            intro = "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} with recipient {7}.\nUser ID: {8}\nChannel ID: {9}\nChannel type: {10}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.author.name, ", ".join(recipients_list), ctx.message.author.id, ctx.message.channel.id, ctx.message.channel.type)
+            filename = 'DM-({6})-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ",".join(ctx.message.channel.recipients))
+            intro = "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} with recipient {7}.\nUser ID: {8}\nChannel ID: {9}\nChannel type: {10}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.author.name, ", ".join(ctx.message.channel.recipients), ctx.message.author.id, ctx.message.channel.id, ctx.message.channel.type)
         elif (str(ctx.message.channel.type) == "group"):
-            recipients_list = []
-            for recipient in ctx.message.channel.recipients:
-                recipients_list += "{}#{}".format(recipient.name, recipient.discriminator)
-            filename = 'Group-{6}-({7})-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.channel.name, ",".join(recipients_list))
-            intro = "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} in channel {7} with recipients {8}.\nUser ID: {9}\nChannel ID: {10}\nChannel type: {11}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.author.name, ctx.message.channel.name, ", ".join(recipients_list), ctx.message.author.id, ctx.message.channel.id, ctx.message.channel.type)
+            filename = 'Group-{6}-({7})-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.channel.name, ",".join(ctx.message.channel.recipients))
+            intro = "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} in channel {7} with recipients {8}.\nUser ID: {9}\nChannel ID: {10}\nChannel type: {11}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.author.name, ctx.message.channel.name, ", ".join(ctx.message.channel.recipients), ctx.message.author.id, ctx.message.channel.id, ctx.message.channel.type)
         else:
             filename = 'Server-{6}-{7}-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.server.name, ctx.message.channel.name)
             intro = "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} in channel {7} on server {8}.\nUser ID: {9}\nChannel ID: {10}\nServer ID: {11}\nChannel type: {12}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, str(ctx.message.author), str(ctx.message.channel), str(ctx.message.server), ctx.message.author.id, ctx.message.channel.id, ctx.message.server.id, ctx.message.channel.type)
@@ -219,17 +213,11 @@ class Logger:
         await self.bot.say("Starting logging...")
 
         if (str(ctx.message.channel.type) == "private"):
-            recipients_list = []
-            for recipient in ctx.message.channel.recipients:
-                recipients_list += "{}#{}".format(recipient.name, recipient.discriminator)
-            filename = 'DM-({6})-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ",".join(recipients_list))
-            intro = "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} with recipient {7}.\nUser ID: {8}\nChannel ID: {9}\nChannel type: {10}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.author.name, ", ".join(recipients_list), ctx.message.author.id, ctx.message.channel.id, ctx.message.channel.type)
+            filename = 'DM-({6})-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ",".join(ctx.message.channel.recipients))
+            intro = "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} with recipient {7}.\nUser ID: {8}\nChannel ID: {9}\nChannel type: {10}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.author.name, ", ".join(ctx.message.channel.recipients), ctx.message.author.id, ctx.message.channel.id, ctx.message.channel.type)
         elif (str(ctx.message.channel.type) == "group"):
-            recipients_list = []
-            for recipient in ctx.message.channel.recipients:
-                recipients_list += "{}#{}".format(recipient.name, recipient.discriminator)
-            filename = 'Group-{6}-({7})-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.channel.name, ",".join(recipients_list))
-            intro = "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} in channel {7} with recipients {8}.\nUser ID: {9}\nChannel ID: {10}\nChannel type: {11}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.author.name, ctx.message.channel.name, ", ".join(recipients_list), ctx.message.author.id, ctx.message.channel.id, ctx.message.channel.type)
+            filename = 'Group-{6}-({7})-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.channel.name, ",".join(ctx.message.channel.recipients))
+            intro = "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} in channel {7} with recipients {8}.\nUser ID: {9}\nChannel ID: {10}\nChannel type: {11}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.author.name, ctx.message.channel.name, ", ".join(ctx.message.channel.recipients), ctx.message.author.id, ctx.message.channel.id, ctx.message.channel.type)
         else:
             filename = 'Server-{6}-{7}-{0:04d}{1:02d}{2:02d}-{3:02d}-{4:02d}-{5:02d}.log'.format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, ctx.message.server.name, ctx.message.channel.name)
             intro = "Log started by {6} on {0:04d}/{1:02d}/{2:02d} at {3:02d}:{4:02d}:{5:02d} in channel {7} on server {8}.\nUser ID: {9}\nChannel ID: {10}\nServer ID: {11}\nChannel type: {12}\n".format(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute, datetime.now().second, str(ctx.message.author), str(ctx.message.channel), str(ctx.message.server), ctx.message.author.id, ctx.message.channel.id, ctx.message.server.id, ctx.message.channel.type)
