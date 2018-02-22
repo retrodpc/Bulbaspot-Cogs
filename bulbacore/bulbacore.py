@@ -373,20 +373,24 @@ class Bulbacore:
     @commands.command(pass_context=True,aliases=["meriosjournal"])
     @asyncio.coroutine
     def merio(self, ctx, choice: int = 0):
-        """Merio's Journal.\nThis command doesn't work in all channels.\nThere are currently {} entries.""".format(len(copypastas["merio"]))
+        """Merio's Journal.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
-            if choice not in range(1, len(copypastas["merio"])+1):
+            if choice < 1:
                 choice = randint(1, len(copypastas["merio"]))
+            if choice > len(copypastas["merio"]):
+                yield from self.bot.say("Sorry, that entry doesn't exist yet. Try a lower number.")
             yield from self.bot.say(copypastas["merio"][choice-1])
 
 
     @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["meriotts"])
     @asyncio.coroutine
     def merio_tts(self, ctx, choice: int = 0):
-        """Merio's Journal read aloud :P\nThis command doesn't work in all channels.\nThere are currently {} entries.""".format(len(copypastas["merio"]))
+        """Merio's Journal read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
-            if choice not in range(1, len(copypastas["merio"])+1):
+            if choice < 1:
                 choice = randint(1, len(copypastas["merio"]))
+            if choice > len(copypastas["merio"]):
+                yield from self.bot.say("Sorry, that entry doesn't exist yet. Try a lower number.")
             yield from self.bot.say(copypastas["merio"][choice-1], tts=True)
 
 
