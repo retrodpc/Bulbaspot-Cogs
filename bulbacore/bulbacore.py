@@ -379,6 +379,7 @@ class Bulbacore:
                 choice = randint(1, len(copypastas["merio"]))
             if choice > len(copypastas["merio"]):
                 yield from self.bot.say("Sorry, that entry doesn't exist yet. Try a lower number.")
+                return
             yield from self.bot.say(copypastas["merio"][choice-1])
 
 
@@ -391,6 +392,7 @@ class Bulbacore:
                 choice = randint(1, len(copypastas["merio"]))
             if choice > len(copypastas["merio"]):
                 yield from self.bot.say("Sorry, that entry doesn't exist yet. Try a lower number.")
+                return
             yield from self.bot.say(copypastas["merio"][choice-1], tts=True)
 
 
