@@ -370,20 +370,24 @@ class Bulbacore:
             yield from self.bot.say(random.choice(copypastas["cues"]), tts=True)
 
 
-    @commands.command(pass_context=True)
+    @commands.command(pass_context=True,aliases=["meriosjournal"])
     @asyncio.coroutine
-    def merio(self, ctx):
+    def merio(self, ctx, choice: int = -1):
         """Merio's Journal.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(random.choice(copypastas["merio"]))
+            if choice not in range(0, len(copypastas["merio"])):
+                choice = randint(0, len(copypastas["merio"]) - 1)
+            yield from self.bot.say(copypastas["merio"][choice])
 
 
     @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["meriotts"])
     @asyncio.coroutine
-    def merio_tts(self, ctx):
+    def merio_tts(self, ctx, choice: int = -1):
         """Merio's Journal read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(random.choice(copypastas["merio"]), tts=True)
+            if choice not in range(0, len(copypastas["merio"])):
+                choice = randint(0, len(copypastas["merio"]) - 1)
+            yield from self.bot.say(copypastas["merio"][choice], tts=True)
 
 
     @commands.group(pass_context=True)
@@ -524,6 +528,7 @@ class Bulbacore:
         self.save_settings()
         yield from self.bot.say("Channel {} added.".format(channel_name))
 
+
     @commands.command(pass_context=True, aliases=["del_shiptoast"])
     @checks.is_owner()
     @asyncio.coroutine
@@ -543,6 +548,7 @@ class Bulbacore:
         else:
             yield from self.bot.say("Channel {} not found in list.".format(channel_name))
 
+
     @commands.command(pass_context=True, aliases=['triple_a','aaa'])
     @asyncio.coroutine
     def trippleaaa(self, ctx):
@@ -550,11 +556,13 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/190191670304833536/201368263203094528/10a.png")
 
+
     @commands.command(pass_context=False, aliases=['mad'])
     @asyncio.coroutine
     def angry(self):
         """Displays an angry emoticon."""
         yield from self.bot.say("**___~~>:C~~___**")
+
 
     @commands.command(pass_context=True, aliases=['megadrive'], hidden = True)
     @asyncio.coroutine
@@ -563,12 +571,14 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("Why would someone initiate the genesis of such a horrid contraption?")
 
+
     @commands.command(pass_context=True, aliases=['love'])
     @asyncio.coroutine
     def hyena(self, ctx):
         """..."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("I have never kissed a girl. I have a tendency to lie awake at night and hope that someday that changes, but that would take a miracle. I wish I could go back in time and choose a different set of hobbies, but that probably is not going to happen. If it did, I would spend more time being active. I have a malformed body. I will probably die before my time because I liked to look at television sets and computer monitors instead of admiring the natural beauty of the outdoors. I want to wake up in my bed to the sound of a girl's breathing. I want to feel her body heat at my back. That's me.")
+
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
@@ -577,6 +587,7 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://i.imgur.com/3es8mZ6.gif")
 
+
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def cry(self, ctx):
@@ -584,11 +595,13 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://puu.sh/l3bnv.gif")
 
+
     @commands.command(pass_context=False,aliases=['kerathumbs'])
     @asyncio.coroutine
     def kfarathumbs(self):
         """Displays kfaraday's signature thumbs up."""
         yield from self.bot.say("( ¯u¯)-b")
+
 
     @commands.command(pass_context=False,aliases=['creepy','lewd'])
     @asyncio.coroutine
@@ -596,17 +609,20 @@ class Bulbacore:
         """Displays the lenny face."""
         yield from self.bot.say("( ͡° ͜ʖ ͡°)")
 
+
     @commands.command(pass_context=False,aliases=['snivvy','snivvi'])
     @asyncio.coroutine
     def snivi(self):
         """Displays the snivi face."""
         yield from self.bot.say("***__>;v__***")
 
+
     @commands.command(pass_context=False,aliases=['bear','pedobear'])
     @asyncio.coroutine
     def pedo(self):
         """Displays the pedobear face."""
         yield from self.bot.say("ʕ•͡ᴥ•ʔ")
+
 
     @commands.command(pass_context=True,aliases=['approve'])
     @asyncio.coroutine
@@ -615,12 +631,14 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/158305327035449344/159801148642033667/Joltik_Seal_of_Approval.png")
 
+
     @commands.command(pass_context=True,aliases=['asleep','assleap'])
     @asyncio.coroutine
     def sleep(self, ctx):
         """Displays a sleeping emote.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/125591492004806656/207330607997386753/leap.gif")
+
 
     @commands.command(pass_context=True,aliases=['mogamen','humour'])
     @asyncio.coroutine
@@ -629,12 +647,14 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/202817966570471426/219488871602192384/notfunny.png")
 
+
     @commands.command(pass_context=True,aliases=['somethinghappened','something_happened'])
     @asyncio.coroutine
     def something(self, ctx):
         """Something happened.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/130833169724342272/202122586740490241/3dtq5QP.png")
+
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
@@ -648,6 +668,7 @@ class Bulbacore:
             else:
                 yield from self.bot.say("http://dpc.hol.es/woody/{}.jpg".format(woody_count))
 
+
     @commands.command(pass_context=True,aliases=['cute'])
     @asyncio.coroutine
     def animal(self, ctx, animal_count: int = 9001):
@@ -656,7 +677,8 @@ class Bulbacore:
             if (animal_count < 1) or (animal_count > 104):
                 animal_count = randint(1,104)
             yield from self.bot.say("http://dpc.hol.es/Animal/{}.gif".format(animal_count))
-    
+
+
     @commands.command(pass_context=True,aliases=['disclaimer'])
     @asyncio.coroutine
     def gift(self, ctx):
@@ -664,12 +686,14 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://www.mattandreko.com/images/brainpan2_preview.png")
 
+
     @commands.group(pass_context=True)
     @asyncio.coroutine
     def base64(self, ctx):
         """Base64 commands"""
         if ctx.invoked_subcommand is None:
             yield from self.bot.say('u idiot what did you expect me to do')
+
 
     @base64.command(pass_context=False)
     @asyncio.coroutine
@@ -680,6 +704,7 @@ class Bulbacore:
             yield from self.bot.say("```~ " + encoded[2:len(encoded)-1] + "```")
         else:
             yield from self.bot.say("Sorry bud, but my encode won't fit in here. **_: )_**")
+
 
     @base64.command(pass_context=False)
     @asyncio.coroutine
@@ -693,6 +718,7 @@ class Bulbacore:
             yield from self.bot.say("```~ " + decoded[2:len(decoded)-1] + "```")
         else:
             yield from self.bot.say("Sorry bud, but my decode won't fit in here. **_: )_**")
+
 
     @asyncio.coroutine
     def on_message(self, message):
