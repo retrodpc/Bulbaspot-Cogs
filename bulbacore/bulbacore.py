@@ -668,6 +668,8 @@ class Bulbacore:
         if (message.author != self.bot.user) and (shiptoast_check(self, message)):
             if (message.content.lower().find("case in point") != -1):
                 yield from self.bot.send_message(message.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
+            elif (message.content.lower().find("noticable") != -1):
+                yield from self.bot.send_message(message.channel, 'notiwire >:C')
             elif (message.channel.id != "222432649472376832"):
                 if ("cum" in message.content.lower().split()):
                     yield from self.bot.send_message(message.channel, 'oi mate watch your fuckin language')
