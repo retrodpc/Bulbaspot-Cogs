@@ -292,7 +292,7 @@ class Bulbacore:
 
 
     @commands.command(pass_context=True, hidden=True, 
-            description="wait how the fuck did you find this lmao", aliases=["bulbatts"])
+            description="wait how did you find this lmao", aliases=["bulbatts"])
     @asyncio.coroutine
     def bulba_tts(self, ctx):
         """Bulba's quote generator read aloud :P\nThis command doesn't work in all channels."""
@@ -311,7 +311,7 @@ class Bulbacore:
             yield from self.bot.say(cheng)
 
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["chengtts"])
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["chengtts"])
     @asyncio.coroutine
     def cheng_tts(self, ctx):
         """Cheng generator read aloud :P\nThis command doesn't work in all channels."""
@@ -330,7 +330,7 @@ class Bulbacore:
             yield from self.bot.say(random.choice(copypastas["deward"]))
 
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["dewardtts"])
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["dewardtts"])
     @asyncio.coroutine
     def deward_tts(self, ctx):
         """deward RP quote generator read aloud :P\nThis command doesn't work in all channels."""
@@ -346,7 +346,7 @@ class Bulbacore:
             yield from self.bot.say(random.choice(copypastas["howard"]))
 
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["howardtts"])
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["howardtts"])
     @asyncio.coroutine
     def howard_tts(self, ctx):
         """Howard RP quote generator read aloud :P\nThis command doesn't work in all channels."""
@@ -362,7 +362,7 @@ class Bulbacore:
             yield from self.bot.say("``" + random.choice(copypastas["cues"]) + "``")
 
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["cahtts"])
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["cahtts"])
     @asyncio.coroutine
     def cah_tts(self, ctx):
         """Howard RP quote generator read aloud :P\nThis command doesn't work in all channels."""
@@ -378,7 +378,7 @@ class Bulbacore:
             yield from self.bot.say(random.choice(copypastas["merio"]))
 
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["meriotts"])
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["meriotts"])
     @asyncio.coroutine
     def merio_tts(self, ctx):
         """Merio's Journal read aloud :P\nThis command doesn't work in all channels."""
@@ -403,7 +403,7 @@ class Bulbacore:
             yield from self.bot.say(copypastas["sloth"][0])
 
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["slothtts"])
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["slothtts"])
     @asyncio.coroutine
     def sloth_tts(self, ctx):
         """Sloth quote generator read aloud :P\nThis command doesn't work in all channels."""
@@ -427,7 +427,7 @@ class Bulbacore:
             yield from self.bot.say("https://youtu.be/r427LYKA8zY")
 
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["nomanssky_tts","nomansky_tts","nomansskytts","nomanskytts","nmstts"])
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["nomanssky_tts","nomansky_tts","nomansskytts","nomanskytts","nmstts"])
     @asyncio.coroutine
     def nms_tts(self, ctx):
         """... If you like to hear verbally spoken cringe.\nThis command doesn't work in all channels."""
