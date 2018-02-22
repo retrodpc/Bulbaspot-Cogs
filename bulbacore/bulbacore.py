@@ -372,22 +372,22 @@ class Bulbacore:
 
     @commands.command(pass_context=True,aliases=["meriosjournal"])
     @asyncio.coroutine
-    def merio(self, ctx, choice: int = -1):
-        """Merio's Journal.\nThis command doesn't work in all channels."""
+    def merio(self, ctx, choice: int = 0):
+        """Merio's Journal.\nThis command doesn't work in all channels.\nThere are currently {} entries.""".format(len(copypastas["merio"]))
         if (shiptoast_check(self, ctx.message)):
-            if choice not in range(0, len(copypastas["merio"])):
-                choice = randint(0, len(copypastas["merio"]) - 1)
-            yield from self.bot.say(copypastas["merio"][choice])
+            if choice not in range(1, len(copypastas["merio"])+1):
+                choice = randint(1, len(copypastas["merio"]))
+            yield from self.bot.say(copypastas["merio"][choice-1])
 
 
     @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["meriotts"])
     @asyncio.coroutine
-    def merio_tts(self, ctx, choice: int = -1):
-        """Merio's Journal read aloud :P\nThis command doesn't work in all channels."""
+    def merio_tts(self, ctx, choice: int = 0):
+        """Merio's Journal read aloud :P\nThis command doesn't work in all channels.\nThere are currently {} entries.""".format(len(copypastas["merio"]))
         if (shiptoast_check(self, ctx.message)):
-            if choice not in range(0, len(copypastas["merio"])):
-                choice = randint(0, len(copypastas["merio"]) - 1)
-            yield from self.bot.say(copypastas["merio"][choice], tts=True)
+            if choice not in range(1, len(copypastas["merio"])+1):
+                choice = randint(1, len(copypastas["merio"]))
+            yield from self.bot.say(copypastas["merio"][choice-1], tts=True)
 
 
     @commands.group(pass_context=True)
