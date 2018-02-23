@@ -167,6 +167,7 @@ def metal():
     metal = "**METAL!**\n\n" + metal_crusher + "\n\n***AND NOW THE SOLO!!!***\n\n**___~~" + han_solo + "~~___**"
     return metal
 
+
 def metal_crazy_a():
     primary_metal_chara = "0123456789ABDEGHIJLMNÑOPQRSTVWXYZabcdefghijklmnñpqrstvwxzFUCKyou        "
     secondary_metal_chara = "        !\"#$%&/()=|"
@@ -179,6 +180,7 @@ def metal_crazy_a():
             metal_crusher = metal_crusher + secondary_metal_chara[randint(0, len(secondary_metal_chara)-1)]
     return metal_crusher
 
+
 def metal_crazy_b():
     primary_solo_frisk = "        !#$%&/()=?[]{}:¨|;+¿¡@^\"-.,'°0123457869"
     secondary_solo_frisk = "        ABCDEGHIJKNÑQRSVWXYZTOMFULP"
@@ -190,6 +192,7 @@ def metal_crazy_b():
         else:
             han_solo = han_solo + secondary_solo_frisk[randint(0, len(secondary_solo_frisk)-1)]
     return han_solo
+
 
 def fucc():
     primary_metal_chara =  ["\ud83d\ude00", "\ud83d\ude03", "\ud83d\ude04",
@@ -270,12 +273,14 @@ class Bulbacore:
     def save_settings(self):
         fileIO('data/bulbacore/settings.json', 'save', self.settings)
 
+
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def zalgo(self, ctx, *, message):
         """spoopy\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(zalgo_gen(message))
+
 
     @commands.group(pass_context=True)
     @asyncio.coroutine
@@ -284,21 +289,16 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             if ctx.invoked_subcommand is None:
                 yield from self.bot.say(random.choice(copypastas["bulbaquotes"]))
-    
-    @bulba.command(pass_context=True)
-    @asyncio.coroutine
-    def list(self, ctx):
-        """Bulba's quote list\nThis command doesn't work in all channels."""
-        if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say('http://pastebin.com/dvH26JwB')
+
 
     @commands.command(pass_context=True, hidden=True, 
-            description="wait how the fuck did you find this lmao", aliases=["bulbatts"])
+            description="wait how did you find this lmao", aliases=["bulbatts"])
     @asyncio.coroutine
     def bulba_tts(self, ctx):
         """Bulba's quote generator read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["bulbaquotes"]), tts=True)
+
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
@@ -310,7 +310,8 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(cheng)
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["chengtts"])
+
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["chengtts"])
     @asyncio.coroutine
     def cheng_tts(self, ctx):
         """Cheng generator read aloud :P\nThis command doesn't work in all channels."""
@@ -320,6 +321,7 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(cheng, tts=True)
 
+
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def deward(self, ctx):
@@ -327,12 +329,14 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["deward"]))
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["dewardtts"])
+
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["dewardtts"])
     @asyncio.coroutine
     def deward_tts(self, ctx):
         """deward RP quote generator read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["deward"]), tts=True)
+
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
@@ -341,12 +345,14 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["howard"]))
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["howardtts"])
+
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["howardtts"])
     @asyncio.coroutine
     def howard_tts(self, ctx):
         """Howard RP quote generator read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["howard"]), tts=True)
+
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
@@ -355,26 +361,40 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("``" + random.choice(copypastas["cues"]) + "``")
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["cahtts"])
+
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["cahtts"])
     @asyncio.coroutine
     def cah_tts(self, ctx):
         """Howard RP quote generator read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["cues"]), tts=True)
 
-    @commands.command(pass_context=True)
+
+    @commands.command(pass_context=True,aliases=["meriosjournal"])
     @asyncio.coroutine
-    def merio(self, ctx):
+    def merio(self, ctx, choice: int = 0):
         """Merio's Journal.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(random.choice(copypastas["merio"]))
+            if choice < 1:
+                choice = randint(1, len(copypastas["merio"]))
+            if choice > len(copypastas["merio"]):
+                yield from self.bot.say("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(copypastas["merio"])))
+                return
+            yield from self.bot.say(copypastas["merio"][choice-1])
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["meriotts"])
+
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["meriotts"])
     @asyncio.coroutine
-    def merio_tts(self, ctx):
+    def merio_tts(self, ctx, choice: int = 0):
         """Merio's Journal read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(random.choice(copypastas["merio"]), tts=True)
+            if choice < 1:
+                choice = randint(1, len(copypastas["merio"]))
+            if choice > len(copypastas["merio"]):
+                yield from self.bot.say("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(copypastas["merio"])))
+                return
+            yield from self.bot.say(copypastas["merio"][choice-1], tts=True)
+
 
     @commands.group(pass_context=True)
     @asyncio.coroutine
@@ -384,6 +404,7 @@ class Bulbacore:
             if ctx.invoked_subcommand is None:
                 yield from self.bot.say(random.choice(copypastas["sloth"]))
     
+
     @sloth.command(pass_context=True)
     @asyncio.coroutine
     def original(self, ctx):
@@ -391,12 +412,14 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(copypastas["sloth"][0])
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["slothtts"])
+
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["slothtts"])
     @asyncio.coroutine
     def sloth_tts(self, ctx):
         """Sloth quote generator read aloud :P\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["sloth"]), tts=True)
+
 
     @commands.command(pass_context=True,aliases=["nomanssky","nomansky"])
     @asyncio.coroutine
@@ -405,6 +428,7 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["nms"]))
 
+
     @commands.command(pass_context=True,aliases=["minimacro"])
     @asyncio.coroutine
     def bs(self, ctx):
@@ -412,12 +436,14 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://youtu.be/r427LYKA8zY")
 
-    @commands.command(pass_context=True,hidden=True,description="wait how the fuck did you find this lmao",aliases=["nomanssky_tts","nomansky_tts","nomansskytts","nomanskytts","nmstts"])
+
+    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["nomanssky_tts","nomansky_tts","nomansskytts","nomanskytts","nmstts"])
     @asyncio.coroutine
     def nms_tts(self, ctx):
         """... If you like to hear verbally spoken cringe.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["nms"]), tts=True)
+
 
     @commands.command(pass_context=True,aliases=["dong","penis","cock"])
     @asyncio.coroutine
@@ -430,6 +456,7 @@ class Bulbacore:
             else:
                 yield from self.bot.say("8================D")
 
+
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def wow(self, ctx, number: str = None):
@@ -440,12 +467,14 @@ class Bulbacore:
         else:
             yield from self.bot.say("***__~~woooooooooooooooooooooooooooooow~~__***")
 
+
     @commands.command(pass_context=True, hidden = True)
     @asyncio.coroutine
     def fuck(self, ctx):
         """FUCK ON ME!!!!!!!!!!\nThis command only works in certain channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(fucc())
+
 
     @commands.command(pass_context=True, hidden = True,
         description='WARNING: THIS WILL DRIVE YOUR SERVER INSANE', aliases=["fucktts"])
@@ -455,12 +484,14 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(fucc())
 
+
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def metal(self, ctx):
         """Generates text metal.\nThis command only works in certain channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(metal())
+
 
     @commands.command(pass_context=True, hidden = True,
         description='WARNING: THIS WILL DRIVE YOUR SERVER INSANE', aliases=["metaltts"])
@@ -472,6 +503,16 @@ class Bulbacore:
             yield from self.bot.say(metal_crazy_a(), tts=True)
             yield from self.bot.say("***AND NOW THE SOLO!!!***", tts=True)
             yield from self.bot.say("**___~~" + metal_crazy_b() + "~~___**", tts=True)
+
+
+    @commands.command(pass_context=True, hidden = True,
+        description='WARNING: THIS WILL DRIVE YOUR SERVER INSANE')
+    @asyncio.coroutine
+    def violin(self, ctx):
+        """What is a violin."""
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say("The violin (violin) is a kind of a super clean orchestra played to ring carry instruments. It is widely spread all over the world, is the modern orchestra string of the main instrument. In the music it plays very important position, is the pillar of the modern symphony orchestra, but also has the difficult playing skills solo instrument.\n\nThe emergence of modern violin has been 300 years of history, is the western music since the 17th century in one of the most important instruments as the instrument queen, was also the production is itself a gate violin for fine art. The violin beautiful tone, close to a broad range, and the performance is strong, it was born from that day on, he's been in the instrument of significant position, for people loved. If the piano is \"the king of Musical Instruments, then the violin is\" the queen of instruments\".\n\nFor centuries, the world famous composer wrote a lot of violin classic works, violinist in this instrument into the soul, the development of the superb performance art. The violin can concerts and solo.\n\nThe Violin is a string of four bowed instruments, the family is the main members of the family system of other members are: (the viola, the cello and the bass). Modern violin originated from Italian Craig mona, in 1600-1750 years to become the largest violin production center. The famous master making guitars are: Nicola Amati (nicolas, Marty), Antonio Stradivari (Antonio Stella bottom tile), and Giuseppe Guarneri (ji plug pu melon nai); They made instruments so far are priceless. The violins fifth tune: g, d1, a1, e2, register more than three and a half group, is all orchestra indispensable instrument, also after instruments.", tts=True)
+
 
     @commands.command(pass_context=True, aliases=["add_shiptoast"])
     @checks.is_owner()
@@ -493,6 +534,7 @@ class Bulbacore:
         self.save_settings()
         yield from self.bot.say("Channel {} added.".format(channel_name))
 
+
     @commands.command(pass_context=True, aliases=["del_shiptoast"])
     @checks.is_owner()
     @asyncio.coroutine
@@ -512,6 +554,7 @@ class Bulbacore:
         else:
             yield from self.bot.say("Channel {} not found in list.".format(channel_name))
 
+
     @commands.command(pass_context=True, aliases=['triple_a','aaa'])
     @asyncio.coroutine
     def trippleaaa(self, ctx):
@@ -519,11 +562,13 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/190191670304833536/201368263203094528/10a.png")
 
+
     @commands.command(pass_context=False, aliases=['mad'])
     @asyncio.coroutine
     def angry(self):
         """Displays an angry emoticon."""
         yield from self.bot.say("**___~~>:C~~___**")
+
 
     @commands.command(pass_context=True, aliases=['megadrive'], hidden = True)
     @asyncio.coroutine
@@ -532,12 +577,14 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("Why would someone initiate the genesis of such a horrid contraption?")
 
+
     @commands.command(pass_context=True, aliases=['love'])
     @asyncio.coroutine
     def hyena(self, ctx):
         """..."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("I have never kissed a girl. I have a tendency to lie awake at night and hope that someday that changes, but that would take a miracle. I wish I could go back in time and choose a different set of hobbies, but that probably is not going to happen. If it did, I would spend more time being active. I have a malformed body. I will probably die before my time because I liked to look at television sets and computer monitors instead of admiring the natural beauty of the outdoors. I want to wake up in my bed to the sound of a girl's breathing. I want to feel her body heat at my back. That's me.")
+
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
@@ -546,6 +593,7 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://i.imgur.com/3es8mZ6.gif")
 
+
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def cry(self, ctx):
@@ -553,11 +601,13 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://puu.sh/l3bnv.gif")
 
+
     @commands.command(pass_context=False,aliases=['kerathumbs'])
     @asyncio.coroutine
     def kfarathumbs(self):
         """Displays kfaraday's signature thumbs up."""
         yield from self.bot.say("( ¯u¯)-b")
+
 
     @commands.command(pass_context=False,aliases=['creepy','lewd'])
     @asyncio.coroutine
@@ -565,17 +615,20 @@ class Bulbacore:
         """Displays the lenny face."""
         yield from self.bot.say("( ͡° ͜ʖ ͡°)")
 
+
     @commands.command(pass_context=False,aliases=['snivvy','snivvi'])
     @asyncio.coroutine
     def snivi(self):
         """Displays the snivi face."""
         yield from self.bot.say("***__>;v__***")
 
+
     @commands.command(pass_context=False,aliases=['bear','pedobear'])
     @asyncio.coroutine
     def pedo(self):
         """Displays the pedobear face."""
         yield from self.bot.say("ʕ•͡ᴥ•ʔ")
+
 
     @commands.command(pass_context=True,aliases=['approve'])
     @asyncio.coroutine
@@ -584,12 +637,14 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/158305327035449344/159801148642033667/Joltik_Seal_of_Approval.png")
 
+
     @commands.command(pass_context=True,aliases=['asleep','assleap'])
     @asyncio.coroutine
     def sleep(self, ctx):
         """Displays a sleeping emote.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/125591492004806656/207330607997386753/leap.gif")
+
 
     @commands.command(pass_context=True,aliases=['mogamen','humour'])
     @asyncio.coroutine
@@ -598,12 +653,14 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/202817966570471426/219488871602192384/notfunny.png")
 
+
     @commands.command(pass_context=True,aliases=['somethinghappened','something_happened'])
     @asyncio.coroutine
     def something(self, ctx):
         """Something happened.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://cdn.discordapp.com/attachments/130833169724342272/202122586740490241/3dtq5QP.png")
+
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
@@ -617,6 +674,7 @@ class Bulbacore:
             else:
                 yield from self.bot.say("http://dpc.hol.es/woody/{}.jpg".format(woody_count))
 
+
     @commands.command(pass_context=True,aliases=['cute'])
     @asyncio.coroutine
     def animal(self, ctx, animal_count: int = 9001):
@@ -625,7 +683,8 @@ class Bulbacore:
             if (animal_count < 1) or (animal_count > 104):
                 animal_count = randint(1,104)
             yield from self.bot.say("http://dpc.hol.es/Animal/{}.gif".format(animal_count))
-    
+
+
     @commands.command(pass_context=True,aliases=['disclaimer'])
     @asyncio.coroutine
     def gift(self, ctx):
@@ -633,12 +692,14 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://www.mattandreko.com/images/brainpan2_preview.png")
 
+
     @commands.group(pass_context=True)
     @asyncio.coroutine
     def base64(self, ctx):
         """Base64 commands"""
         if ctx.invoked_subcommand is None:
             yield from self.bot.say('u idiot what did you expect me to do')
+
 
     @base64.command(pass_context=False)
     @asyncio.coroutine
@@ -649,6 +710,7 @@ class Bulbacore:
             yield from self.bot.say("```~ " + encoded[2:len(encoded)-1] + "```")
         else:
             yield from self.bot.say("Sorry bud, but my encode won't fit in here. **_: )_**")
+
 
     @base64.command(pass_context=False)
     @asyncio.coroutine
@@ -662,6 +724,7 @@ class Bulbacore:
             yield from self.bot.say("```~ " + decoded[2:len(decoded)-1] + "```")
         else:
             yield from self.bot.say("Sorry bud, but my decode won't fit in here. **_: )_**")
+
 
     @asyncio.coroutine
     def on_message(self, message):
