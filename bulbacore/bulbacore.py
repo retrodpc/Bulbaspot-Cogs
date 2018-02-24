@@ -250,13 +250,14 @@ def fucc():
     metal_crusher = "FUCK ON ME!!!!!!!!!!!!!!!!!!!!! "
     for _ in range(metal_length):
         if randint(0, 10) < 6:
-            metal_crusher = metal_crusher + primary_metal_chara[randint(0, len(primary_metal_chara)-1)]
+            metal_crusher += primary_metal_chara[randint(0, len(primary_metal_chara)-1)]
         else:
-            metal_crusher = metal_crusher + secondary_metal_chara[randint(0, len(secondary_metal_chara)-1)]
+            metal_crusher += secondary_metal_chara[randint(0, len(secondary_metal_chara)-1)]
     return metal_crusher
 
+
 def find_user(ctx):
-    # I have no idea what I'm doing
+    # I have no idea what I'm doing (merio 2018)
     words = ctx.message.content.split()
     if (len(words) == 1):
         user_object = ctx.message.author
@@ -268,9 +269,12 @@ def find_user(ctx):
         user_object = ctx.message.server.get_member_named(name)
     return user_object
 
+
 def score_gen(user_id, max_score, hash_algorithm):
-    # Some sort of rocket science shit I still can't figure out why it doesn't yield the same values as the old bot >:C
-    # nvm the comment above is outdated I got it to work see below
+    """Generates a score from hashing a user's ID.
+
+    Some sort of rocket science shit I still can't figure out why it doesn't yield the same values as the old bot >:C
+    nvm the comment above is outdated I got it to work see below"""
     hash_algorithm.update(str(user_id).encode("utf-8"))
     hash_bytes = hash_algorithm.digest()
     level = int.from_bytes(hash_bytes[len(hash_bytes) - 8:len(hash_bytes)], byteorder="little")
@@ -278,14 +282,14 @@ def score_gen(user_id, max_score, hash_algorithm):
     if (level > 9223372036854775807):
         e = (level - 9223372036854775807) * 2
         level = (level * -1) - 2
-        level = level + e
+        level += e
         level = abs(level)
-    level = level % (max_score + 1)
+    level %= (max_score + 1)
     return level
 
+
 def dicksize_gen(ctx):
-    # How did this work again
-    response = ""
+    """Calculates "dick size" based on user ID."""
     user_object = find_user(ctx)
     if (user_object is not None):
         level = score_gen(user_object.id, 99, hashlib.sha256())
@@ -307,8 +311,9 @@ def dicksize_gen(ctx):
         response = "You're dreaming of dicks again idiot that user doesn't exist in here >:C"
     return response
 
+
 def gaytest_gen(ctx):
-    response = ""
+    """Calculates "gayness" based on user ID."""
     user_object = find_user(ctx)
     if (user_object is not None):
         level = score_gen(user_object.id, 100, hashlib.sha512())
@@ -332,8 +337,8 @@ def gaytest_gen(ctx):
         response = "awwww your platonic love doesn't actually exist, wake up f00l >:C"
     return response
 
+
 def rate_gen(ctx):
-    response = ""
     user_object = find_user(ctx)
     if (user_object is not None):
         if (user_object.id != "84701721967726592"):
@@ -353,11 +358,11 @@ def rate_gen(ctx):
             elif (level == 10): response += "wow omg you're top waifu material (wait but women don't exist i'm gonna destroy you)";
             else: response += "ummm something went terribly wrong call dpc asap :DDDDD"
         else:
-            response += (user_object.nick or user_object.name) + ": hey handsome ;))) you know my rating for you, you're a solid **123456789876543210/10** ;))) good luck with the ladies tonight ;))))))"
+            #response += (user_object.nick or user_object.name) + ": hey handsome ;))) you know my rating for you, you're a solid **123456789876543210/10** ;))) good luck with the ladies tonight ;))))))"
+            response = (user_object.nick or user_object.name) + ": you're faec is so ugly ;))) go eat a raw used rotten condom, maybe that will solve your issues"
     else:
         response = "dude lay off the drugs, you're seeing things, that person is not actually there"
     return response
-
 
 
 class Bulbacore:
