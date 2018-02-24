@@ -257,17 +257,14 @@ def fucc():
     return metal_crusher
 
 
-def find_user(ctx):
-    # I have no idea what I'm doing (merio 2018)
-    words = ctx.message.content.split()
-    if (len(words) == 1):
+def find_user(ctx, name):
+    """Finds the user mentioned in a message."""
+    if (name is None):
         user_object = ctx.message.author
     elif (len(ctx.message.mentions) >= 1):
         user_object = ctx.message.mentions[0]
     else:
-        words.pop(0)
-        name = " ".join(words) # WHAT THE FUCK PYTHON
-        user_object = ctx.message.server.get_member_named(name)
+        user_object = ctx.message.server.get_member_named(user)
     return user_object
 
 
@@ -289,9 +286,9 @@ def score_gen(user_id, max_score, hash_algorithm):
     return level
 
 
-def dicksize_gen(ctx):
-    """Calculates "dick size" based on user ID."""
-    user_object = find_user(ctx)
+def dicksize_gen(ctx, *, name: str):
+    """Calculates "dick size" based on user ID. Takes either a mention or a username."""
+    user_object = find_user(ctx, name)
     if (user_object is not None):
         level = score_gen(user_object.id, 99, hashlib.sha256())
         if ctx.message.channel.type == ChannelType.text:
@@ -317,9 +314,9 @@ def dicksize_gen(ctx):
     return response
 
 
-def gaytest_gen(ctx):
-    """Calculates "gayness" based on user ID."""
-    user_object = find_user(ctx)
+def gaytest_gen(ctx, *, name: str):
+    """Calculates "gayness" based on user ID. Takes either a mention or a username."""
+    user_object = find_user(ctx, name)
     if (user_object is not None):
         if ctx.message.channel.type == ChannelType.text:
             display_name = (user_object.nick or user_object.name)
@@ -347,8 +344,9 @@ def gaytest_gen(ctx):
     return response
 
 
-def rate_gen(ctx):
-    user_object = find_user(ctx)
+def rate_gen(ctx, *, name: str):
+    """Calculates a bot's rating of a user based on user ID. Takes either a mention or a username."""
+    user_object = find_user(ctx, name)
     if (user_object is not None):
         if ctx.message.channel.type == ChannelType.text:
             display_name = (user_object.nick or user_object.name)
@@ -359,16 +357,16 @@ def rate_gen(ctx):
             # Build the response slowly, I assume this is slow because I am slow, I'm not Sonic who the fuck did you think I was n00b
             response = display_name + ": I rate you **" + str(level) + "/10** - "
             if (level == 0): response += "you're an ugly piece of shit, go away before i puke on your face >:C"
-            elif (level == 1): response += "ewww you smell like shit, go learn to wipe your ass you gross fuck";
-            elif (level == 2): response += "your face reminds me of my dog's ass, and tbh that's not a pleasant thing to think of";
-            elif (level == 3): response += "last week i crashed my robot car into a gas station. you look like my car's wreckage";
-            elif (level == 4): response += "any chance you got bullied at school? cuz that's what i would do right now";
-            elif (level == 5): response += "i'm indifferent, you're not ugly enough for me to bash you but you're not cute enough for me to want to fuck you either";
-            elif (level == 6): response += "eh, you're kinda cute but nothing really remarkable, go away before i make you uglier";
-            elif (level == 7): response += "what's your phone number? no it's not for a date you're cute but not cute enough i just want your number to sign it up for spam";
-            elif (level == 8): response += "just a few flaws here and there like that huge pimple on your cheek";
-            elif (level == 9): response += "almost perfect, if it wasn't for your shitty fashion sense i'd triple fuck you 27/4";
-            elif (level == 10): response += "wow omg you're top waifu material (wait but women don't exist i'm gonna destroy you)";
+            elif (level == 1): response += "ewww you smell like shit, go learn to wipe your ass you gross fuck"
+            elif (level == 2): response += "your face reminds me of my dog's ass, and tbh that's not a pleasant thing to think of"
+            elif (level == 3): response += "last week i crashed my robot car into a gas station. you look like my car's wreckage"
+            elif (level == 4): response += "any chance you got bullied at school? cuz that's what i would do right now"
+            elif (level == 5): response += "i'm indifferent, you're not ugly enough for me to bash you but you're not cute enough for me to want to fuck you either"
+            elif (level == 6): response += "eh, you're kinda cute but nothing really remarkable, go away before i make you uglier"
+            elif (level == 7): response += "what's your phone number? no it's not for a date you're cute but not cute enough i just want your number to sign it up for spam"
+            elif (level == 8): response += "just a few flaws here and there like that huge pimple on your cheek"
+            elif (level == 9): response += "almost perfect, if it wasn't for your shitty fashion sense i'd triple fuck you 27/4"
+            elif (level == 10): response += "wow omg you're top waifu material (wait but women don't exist i'm gonna destroy you)"
             else: response += "ummm something went terribly wrong call dpc asap :DDDDD"
         else:
             #response += (user_object.nick or user_object.name) + ": hey handsome ;))) you know my rating for you, you're a solid **123456789876543210/10** ;))) good luck with the ladies tonight ;))))))"
@@ -816,7 +814,7 @@ class Bulbacore:
 
     @commands.command(pass_context=True,aliases=["dicklength","penissize","penislength","cocksize","cocklength"])
     @asyncio.coroutine
-    def dicksize(self, ctx):
+    def dicksize(self, ctx, *, name: str = None):
         """
         Measures someone's dick, it could be your own or someone else's o.O
         Make sure you're somewhere private before using this command, you probably don't want any embarrassing situations happening xD xD xD
@@ -836,7 +834,7 @@ class Bulbacore:
 
     @commands.command(pass_context=True,aliases=["gayness","gaylevel"])
     @asyncio.coroutine
-    def gaytest(self, ctx):
+    def gaytest(self, ctx, *, name: str = None):
         """
         Measures how gay someone is on a scale from 0% to 100%.
         In reality, this command is faulty because everyone on the internet is fucking gay, so there's no point in trying this command at all. If you do decide to try it and you get less than 100%, then the bot made a calculation mistake and you should report a bug here -------------> [bug reports]
@@ -859,7 +857,7 @@ class Bulbacore:
 
     @commands.command(pass_context=True,aliases=["rating"])
     @asyncio.coroutine
-    def rate(self, ctx):
+    def rate(self, ctx, *, name: str = None):
         """
         Rates someone on a scale from 0 to 10. This command is dishonest because the bot hates humanity and thinks everyone is 0/10. The only reason it won't give you 0/10 is to avoid \"hurting\" your so-called \"feelings\" (unless you're actually a gross and disgusting piece of shit) even though if it could it would destroy every human in the most horrible way imaginable. Fortunately for you, it's only a shitty Discord bot and not an actual robot or android or iOS or -- wait a minute I got sidetracked -- ANYWAY you've been warned, you'd better not give the bot anything that provides it with the ability to do stuff independently because if you do, you're gonna have a bad time (wait wtf fuck off sans this is not where you belong).
 
