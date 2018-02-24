@@ -293,8 +293,12 @@ def dicksize_gen(ctx):
     user_object = find_user(ctx)
     if (user_object is not None):
         level = score_gen(user_object.id, 99, hashlib.sha256())
+        if ctx.message.channel.type == ChannelType.text:
+            display_name = (user_object.nick or user_object.name)
+        else:
+            display_name = user_object.name
         # Build the response slowly, I assume this is slow because I am slow, I'm not Sonic who the fuck did you think I was n00b
-        response = (user_object.nick or user_object.name) + ": " + this_gen(level) + " (" + str(level) + ") - "
+        response = display_name + ": " + this_gen(level) + " (" + str(level) + ") - "
         if (level == 0): response += "hahahAHAHAH OMG HAHAHAHAAHAH THAT'S FUCKING PATHETIC!!! XD LMFAO WHAT A DAMN LOSER XD XD XD"
         elif (level >= 1 and level <= 9): response += "lol asian dick xD"
         elif (level >= 10 and level <= 19): response += "did u get bullied in school for that cuz that's what I would do lmao"
@@ -316,9 +320,13 @@ def gaytest_gen(ctx):
     """Calculates "gayness" based on user ID."""
     user_object = find_user(ctx)
     if (user_object is not None):
+        if ctx.message.channel.type == ChannelType.text:
+            display_name = (user_object.nick or user_object.name)
+        else:
+            display_name = user_object.name
         level = score_gen(user_object.id, 100, hashlib.sha512())
         # Build the response slowly, I assume this is slow because I am slow, I'm not Sonic who the fuck did you think I was n00b
-        response = (user_object.nick or user_object.name) + " is... **" + str(level) + "% GAY!** - "
+        response = display_name + " is... **" + str(level) + "% GAY!** - "
         if (level == 0): response += "wtf who do you think you're fooling, there's no way you're 0% gay >:C"
         elif (level >= 1 and level <= 9): response += "uh dude i'm really sure you're shitting me, such low levels of gayness are not possible on the internet"
         elif (level >= 10 and level <= 19): response += "don't lie to me you've thought of sucking a huge dick at least once in your life"
@@ -341,10 +349,14 @@ def gaytest_gen(ctx):
 def rate_gen(ctx):
     user_object = find_user(ctx)
     if (user_object is not None):
+        if ctx.message.channel.type == ChannelType.text:
+            display_name = (user_object.nick or user_object.name)
+        else:
+            display_name = user_object.name
         if (user_object.id != "84701721967726592"):
             level = score_gen(user_object.id, 10, hashlib.sha384())
             # Build the response slowly, I assume this is slow because I am slow, I'm not Sonic who the fuck did you think I was n00b
-            response = (user_object.nick or user_object.name) + ": I rate you **" + str(level) + "/10** - "
+            response = display_name + ": I rate you **" + str(level) + "/10** - "
             if (level == 0): response += "you're an ugly piece of shit, go away before i puke on your face >:C"
             elif (level == 1): response += "ewww you smell like shit, go learn to wipe your ass you gross fuck";
             elif (level == 2): response += "your face reminds me of my dog's ass, and tbh that's not a pleasant thing to think of";
