@@ -90,58 +90,50 @@ def zalgo_gen(text):
         for i in range(len(text)):
             character_set.append(text[i])
             for _ in range(top_kek-1):
-                character_set[i] = character_set[i] + chara[randint(0,len(chara)-1)]
-            final_output = final_output + character_set[i]
+                character_set[i] += chara[randint(0,len(chara)-1)]
+            final_output += character_set[i]
         return final_output
     else:
-        return "Sorry but my spoops won't fit in here. \U0001F47B"
+        return "Sorry, but my spoops won't fit in here. \U0001F47B"
 
 
 # Generates a text penis at a given length
-def this_gen(length):
-    if (is_int(length) is False):
-        return "8================D"
+def this_gen(length: int):
+    if (length <= 1998 and length >= 0):
+        this_thing = "8"
+        for _ in range(length):
+            this_thing += "="
+        this_thing += "D"
+        return this_thing
+    elif (length >= -1998 and length < 0):
+        new_length = -length
+        this_thing = "D"
+        for _ in range(new_length):
+            this_thing += "="
+        this_thing += "8"
+        return this_thing
     else:
-        length = int(length)
-        if (length <= 1998 and length >= 0):
-            this_thing = "8"
-            for _ in range(length):
-                this_thing = this_thing + "="
-            this_thing = this_thing + "D"
-            return this_thing
-        elif (length >= -1998 and length < 0):
-            new_length = -length
-            this_thing = "D"
-            for _ in range(new_length):
-                this_thing = this_thing + "="
-            this_thing = this_thing + "8"
-            return this_thing
-        else:
-            return "Sorry bud, but my dick won't fit in here. **_: )_**"
+        return "Sorry bud, but my dick won't fit in here. **_: )_**"
 
 
 # Generates a wow at a given length
-def wow_gen(length):
-    if (is_int(length) is False):
-        return "***__~~woooooooooooooooooooooooooooooow~~__***"
+def wow_gen(length: int):
+    if (length <= 1984 and length >= 0):
+        wow_thing = "***__~~w"
+        for _ in range(length):
+            wow_thing += "o"
+        wow_thing += "w~~__***"
+        return wow_thing
+    elif (length >= -1984 and length < 0):
+        new_length = -length
+        wow_thing = "***__~~ʍ"
+        for _ in range(new_length):
+            wow_thing += "o"
+        wow_thing += + "ʍ~~__***"
+        return wow_thing
     else:
-        length = int(length)
-        if (length <= 1984 and length >= 0):
-            wow_thing = "***__~~w"
-            for _ in range(length):
-                wow_thing = wow_thing + "o"
-            wow_thing += "w~~__***"
-            return wow_thing
-        elif (length >= -1984 and length < 0):
-            new_length = -length
-            wow_thing = "***__~~ʍ"
-            for _ in range(new_length):
-                wow_thing = wow_thing + "o"
-            wow_thing += wow_thing + "ʍ~~__***"
-            return wow_thing
-        else:
-            return "Sorry bud, but your wow is too much for me to handle.\n" \
-            "Here's a doge for now: https://upload.wikimedia.org/wikipedia/en/5/5f/Original_Doge_meme.jpg **_: (_**"
+        return "Sorry bud, but your wow is too much for me to handle.\n" \
+        "Here's a doge for now: https://upload.wikimedia.org/wikipedia/en/5/5f/Original_Doge_meme.jpg **_: (_**"
 
 
 # Metal commands will generate a "metal" song represented in text.
@@ -156,14 +148,14 @@ def metal():
     han_solo = ""
     for _ in range(metal_length):
         if randint(0, 9) < 9:
-            metal_crusher = metal_crusher + primary_metal_chara[randint(0, len(primary_metal_chara)-1)]
+            metal_crusher += primary_metal_chara[randint(0, len(primary_metal_chara)-1)]
         else:
-            metal_crusher = metal_crusher + secondary_metal_chara[randint(0, len(secondary_metal_chara)-1)]
+            metal_crusher += secondary_metal_chara[randint(0, len(secondary_metal_chara)-1)]
     for _ in range(solo_length):
         if randint(0, 19) < 19:
-            han_solo = han_solo + primary_solo_frisk[randint(0, len(primary_solo_frisk)-1)]
+            han_solo += primary_solo_frisk[randint(0, len(primary_solo_frisk)-1)]
         else:
-            han_solo = han_solo + secondary_solo_frisk[randint(0, len(secondary_solo_frisk)-1)]
+            han_solo += secondary_solo_frisk[randint(0, len(secondary_solo_frisk)-1)]
     metal = "**METAL!**\n\n" + metal_crusher + "\n\n***AND NOW THE SOLO!!!***\n\n**___~~" + han_solo + "~~___**"
     return metal
 
@@ -175,9 +167,9 @@ def metal_crazy_a():
     metal_crusher = ""
     for _ in range(metal_length):
         if randint(0, 9) < 9:
-            metal_crusher = metal_crusher + primary_metal_chara[randint(0, len(primary_metal_chara)-1)]
+            metal_crusher += primary_metal_chara[randint(0, len(primary_metal_chara)-1)]
         else:
-            metal_crusher = metal_crusher + secondary_metal_chara[randint(0, len(secondary_metal_chara)-1)]
+            metal_crusher += secondary_metal_chara[randint(0, len(secondary_metal_chara)-1)]
     return metal_crusher
 
 
@@ -188,9 +180,9 @@ def metal_crazy_b():
     han_solo = ""
     for _ in range(solo_length):
         if randint(0, 19) < 19:
-            han_solo = han_solo + primary_solo_frisk[randint(0, len(primary_solo_frisk)-1)]
+            han_solo += primary_solo_frisk[randint(0, len(primary_solo_frisk)-1)]
         else:
-            han_solo = han_solo + secondary_solo_frisk[randint(0, len(secondary_solo_frisk)-1)]
+            han_solo += secondary_solo_frisk[randint(0, len(secondary_solo_frisk)-1)]
     return han_solo
 
 
@@ -396,6 +388,19 @@ class Bulbacore:
             yield from self.bot.say(copypastas["merio"][choice-1], tts=True)
 
 
+    @commands.command(pass_context=True,aliases=["ivy"])
+    @asyncio.coroutine
+    def ivyslog(self, ctx, choice: int = 0):
+        """Ivy's log, the journal absolutely nobody asked for.\nThis command doesn't work in all channels."""
+        if (shiptoast_check(self, ctx.message)):
+            if choice < 1:
+                choice = randint(1, len(copypastas["ivyslog"]))
+            if choice > len(copypastas["ivyslog"]):
+                yield from self.bot.say("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(copypastas["ivyslog"])))
+                return
+            yield from self.bot.say(copypastas["ivyslog"][choice-1])
+
+
     @commands.group(pass_context=True)
     @asyncio.coroutine
     def sloth(self, ctx):
@@ -447,25 +452,19 @@ class Bulbacore:
 
     @commands.command(pass_context=True,aliases=["dong","penis","cock"])
     @asyncio.coroutine
-    def this(self, ctx, length: str = None):
+    def this(self, ctx, length: int = 10):
         """Generates a text penis with a given length.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
-            if (length != None):
-                this_string = this_gen(length)
-                yield from self.bot.say(this_string)
-            else:
-                yield from self.bot.say("8================D")
+            this_string = this_gen(length)
+            yield from self.bot.say(this_string)
 
 
     @commands.command(pass_context=True)
     @asyncio.coroutine
-    def wow(self, ctx, number: str = None):
+    def wow(self, ctx, length: int = 10):
         """Generates an emphatic wow with a given length."""
-        if (number != None):
-            wow_string = wow_gen(number)
-            yield from self.bot.say(wow_string)
-        else:
-            yield from self.bot.say("***__~~woooooooooooooooooooooooooooooow~~__***")
+        wow_string = wow_gen(length)
+        yield from self.bot.say(wow_string)
 
 
     @commands.command(pass_context=True, hidden = True)

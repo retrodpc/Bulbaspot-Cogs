@@ -116,38 +116,10 @@ class Bulbautils:
             # Display error message to channel
             yield from self.bot.say("{} Type ``?help tickspeed`` for proper usage.".format(err))
 
-    @commands.command(pass_context=False, description='Converts to Celsius from Fahrenheit.')
-    @asyncio.coroutine
-    def celsius(self, fahrenheit):
-        """Converts to Celsius from Fahrenheit"""
-        try:
-            if (not is_float(fahrenheit)):
-                raise ValueError("Nice Number !")
-            fahrenheit = float(fahrenheit)
-            celsius = (fahrenheit - 32) * (5 / 9)
-            yield from self.bot.say("{:g}°F is {:g}°C.".format(fahrenheit, celsius))
-        except ValueError as err:
-            # Display error message to channel
-            yield from self.bot.say("{} Type ``?help celsius`` for proper usage.".format(err))
-
-    @commands.command(pass_context=False, description='Converts to Fahrenheit from Celsius.')
-    @asyncio.coroutine
-    def fahrenheit(self, celsius):
-        """Converts to Fahrenheit from Celsius"""
-        try:
-            if (not is_float(celsius)):
-                raise ValueError("Nice Number !")
-            celsius = float(celsius)
-            fahrenheit = celsius * (9 / 5) + 32
-            yield from self.bot.say("{:g}°C is {:g}°F.".format(celsius, fahrenheit))
-        except ValueError as err:
-            # Display error message to channel
-            yield from self.bot.say("{} Type ``?help fahrenheit`` for proper usage.".format(err))
-
     @commands.command(pass_context=True, no_pm=False)
     @asyncio.coroutine
     def deltapcm(self, ctx, semitone_change: int=0, rate: float=31250.0):
-        """Deflemask SegaPCM Delta Calculator."""
+        """Deflemask SegaPCM Delta Calculator. Written by DeltaRazero."""
         if (semitone_change == 0 and rate == 31250.0):
             yield from self.bot.say("Type ``?help deltapcm`` to get usage information.")
             return
