@@ -17,6 +17,7 @@ from random import randint
 from string import ascii_letters, digits
 
 from discord.ext import commands
+from discord.enums import ChannelType
 
 from cogs.utils import checks
 from cogs.utils.dataIO import fileIO
