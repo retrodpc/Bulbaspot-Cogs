@@ -7,6 +7,7 @@
 
 import asyncio
 from base64 import standard_b64decode, standard_b64encode
+import hashlib
 import json
 from math import floor
 import os
@@ -253,6 +254,110 @@ def fucc():
         else:
             metal_crusher = metal_crusher + secondary_metal_chara[randint(0, len(secondary_metal_chara)-1)]
     return metal_crusher
+
+def find_user(ctx):
+    # I have no idea what I'm doing
+    words = ctx.message.content.split()
+    if (len(words) == 1):
+        user_object = ctx.message.author
+    elif (len(ctx.message.mentions) >= 1):
+        user_object = ctx.message.mentions[0]
+    else:
+        words.pop(0)
+        name = " ".join(words) # WHAT THE FUCK PYTHON
+        user_object = ctx.message.server.get_member_named(name)
+    return user_object
+
+def score_gen(user_id, max_score, hash_algorithm):
+    # Some sort of rocket science shit I still can't figure out why it doesn't yield the same values as the old bot >:C
+    # nvm the comment above is outdated I got it to work see below
+    hash_algorithm.update(str(user_id).encode("utf-8"))
+    hash_bytes = hash_algorithm.digest()
+    level = int.from_bytes(hash_bytes[len(hash_bytes) - 8:len(hash_bytes)], byteorder="little")
+    # If the number is higher than the maximum possible signed long then do some flaiteman math to approximate the results from FT-420
+    if (level > 9223372036854775807):
+        e = (level - 9223372036854775807) * 2
+        level = (level * -1) - 2
+        level = level + e
+        level = abs(level)
+    level = level % (max_score + 1)
+    return level
+
+def dicksize_gen(ctx):
+    # How did this work again
+    response = ""
+    user_object = find_user(ctx)
+    if (user_object is not None):
+        level = score_gen(user_object.id, 99, hashlib.sha256())
+        # Build the response slowly, I assume this is slow because I am slow, I'm not Sonic who the fuck did you think I was n00b
+        response = (user_object.nick or user_object.name) + ": " + this_gen(level) + " (" + str(level) + ") - "
+        if (level == 0): response += "hahahAHAHAH OMG HAHAHAHAAHAH THAT'S FUCKING PATHETIC!!! XD LMFAO WHAT A DAMN LOSER XD XD XD"
+        elif (level >= 1 and level <= 9): response += "lol asian dick xD"
+        elif (level >= 10 and level <= 19): response += "did u get bullied in school for that cuz that's what I would do lmao"
+        elif (level >= 20 and level <= 29): response += "wow now we're talkin o_O"
+        elif (level >= 30 and level <= 39): response += "woah dude that's a decent dong right there"
+        elif (level >= 40 and level <= 49): response += "that's bigger than mine already ;-;"
+        elif (level >= 50 and level <= 59): response += "that's fuckin sick dude ever thought of entering a dick size contest?"
+        elif (level >= 60 and level <= 69): response += "holy hell i don't think i can handle this much -.-'"
+        elif (level >= 70 and level <= 79): response += "dude i don't think that's normal, you may want to get that checked out"
+        elif (level >= 80 and level <= 89): response += "bruh wtf isn't it dangerous to carry that around"
+        elif (level >= 90 and level <= 99): response += "HOLY FUCKING SHIT WHAT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        else: response += "this isn't supposed to happen call dpc :DDDDD"
+    else:
+        response = "You're dreaming of dicks again idiot that user doesn't exist in here >:C"
+    return response
+
+def gaytest_gen(ctx):
+    response = ""
+    user_object = find_user(ctx)
+    if (user_object is not None):
+        level = score_gen(user_object.id, 100, hashlib.sha512())
+        # Build the response slowly, I assume this is slow because I am slow, I'm not Sonic who the fuck did you think I was n00b
+        response = (user_object.nick or user_object.name) + " is... **" + str(level) + "% GAY!** - "
+        if (level == 0): response += "wtf who do you think you're fooling, there's no way you're 0% gay >:C"
+        elif (level >= 1 and level <= 9): response += "uh dude i'm really sure you're shitting me, such low levels of gayness are not possible on the internet"
+        elif (level >= 10 and level <= 19): response += "don't lie to me you've thought of sucking a huge dick at least once in your life"
+        elif (level >= 20 and level <= 29): response += "there's probably some really hot guy you know that you'd like to fuck but you don't want to because you're \"straight\". lying is bad don't lie to yourself"
+        elif (level >= 30 and level <= 39): response += "it's like you're kinda straight but think about dicks often, you should be honest with yourself"
+        elif (level >= 40 and level <= 49): response += "i'm kinda sure you might be in denial because your gayness levels are still fairly high"
+        elif (level == 50): response += "fairly straight and fairly gay, you might be bisexual so beware"
+        elif (level >= 50 and level <= 59): response += "looks like you're leaning more towards dicks than chicks, you might be in denial"
+        elif (level >= 60 and level <= 69): response += "you're probably trying to become gay because women are horrible (wait a sec women don't exist)"
+        elif (level >= 70 and level <= 79): response += "are you really certain you're not admittedly gay already???"
+        elif (level >= 80 and level <= 89): response += "dude i think it's time for you to come out already, you're not gonna hide this for much longer"
+        elif (level >= 90 and level <= 99): response += "what the shit, if you're this level of gay you shouldn't have needed to use this command in the first place"
+        elif (level == 100): response += "DING DING DING DING!!!! err... i mean DONG DONG DONG DONG!!!! WE FOUND THE MOST GAY PERSON EVER!!!! !!! !!!! ! EVERYONE CONGRATULATE THIS FAG!!!"
+        else: response += "wat something went wrong call the fire dept lmao :DDDDD"
+    else:
+        response = "awwww your platonic love doesn't actually exist, wake up f00l >:C"
+    return response
+
+def rate_gen(ctx):
+    response = ""
+    user_object = find_user(ctx)
+    if (user_object is not None):
+        if (user_object.id != "84701721967726592"):
+            level = score_gen(user_object.id, 10, hashlib.sha384())
+            # Build the response slowly, I assume this is slow because I am slow, I'm not Sonic who the fuck did you think I was n00b
+            response = (user_object.nick or user_object.name) + ": I rate you **" + str(level) + "/10** - "
+            if (level == 0): response += "you're an ugly piece of shit, go away before i puke on your face >:C"
+            elif (level == 1): response += "ewww you smell like shit, go learn to wipe your ass you gross fuck";
+            elif (level == 2): response += "your face reminds me of my dog's ass, and tbh that's not a pleasant thing to think of";
+            elif (level == 3): response += "last week i crashed my robot car into a gas station. you look like my car's wreckage";
+            elif (level == 4): response += "any chance you got bullied at school? cuz that's what i would do right now";
+            elif (level == 5): response += "i'm indifferent, you're not ugly enough for me to bash you but you're not cute enough for me to want to fuck you either";
+            elif (level == 6): response += "eh, you're kinda cute but nothing really remarkable, go away before i make you uglier";
+            elif (level == 7): response += "what's your phone number? no it's not for a date you're cute but not cute enough i just want your number to sign it up for spam";
+            elif (level == 8): response += "just a few flaws here and there like that huge pimple on your cheek";
+            elif (level == 9): response += "almost perfect, if it wasn't for your shitty fashion sense i'd triple fuck you 27/4";
+            elif (level == 10): response += "wow omg you're top waifu material (wait but women don't exist i'm gonna destroy you)";
+            else: response += "ummm something went terribly wrong call dpc asap :DDDDD"
+        else:
+            response += (user_object.nick or user_object.name) + ": hey handsome ;))) you know my rating for you, you're a solid **123456789876543210/10** ;))) good luck with the ladies tonight ;))))))"
+    else:
+        response = "dude lay off the drugs, you're seeing things, that person is not actually there"
+    return response
+
 
 
 class Bulbacore:
@@ -690,6 +795,65 @@ class Bulbacore:
         """Just... try it.\nThis command doesn't work in all channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://www.mattandreko.com/images/brainpan2_preview.png")
+
+    @commands.command(pass_context=True,aliases=["dicklength","penissize","penislength","cocksize","cocklength"])
+    @asyncio.coroutine
+    def dicksize(self, ctx):
+        """
+        Measures someone's dick, it could be your own or someone else's o.O
+        Make sure you're somewhere private before using this command, you probably don't want any embarrassing situations happening xD xD xD
+
+        USAGE:
+        dicksize: Find out your own dick size.
+        dicksize [name]: Find out someone else's dick size (wow kinky ( ͡° ͜ʖ ͡°) ).
+        dicksize [@mention]: Same as above but annoying version.
+
+        DISCLAIMER
+        The author doesn't take any responsibility if this command makes people think you're gay (but you're on the internet so by default you are), causes your parents to disown you, makes your gf leave you (ok let's get real what gf lmao), or makes you get fired for watching NSFW content while at work. Use at your own risk.
+
+        Ported by Dog not by dpc send your hate to my twitter >:C
+        """
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say(dicksize_gen(ctx))
+
+    @commands.command(pass_context=True,aliases=["gayness","gaylevel"])
+    @asyncio.coroutine
+    def gaytest(self, ctx):
+        """
+        Measures how gay someone is on a scale from 0% to 100%.
+        In reality, this command is faulty because everyone on the internet is fucking gay, so there's no point in trying this command at all. If you do decide to try it and you get less than 100%, then the bot made a calculation mistake and you should report a bug here -------------> [bug reports]
+
+        USAGE:
+        gaytest: Find out how gay you are.
+        gaytest [name]: Find out how gay someone else is.
+        gaytest [@mention]: Same as above but annoying version.
+        
+        ADDITIONAL NOTES
+        Even if you and another person are on the same level of gayness this command is fucking pointless, because you're never gonna get a bf anyway (yeah you're on the internet by default you're a faggot and also a loser) so don't bother wasting time finding out how gay someone else is because you will never achieve your goal of finding a bf or at least getting fucked by a huge dick. Also the bot can and will make fun of your gayness, use at your own discretion.
+        
+        DISCLAIMER
+        The developer of this command is not liable for any horrible things that may happen as a consequence of utilizing this command or reading this flavor text. Also the moron who ported this shit to dpc's bot removed some cringe stuff outta this description so if you wanna see the real thing then go fucking hunt for it you lazy loser.
+
+        Ported by Dog not by dpc send your hate to my twitter >:C
+        """
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say(gaytest_gen(ctx))
+
+    @commands.command(pass_context=True,aliases=["rating"])
+    @asyncio.coroutine
+    def rate(self, ctx):
+        """
+        Rates someone on a scale from 0 to 10. This command is dishonest because the bot hates humanity and thinks everyone is 0/10. The only reason it won't give you 0/10 is to avoid \"hurting\" your so-called \"feelings\" (unless you're actually a gross and disgusting piece of shit) even though if it could it would destroy every human in the most horrible way imaginable. Fortunately for you, it's only a shitty Discord bot and not an actual robot or android or iOS or -- wait a minute I got sidetracked -- ANYWAY you've been warned, you'd better not give the bot anything that provides it with the ability to do stuff independently because if you do, you're gonna have a bad time (wait wtf fuck off sans this is not where you belong).
+
+        USAGE:
+        rate: Let the bot rate you.
+        rate [name]: Let the bot rate someone else.
+        rate [@mention]: Same as above but annoying version.
+
+        Ported by Dog not by dpc send your hate to my twitter >:C
+        """
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say(rate_gen(ctx))
 
 
     @commands.group(pass_context=True)
