@@ -290,11 +290,18 @@ def dicksize_gen(ctx, name: str):
     """Calculates "dick size" based on user ID. Takes either a mention or a username."""
     user_object = find_user(ctx, name)
     if (user_object is not None):
-        level = score_gen(user_object.id, 99, hashlib.sha256())
+        # Special case for if the bot is being checked
+        if (user_object.id != self.bot.user):
+            level = score_gen(user_object.id, 99, hashlib.sha256())
+        else:
+            level = 20
+
+        # Displays nick if possible (in server text channel), displays username if not
         if ctx.message.channel.type == ChannelType.text:
             display_name = (user_object.nick or user_object.name)
         else:
             display_name = user_object.name
+
         # Build the response slowly, I assume this is slow because I am slow, I'm not Sonic who the fuck did you think I was n00b
         response = display_name + ": " + this_gen(level) + " (" + str(level) + ") - "
         if (level == 0): response += "hahahAHAHAH OMG HAHAHAHAAHAH THAT'S FUCKING PATHETIC!!! XD LMFAO WHAT A DAMN LOSER XD XD XD"
@@ -605,7 +612,7 @@ class Bulbacore:
 
     @commands.command(pass_context=True,aliases=["dong","penis","cock"])
     @asyncio.coroutine
-    def this(self, ctx, length: int = 10):
+    def this(self, ctx, length: int = 20):
         """Generates a text penis with a given length.
         This is a shiptoast command and will not work on some channels."""
         if (shiptoast_check(self, ctx.message)):
@@ -860,7 +867,7 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://www.mattandreko.com/images/brainpan2_preview.png")
 
-    @commands.command(pass_context=True,aliases=["dicklength","penissize","penislength","cocksize","cocklength"])
+    @commands.command(pass_context=True,aliases=["penissize","cocksize"])
     @asyncio.coroutine
     def dicksize(self, ctx, *, name: str = None):
         """
