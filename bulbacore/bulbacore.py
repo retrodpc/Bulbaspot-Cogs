@@ -264,7 +264,10 @@ def find_user(ctx, name):
     elif (len(ctx.message.mentions) >= 1):
         user_object = ctx.message.mentions[0]
     else:
-        user_object = ctx.message.server.get_member_named(name)
+        if ctx.message.channel.type == ChannelType.text:
+            user_object = ctx.message.server.get_member_named(name)
+        else:
+            return None
     return user_object
 
 
