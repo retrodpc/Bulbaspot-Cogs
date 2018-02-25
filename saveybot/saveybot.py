@@ -18,6 +18,7 @@ from cogs.utils.dataIO import fileIO
 
 
 def is_int(s):
+    """Checks whether the input is an integer."""
     try:
         int(s)
         if float(s) % 1 == 0:
@@ -176,7 +177,7 @@ def get_random(array: list, count: int):
 
 
 class SaveyBot:
-    """Lets you save and load your personal picture & bio.\n(oh this is a prototype for saveybot-like functionality)\n"""
+    """Prototype of a SaveyBot clone."""
 
     def __init__(self, bot):
         self.bot = bot

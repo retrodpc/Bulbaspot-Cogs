@@ -30,7 +30,6 @@ def check_files():
         fileIO(settings_path, "save", default)
 
 
-# idk why i need this here but ahhh well -_-
 check_folders()
 check_files()
 

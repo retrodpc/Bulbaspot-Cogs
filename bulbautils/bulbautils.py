@@ -10,7 +10,8 @@ import asyncio
 from discord.ext import commands
 
 
-def decToHex(dec):
+def decToHex(dec: int):
+    """Converts a decimal integer to a hex string."""
     hexDigits = "0123456789ABCDEF"
     conversion = ''	# (Re-)initiate string
     # dec referenced as division
@@ -25,11 +26,14 @@ def decToHex(dec):
 
 
 def reverseString(string):
+    """Reverses a string."""
     string = str(string)
     return string[::-1]
 
 
-def calcDeltaHex(n, rate):	# n = semitone difference, rate = the initial samplerate of your sample in Hz
+def calcDeltaHex(n: float, rate: float):	# n = semitone difference, rate = the initial samplerate of your sample in Hz
+    """Deflemask SegaPCM Delta command calculator.
+    n = semitone difference, rate = the initial samplerate of your sample in Hz"""
     a = 2**(1/12)		# a = 12-tones in an octave (see 'Frequency Table formula' for the 'equal tempered scale')
     fn = rate * (a**n)		# Calculates the freq of the note, in 'n' semitones away from original pitch
 
@@ -38,28 +42,17 @@ def calcDeltaHex(n, rate):	# n = semitone difference, rate = the initial sampler
     return decToHex(delta)		# Converts delta value from decimal to hex
 
 
-def is_float(s):
-    try:
-        float(s)
-        return True
-    except ValueError:
-        return False
-
-
 class Bulbautils:
     """Ivysalt's utility commands. Useful for chiptune stuff mostly."""
 
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(pass_context=False, description='Calculates AddMusicK speed based on a tempo. Also gives a rounded speed and tempo if given tempo results in a non-integer speed.')
+    @commands.command(pass_context=False, description='Note: rounds speed and tempo if given tempo results in a non-integer speed.')
     @asyncio.coroutine
     def amkspeed(self, tempo: float):
-        """Calculates AddMusicK speed based on a tempo"""
+        """Calculates AddMusicK speed, given tempo in BPM."""
         try:
-            if (not is_float(tempo)):
-                raise ValueError("Nice Number !")
-            tempo = float(tempo)
             if (tempo <= 0):
                 raise ValueError("Error: Tempo must be positive.")
             amkspeed = tempo * 256 / 625
@@ -74,15 +67,9 @@ class Bulbautils:
 
     @commands.command(pass_context=False, description='Calculates clock speed based on first the desired tempo and then the tick speed.')
     @asyncio.coroutine
-    def clockspeed(self, tempo, speed):
-        """Calculates clock speed"""
+    def clockspeed(self, tempo: float, speed: float):
+        """Calculates clock rate, given tempo in BPM and speed in ticks per row/unit."""
         try:
-            if (not is_float(tempo)):
-                raise ValueError("Nice Numbers !")
-            if (not is_float(speed)):
-                raise ValueError("Nice Numbers !")
-            tempo = float(tempo)
-            speed = float(speed)
             if (tempo <= 0):
                 raise ValueError("Error: Tempo must be positive.")
             if (speed <= 0):
@@ -96,15 +83,9 @@ class Bulbautils:
 
     @commands.command(pass_context=False, description='Calculates tick speed based on first the desired tempo and then the clock speed.')
     @asyncio.coroutine
-    def tickspeed(self, tempo, clock):
-        """Calculates tick speed"""
+    def tickspeed(self, tempo: float, clock: float):
+        """Calculates tick speed, given tempo in BPM and clock rate in Hz."""
         try:
-            if (not is_float(tempo)):
-                raise ValueError("Nice Numbers !")
-            if (not is_float(clock)):
-                raise ValueError("Nice Numbers !")
-            tempo = float(tempo)
-            clock = float(clock)
             if (tempo <= 0):
                 raise ValueError("Error: Tempo must be positive.")
             if (tempo <= 0):
@@ -118,8 +99,9 @@ class Bulbautils:
 
     @commands.command(pass_context=True, no_pm=False)
     @asyncio.coroutine
-    def deltapcm(self, ctx, semitone_change: int=0, rate: float=31250.0):
-        """Deflemask SegaPCM Delta Calculator. Written by DeltaRazero."""
+    def deltapcm(self, ctx, semitone_change: float=0, rate: float=31250.0):
+        """Deflemask SegaPCM Delta command calculator. Written by DeltaRazero.
+        semitone_change = semitone difference, rate = the initial samplerate of your sample in Hz"""
         if (semitone_change == 0 and rate == 31250.0):
             yield from self.bot.say("Type ``?help deltapcm`` to get usage information.")
             return

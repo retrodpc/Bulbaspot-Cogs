@@ -45,18 +45,18 @@ def save_logs(filename, data):
 #MAX_MESSAGES = settings.max_messages
 
 
-# This sanitizes an input string to remove characters that aren't valid
-#   in filenames. There are a lot of other bad filenames that can appear,
-#   but given the predictable nature of our input in this application,
-#   they aren't handled here.
 def clean_filename(string):
+    """This sanitizes an input string to remove characters that aren't valid
+    in filenames. There are a lot of other bad filenames that can appear, 
+    but given the predictable nature of our input in this application, 
+    they aren't handled here."""
     return re.sub(r'[/\\:*?"<>|\x00-\x1f]', '', string)
 
 
-# This builds the relative file path & filename to log to,
-#   based on the channel type of the message.
-# It is affixed to the log directory set in config.py
 def make_filename(self, message):
+    """This builds the relative file path & filename to log to,
+    based on the channel type of the message. 
+    It is affixed to the log directory set in config.py"""
     if message.edited_timestamp:
         time = message.edited_timestamp
     else:
@@ -87,13 +87,14 @@ def make_filename(self, message):
         )
 
 
-# Uses a Message object to build a very pretty string.
-# Format:
-#   (messageid) [21:30:00] <user#0000> hello world
-# Message ID will be base64-encoded since it becomes shorter that way.
-# If the message was edited, prefix messageid with E:
-#   and use the edited timestamp and not the original.
+
 def make_message(self, message, include_date: bool = False):
+    '''Uses a Message object to build a very pretty string.
+    Format:
+      (messageid) [21:30:00] <user#0000> hello world
+    Message ID will be base64-encoded since it becomes shorter that way.
+    If the message was edited, prefix messageid with E:
+      and use the edited timestamp and not the original.'''
     # Wrap the message ID in brackets, and prefix E: if the message was edited.
     # Also, base64-encode the message ID, because it's shorter.
     #   This uses less space on disk, and is easier to read in console.
@@ -148,16 +149,16 @@ def make_message(self, message, include_date: bool = False):
     ))
 
 
-# Get recipients of a private message
 def get_recipients(ctx):
+    """Get recipients of a private message"""
     recipients = ""
     for recipient in ctx.message.channel.recipients:
         recipients += "{}#{}, ".format(recipient.name, recipient.discriminator)
     return recipients[:-2]
 
 
-# Append to file, creating path if necessary
 def write(filename, string):
+    '''Append to file, creating path if necessary'''
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, 'a', encoding='utf8') as file:
         file.write(string + "\n") 
@@ -181,7 +182,8 @@ class Logger:
     @commands.command(pass_context=True, aliases=["loglastdisk"], hidden=True)
     @checks.admin_or_permissions(ban_members=True)
     async def log_last_disk(self, ctx, messages: int = 100):
-        """Logs previous messages in a channel.\nDefaults to 100 messages, limit is 1000."""
+        """Logs previous messages in a channel.
+        Defaults to 100 messages, limit is 1000."""
         if messages < 1:
             await self.bot.say("Nice try :P")
             return
@@ -216,7 +218,8 @@ class Logger:
     @commands.command(pass_context=True, aliases=["loglastmem","loglast","log_last"])
     @checks.admin_or_permissions(ban_members=True)
     async def log_last_mem(self, ctx, messages: int = 100):
-        """Logs previous messages in a channel.\nDefaults to 100 messages but has no limit (theoretically)."""
+        """Logs previous messages in a channel.
+        Defaults to 100 messages but has no limit (theoretically)."""
         if messages < 1:
             await self.bot.say("Nice try :P")
             return

@@ -20,6 +20,7 @@ bans_path = 'data/sentry/bans.json'
 
 
 def is_int(s):
+    """Checks whether the input is an integer."""
     try:
         int(s)
         if float(s) % 1 == 0:
@@ -66,7 +67,8 @@ def save(path, data):
         json.dump(data, file, indent=4)
 
 class Sentry:
-    """Adds various sentry commands.\nThis module was written specifically for a few servers."""
+    """Adds various sentry commands.
+    This module was written specifically for a few servers."""
 
     def __init__(self, bot):
         self.bot = bot
@@ -76,7 +78,9 @@ class Sentry:
     @checks.admin_or_permissions(ban_members=True)
     @asyncio.coroutine
     def preban(self, ctx, user_id: str):
-        """Users added with this command will be banned on sight.\n\nOnly admins may use this command."""
+        """Users added with this command will be banned on sight.
+        
+        Only admins may use this command."""
         # adding user id to the ban list
         if is_int(user_id):
             if (ctx.message.server.id in sentry_bans):
@@ -106,7 +110,9 @@ class Sentry:
     @checks.admin_or_permissions(ban_members=True)
     @asyncio.coroutine
     def unpreban(self, ctx, user_id: str):
-        """Users removed with this command will not be banned on sight.\n\nOnly admins may use this command."""
+        """Users removed with this command will not be banned on sight.
+        
+        Only admins may use this command."""
         if (ctx.message.server.id in sentry_bans):
             if (user_id in sentry_bans[ctx.message.server.id]):
                 sentry_bans[ctx.message.server.id].remove(user_id)
@@ -123,7 +129,9 @@ class Sentry:
     @checks.admin_or_permissions(ban_members=True)
     @asyncio.coroutine
     def listpreban(self, ctx):
-        """Users removed with this command will not be banned on sight.\n\nOnly admins may use this command."""
+        """Users removed with this command will not be banned on sight.
+        
+        Only admins may use this command."""
         if (ctx.message.server.id in sentry_bans):
             if len(sentry_bans[ctx.message.server.id]) > 0:
                 user_id_list = "```\n=== Prebans in server {} ===\n".format(ctx.message.server.name)
@@ -142,7 +150,9 @@ class Sentry:
     @checks.admin_or_permissions(ban_members=True)
     @asyncio.coroutine
     def unban(self, ctx, *, uid: str = None):
-        """Removes a ban from the server.\n\nOnly admins may use this command."""
+        """Removes a ban from the server.
+        
+        Only admins may use this command."""
         user = yield from self.bot.get_user_info(uid)
         yield from self.bot.unban(ctx.message.server, user)
         yield from self.bot.say('User {} unbanned.'.format(user.name))
