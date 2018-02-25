@@ -830,7 +830,7 @@ class Bulbacore:
         Ported by Dog not by dpc send your hate to my twitter >:C
         """
         if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(dicksize_gen(ctx))
+            yield from self.bot.say(dicksize_gen(ctx, name))
 
     @commands.command(pass_context=True,aliases=["gayness","gaylevel"])
     @asyncio.coroutine
@@ -853,7 +853,7 @@ class Bulbacore:
         Ported by Dog not by dpc send your hate to my twitter >:C
         """
         if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(gaytest_gen(ctx))
+            yield from self.bot.say(gaytest_gen(ctx, name))
 
     @commands.command(pass_context=True,aliases=["rating"])
     @asyncio.coroutine
@@ -869,7 +869,7 @@ class Bulbacore:
         Ported by Dog not by dpc send your hate to my twitter >:C
         """
         if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(rate_gen(ctx))
+            yield from self.bot.say(rate_gen(ctx, name))
 
 
     @commands.group(pass_context=True)
