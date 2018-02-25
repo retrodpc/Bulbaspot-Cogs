@@ -286,7 +286,7 @@ def score_gen(user_id, max_score, hash_algorithm):
     return level
 
 
-def dicksize_gen(ctx, *, name: str):
+def dicksize_gen(ctx, name: str):
     """Calculates "dick size" based on user ID. Takes either a mention or a username."""
     user_object = find_user(ctx, name)
     if (user_object is not None):
@@ -314,7 +314,7 @@ def dicksize_gen(ctx, *, name: str):
     return response
 
 
-def gaytest_gen(ctx, *, name: str):
+def gaytest_gen(ctx, name: str):
     """Calculates "gayness" based on user ID. Takes either a mention or a username."""
     user_object = find_user(ctx, name)
     if (user_object is not None):
@@ -344,7 +344,7 @@ def gaytest_gen(ctx, *, name: str):
     return response
 
 
-def rate_gen(ctx, *, name: str):
+def rate_gen(ctx, name: str):
     """Calculates a bot's rating of a user based on user ID. Takes either a mention or a username."""
     user_object = find_user(ctx, name)
     if (user_object is not None):
