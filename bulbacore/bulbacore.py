@@ -264,7 +264,7 @@ def find_user(ctx, name):
     elif (len(ctx.message.mentions) >= 1):
         user_object = ctx.message.mentions[0]
     else:
-        user_object = ctx.message.server.get_member_named(user)
+        user_object = ctx.message.server.get_member_named(name)
     return user_object
 
 
