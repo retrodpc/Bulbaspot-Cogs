@@ -875,6 +875,8 @@ class Bulbacore:
         DISCLAIMER
         The author doesn't take any responsibility if this command makes people think you're gay (but you're on the internet so by default you are), causes your parents to disown you, makes your gf leave you (ok let's get real what gf lmao), or makes you get fired for watching NSFW content while at work. Use at your own risk.
 
+        This is a shiptoast command and will not work on some channels.
+
         Ported by Dog not by dpc send your hate to my twitter >:C
         """
         if (shiptoast_check(self, ctx.message)):
@@ -898,6 +900,8 @@ class Bulbacore:
         DISCLAIMER
         The developer of this command is not liable for any horrible things that may happen as a consequence of utilizing this command or reading this flavor text. Also the moron who ported this shit to dpc's bot removed some cringe stuff outta this description so if you wanna see the real thing then go fucking hunt for it you lazy loser.
 
+        This is a shiptoast command and will not work on some channels.
+
         Ported by Dog not by dpc send your hate to my twitter >:C
         """
         if (shiptoast_check(self, ctx.message)):
@@ -913,6 +917,8 @@ class Bulbacore:
         rate: Let the bot rate you.
         rate [name]: Let the bot rate someone else.
         rate [@mention]: Same as above but annoying version.
+
+        This is a shiptoast command and will not work on some channels.
 
         Ported by Dog not by dpc send your hate to my twitter >:C
         """
