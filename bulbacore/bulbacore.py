@@ -291,7 +291,7 @@ def dicksize_gen(self, ctx, name: str):
     user_object = find_user(ctx, name)
     if (user_object is not None):
         # Special case for if the bot is being checked
-        if (user_object.id != self.bot.user):
+        if (user_object.id != self.bot.user.id):
             level = score_gen(user_object.id, 99, hashlib.sha256())
         else:
             level = 20
