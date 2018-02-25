@@ -286,7 +286,7 @@ def score_gen(user_id, max_score, hash_algorithm):
     return level
 
 
-def dicksize_gen(ctx, name: str):
+def dicksize_gen(self, ctx, name: str):
     """Calculates "dick size" based on user ID. Takes either a mention or a username."""
     user_object = find_user(ctx, name)
     if (user_object is not None):
@@ -887,7 +887,7 @@ class Bulbacore:
         Ported by Dog not by dpc send your hate to my twitter >:C
         """
         if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(dicksize_gen(ctx, name))
+            yield from self.bot.say(dicksize_gen(self, ctx, name))
 
     @commands.command(pass_context=True,aliases=["gayness","gaylevel"])
     @asyncio.coroutine
