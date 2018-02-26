@@ -973,6 +973,8 @@ class Bulbacore:
                 yield from self.bot.send_message(message.channel, '\uD83D\uDC49\uD83D\uDCBC point in case')
             elif (message.content.lower().find("noticable") != -1):
                 yield from self.bot.send_message(message.channel, 'notiwire >:C')
+            elif (message.content.lower().find("staph") != -1):
+                yield from self.bot.send_message(message.channel, 'ylococcus')
             elif (message.channel.id != "222432649472376832"):
                 if ("cum" in message.content.lower().split()):
                     yield from self.bot.send_message(message.channel, 'oi mate watch your fuckin language')
