@@ -74,8 +74,7 @@ class Bulbautils:
                 raise ValueError("Error: Tempo must be positive.")
             if (speed <= 0):
                 raise ValueError("Error: Tick speed must be positive.")
-            constant = 15 / speed
-            clockspeed = tempo / constant
+            clockspeed = tempo * speed / 15
             yield from self.bot.say("The clock speed is {:g} Hz.".format(clockspeed))
         except ValueError as err:
             # Display error message to channel
