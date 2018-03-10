@@ -31,18 +31,12 @@ with open('data/bulbacore/copypasta.json') as copypasta_file:
 # Checks from Bulbaspot
 def shiptoast_check(self, message):
     """Checks whether the message object is in a shiptoast chat."""
-    if (message.channel.id in self.settings["shiptoast"]) or (message.channel.name in self.settings["shiptoast"]) or message.channel.is_private:
-        return True
-    else:
-        return False
+    return (message.channel.id in self.settings["shiptoast"]) or (message.channel.name in self.settings["shiptoast"]) or message.channel.is_private
 
 
 def not_shiptoast_check(self, message):
     """Checks whether the message object is not in a shiptoast chat."""
-    if (message.channel.id in self.settings["shiptoast"]) or (message.channel.name in self.settings["shiptoast"]):
-        return False
-    else:
-        return True
+    return !((message.channel.id in self.settings["shiptoast"]) or (message.channel.name in self.settings["shiptoast"]))
 
 
 def name_sanitize(name):
