@@ -1016,6 +1016,8 @@ class Bulbacore:
                 yield from self.bot.send_message(message.channel, 'notiwire >:C')
             elif (message.content.lower().find("staph") != -1):
                 yield from self.bot.send_message(message.channel, 'ylococcus')
+            elif (message.content.lower().find("i could care less") != -1):
+                yield from self.bot.send_message(message.channel, 'so you actually care? ;)))')
             elif (message.channel.id != "222432649472376832"):
                 if ("cum" in message.content.lower().split()):
                     yield from self.bot.send_message(message.channel, 'oi mate watch your fuckin language')
