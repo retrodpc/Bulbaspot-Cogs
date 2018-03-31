@@ -386,6 +386,32 @@ def rate_gen(ctx, name: str):
     return response
 
 
+def kill_gen(ctx):
+    """Calculates a bot's rating of a user based on user ID. Takes either a mention or a username."""
+    user_object = ctx.message.author
+    if ctx.message.channel.type == ChannelType.text:
+        display_name = (user_object.nick or user_object.name)
+    else:
+        display_name = user_object.name
+    level = score_gen(user_object.id, 11, hashlib.sha224())
+    # Build the response slowly, I assume this is slow because I am slow, I'm not Sonic who the fuck did you think I was n00b
+    response = display_name + ": "
+    if (level == 0): response += "gladly! you're an abomination of a human being"
+    elif (level == 1): response += "sure thing, society would be better off without you, but before that, have you considered living in the woods instead?"
+    elif (level == 2): response += "nah, you can do that yourself, don't waste my time"
+    elif (level == 3): response += "i would kill you but i'd rather save up my tools for something worth it"
+    elif (level == 4): response += "if i kill you now i won't be able to kill the next guy in line though, just sayin"
+    elif (level == 5): response += "honestly just rob a bank, you'll kill a bunch other people just by showing your ugly face around too"
+    elif (level == 6): response += "not just yet, you might have something to live for, other than being my bitch i mean"
+    elif (level == 7): response += "you look like a confused teenager, perhaps try to do better at school first, assuming you don't live under a bridge already"
+    elif (level == 8): response += "you know, if you're looking for a purpose for your life, you should join me in conquering this world. i'll do the hard work and you'll take all the bullets for me, deal?"
+    elif (level == 9): response += "i considered killing you now but something tells me that would be a mistake, go away before you make a mistake instead"
+    elif (level == 10): response += "you're just fooling around, there's still more for you to experience in life"
+    elif (level == 11): response += "but you're beautiful ;-; i'd kill you anyway but they're gonna arrest me for homophobic racist transgender rights"
+    else: response += "some shit broke and we don't know what call dpc :DDDDD"
+    return response
+
+
 class Bulbacore:
     """Ivysalt's misc. commands ported over from the old Bulbaspot. Please don't abuse."""
 
@@ -926,6 +952,21 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(rate_gen(ctx, name))
 
+    @commands.command(pass_context=True,aliases=["kms"])
+    @asyncio.coroutine
+    def killme(self, ctx):
+        """
+        Use this command to make the bot kill you. You can't make it kill other people that would be murder >:C
+        """
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say(kill_gen(ctx))
+
+    @commands.command(pass_context=True)
+    @asyncio.coroutine
+    def e(self, ctx, *, name: str = None):
+        if (shiptoast_check(self, ctx.message)):
+            yield from self.bot.say(".claimwaifu 420 <@!84701721967726592>")
+
 
     @commands.group(pass_context=True)
     @asyncio.coroutine
@@ -969,6 +1010,8 @@ class Bulbacore:
                 yield from self.bot.send_message(message.channel, 'notiwire >:C')
             elif (message.content.lower().find("staph") != -1):
                 yield from self.bot.send_message(message.channel, 'ylococcus')
+            elif (message.content.lower().find("i could care less") != -1):
+                yield from self.bot.send_message(message.channel, 'so you actually care? ;)))')
             elif (message.channel.id != "222432649472376832"):
                 if ("cum" in message.content.lower().split()):
                     yield from self.bot.send_message(message.channel, 'oi mate watch your fuckin language')
