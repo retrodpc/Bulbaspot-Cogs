@@ -79,12 +79,19 @@ def make_filename(self, message):
             timestamp
         )
     elif message.channel.type == ChannelType.group:
-        return "{0}/GROUP/{2}-{1}/{3}.log".format(
-            self.settings["log_dir"],
-            clean_filename(message.channel.name),
-            message.channel.id,
-            timestamp
-        )
+        if message.channel.name is None:
+            return "{0}/GROUP/{1}-/{2}.log".format(
+                self.settings["log_dir"],
+                message.channel.id,
+                timestamp
+            )
+        else:
+            return "{0}/GROUP/{2}-{1}/{3}.log".format(
+                self.settings["log_dir"],
+                clean_filename(message.channel.name),
+                message.channel.id,
+                timestamp
+            )
 
 
 
