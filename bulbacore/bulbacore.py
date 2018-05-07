@@ -36,7 +36,7 @@ def shiptoast_check(self, message):
 
 def not_shiptoast_check(self, message):
     """Checks whether the message object is not in a shiptoast chat."""
-    return !((message.channel.id in self.settings["shiptoast"]) or (message.channel.name in self.settings["shiptoast"]))
+    return not ((message.channel.id in self.settings["shiptoast"]) or (message.channel.name in self.settings["shiptoast"]))
 
 
 def name_sanitize(name):
