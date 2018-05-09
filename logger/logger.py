@@ -279,7 +279,7 @@ class Logger:
 
         log_content = ""
         async for message in self.bot.logs_from(ctx.message.channel, messages):
-            log_content = make_message(self, message, True) + "\n" + log_content
+            log_content = message.clean_content + "\n" + log_content
 
         save_logs(filename, intro + log_content)
 
