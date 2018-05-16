@@ -434,6 +434,36 @@ class Bulbacore:
 
     @commands.group(pass_context=True)
     @asyncio.coroutine
+    def adnre(self, ctx):
+        """adnre's quote generator
+        This is a shiptoast command and will not work on some channels."""
+        if (shiptoast_check(self, ctx.message)):
+            if ctx.invoked_subcommand is None:
+                yield from self.bot.say(random.choice(copypastas["adnre"]))
+
+
+    @commands.group(pass_context=True, aliases=["ken_m"])
+    @asyncio.coroutine
+    def kenm(self, ctx):
+        """kenm screenshot poster
+        This is a shiptoast command and will not work on some channels."""
+        if (shiptoast_check(self, ctx.message)):
+            if ctx.invoked_subcommand is None:
+                yield from self.bot.say(random.choice(copypastas["kenm"]))
+
+
+    @commands.group(pass_context=True)
+    @asyncio.coroutine
+    def misty(self, ctx):
+        """Misty's quote generator
+        This is a shiptoast command and will not work on some channels."""
+        if (shiptoast_check(self, ctx.message)):
+            if ctx.invoked_subcommand is None:
+                yield from self.bot.say(random.choice(copypastas["misty"]))
+
+
+    @commands.group(pass_context=True)
+    @asyncio.coroutine
     def bulba(self, ctx):
         """Bulba's quote generator
         This is a shiptoast command and will not work on some channels."""
