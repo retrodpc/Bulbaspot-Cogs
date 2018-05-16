@@ -432,7 +432,7 @@ class Bulbacore:
             yield from self.bot.say(zalgo_gen(message))
 
 
-    @commands.group(pass_context=True)
+    @commands.group(pass_context=True, aliases=["adggfjggfafafafa"])
     @asyncio.coroutine
     def adnre(self, ctx):
         """adnre's quote generator
