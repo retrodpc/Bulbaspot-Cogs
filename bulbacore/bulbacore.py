@@ -23,6 +23,9 @@ from cogs.utils import checks
 from cogs.utils.dataIO import fileIO
 
 
+# sometimes i hate json
+
+
 # Import the copypasta data
 with open('data/bulbacore/copypasta.json') as copypasta_file:    
     copypastas = json.load(copypasta_file)
