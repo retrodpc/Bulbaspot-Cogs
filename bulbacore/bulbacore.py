@@ -472,16 +472,6 @@ class Bulbacore:
                 yield from self.bot.say(random.choice(copypastas["bulbaquotes"]))
 
 
-    @commands.command(pass_context=True, hidden=True, 
-            description="wait how did you find this lmao", aliases=["bulbatts"])
-    @asyncio.coroutine
-    def bulba_tts(self, ctx):
-        """Bulba's quote generator read aloud :P
-        This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(random.choice(copypastas["bulbaquotes"]), tts=True)
-
-
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def cheng(self, ctx):
@@ -494,18 +484,6 @@ class Bulbacore:
             yield from self.bot.say(cheng)
 
 
-    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["chengtts"])
-    @asyncio.coroutine
-    def cheng_tts(self, ctx):
-        """Cheng generator read aloud :P
-        This is a shiptoast command and will not work on some channels."""
-        cheng = (random.choice(copypastas["cheng_intro"])
-                + random.choice(copypastas["cheng_middle"])
-                + random.choice(copypastas["cheng_end"]))
-        if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(cheng, tts=True)
-
-
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def deward(self, ctx):
@@ -515,15 +493,6 @@ class Bulbacore:
             yield from self.bot.say(random.choice(copypastas["deward"]))
 
 
-    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["dewardtts"])
-    @asyncio.coroutine
-    def deward_tts(self, ctx):
-        """deward RP quote generator read aloud :P
-        This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(random.choice(copypastas["deward"]), tts=True)
-
-
     @commands.command(pass_context=True)
     @asyncio.coroutine
     def howard(self, ctx):
@@ -531,15 +500,6 @@ class Bulbacore:
         This is a shiptoast command and will not work on some channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say(random.choice(copypastas["howard"]))
-
-
-    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["howardtts"])
-    @asyncio.coroutine
-    def howard_tts(self, ctx):
-        """Howard RP quote generator read aloud :P
-        This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(random.choice(copypastas["howard"]), tts=True)
 
 
     @commands.command(pass_context=True)
@@ -573,21 +533,6 @@ class Bulbacore:
                 yield from self.bot.say("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(copypastas["merio"])))
                 return
             yield from self.bot.say(copypastas["merio"][choice-1])
-
-
-    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["meriotts"])
-    @asyncio.coroutine
-    def merio_tts(self, ctx, choice: int = 0):
-        """Returns an entry from Merio's journal, read aloud through TTS :P
-        If no entry number is specified, a random entry will be returned.
-        This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
-            if choice < 1:
-                choice = randint(1, len(copypastas["merio"]))
-            if choice > len(copypastas["merio"]):
-                yield from self.bot.say("Sorry, that entry doesn't exist yet. The latest entry is number {}.".format(len(copypastas["merio"])))
-                return
-            yield from self.bot.say(copypastas["merio"][choice-1], tts=True)
 
 
     @commands.command(pass_context=True,aliases=["ivy"])
@@ -624,15 +569,6 @@ class Bulbacore:
             yield from self.bot.say(copypastas["sloth"][0])
 
 
-    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["slothtts"])
-    @asyncio.coroutine
-    def sloth_tts(self, ctx):
-        """Sloth quote generator read aloud :P
-        This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(random.choice(copypastas["sloth"]), tts=True)
-
-
     @commands.command(pass_context=True,aliases=["nomanssky","nomansky"])
     @asyncio.coroutine
     def nms(self, ctx):
@@ -649,15 +585,6 @@ class Bulbacore:
         This is a shiptoast command and will not work on some channels."""
         if (shiptoast_check(self, ctx.message)):
             yield from self.bot.say("https://youtu.be/r427LYKA8zY")
-
-
-    @commands.command(pass_context=True,hidden=True,description="wait how did you find this lmao",aliases=["nomanssky_tts","nomansky_tts","nomansskytts","nomanskytts","nmstts"])
-    @asyncio.coroutine
-    def nms_tts(self, ctx):
-        """... If you like to hear verbally spoken cringe.
-        This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(random.choice(copypastas["nms"]), tts=True)
 
 
     @commands.command(pass_context=True,aliases=["dong","penis","cock"])
@@ -681,16 +608,6 @@ class Bulbacore:
     @commands.command(pass_context=True, hidden = True)
     @asyncio.coroutine
     def fuck(self, ctx):
-        """FUCK ON ME!!!!!!!!!!
-        This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
-            yield from self.bot.say(fucc())
-
-
-    @commands.command(pass_context=True, hidden = True,
-        description='WARNING: THIS WILL DRIVE YOUR SERVER INSANE', aliases=["fucktts"])
-    @asyncio.coroutine
-    def fuck_tts(self, ctx):
         """FUCK ON ME!!!!!!!!!!
         This is a shiptoast command and will not work on some channels."""
         if (shiptoast_check(self, ctx.message)):
