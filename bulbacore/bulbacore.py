@@ -435,7 +435,7 @@ class Bulbacore:
     @commands.group(pass_context=True, aliases=["ken_m"])
     @asyncio.coroutine
     def kenm(self, ctx):
-        """kenm screenshot poster
+        """kenm screenshot poster.
         This is a shiptoast command and will not work on some channels."""
         if (shiptoast_check(self, ctx.message)):
             if ctx.invoked_subcommand is None:
@@ -445,7 +445,7 @@ class Bulbacore:
     @commands.group(pass_context=True, aliases=["adggfjggfafafafa"])
     @asyncio.coroutine
     def adnre(self, ctx):
-        """adnre's quote generator
+        """adnre's quote generator.
         This is a shiptoast command and will not work on some channels."""
         if (shiptoast_check(self, ctx.message)):
             if ctx.invoked_subcommand is None:
@@ -455,7 +455,7 @@ class Bulbacore:
     @commands.group(pass_context=True, hidden=True)
     @asyncio.coroutine
     def brie(self, ctx):
-        """Brie's quote generator
+        """Brie's quote generator.
         This is a shiptoast command and will not work on some channels."""
         if (shiptoast_check(self, ctx.message)):
             if ctx.invoked_subcommand is None:
@@ -466,7 +466,7 @@ class Bulbacore:
                     aliases=["m9m","melonadem","meong"])
     @asyncio.coroutine
     def melon(self, ctx):
-        """Melon's quote generator
+        """Melon's quote generator.
         This is a shiptoast command and will not work on some channels."""
         if (shiptoast_check(self, ctx.message)):
             if ctx.invoked_subcommand is None:
@@ -476,7 +476,7 @@ class Bulbacore:
     @commands.group(pass_context=True, hidden=True)
     @asyncio.coroutine
     def misty(self, ctx):
-        """Misty's quote generator
+        """Misty's quote generator.
         This is a shiptoast command and will not work on some channels."""
         if (shiptoast_check(self, ctx.message)):
             if ctx.invoked_subcommand is None:
