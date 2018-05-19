@@ -432,16 +432,6 @@ class Bulbacore:
             yield from self.bot.say(zalgo_gen(message))
 
 
-    @commands.group(pass_context=True, aliases=["adggfjggfafafafa"])
-    @asyncio.coroutine
-    def adnre(self, ctx):
-        """adnre's quote generator
-        This is a shiptoast command and will not work on some channels."""
-        if (shiptoast_check(self, ctx.message)):
-            if ctx.invoked_subcommand is None:
-                yield from self.bot.say("adnre: " + random.choice(copypastas["adnre"]))
-
-
     @commands.group(pass_context=True, aliases=["ken_m"])
     @asyncio.coroutine
     def kenm(self, ctx):
@@ -452,7 +442,38 @@ class Bulbacore:
                 yield from self.bot.say(random.choice(copypastas["kenm"]))
 
 
-    @commands.group(pass_context=True)
+    @commands.group(pass_context=True, aliases=["adggfjggfafafafa"])
+    @asyncio.coroutine
+    def adnre(self, ctx):
+        """adnre's quote generator
+        This is a shiptoast command and will not work on some channels."""
+        if (shiptoast_check(self, ctx.message)):
+            if ctx.invoked_subcommand is None:
+                yield from self.bot.say("adnre: " + random.choice(copypastas["adnre"]))
+
+
+    @commands.group(pass_context=True, hidden=True)
+    @asyncio.coroutine
+    def brie(self, ctx):
+        """Brie's quote generator
+        This is a shiptoast command and will not work on some channels."""
+        if (shiptoast_check(self, ctx.message)):
+            if ctx.invoked_subcommand is None:
+                yield from self.bot.say("Brie: " + random.choice(copypastas["brie"]))
+
+
+    @commands.group(pass_context=True, hidden=True,
+                    aliases=["m9m","melonadem","meong"])
+    @asyncio.coroutine
+    def melon(self, ctx):
+        """Melon's quote generator
+        This is a shiptoast command and will not work on some channels."""
+        if (shiptoast_check(self, ctx.message)):
+            if ctx.invoked_subcommand is None:
+                yield from self.bot.say("m9m: " + random.choice(copypastas["melon"]))
+
+
+    @commands.group(pass_context=True, hidden=True)
     @asyncio.coroutine
     def misty(self, ctx):
         """Misty's quote generator
@@ -460,6 +481,16 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             if ctx.invoked_subcommand is None:
                 yield from self.bot.say("Misty: " + random.choice(copypastas["misty"]))
+
+
+    @commands.group(pass_context=True, hidden=True, aliases=["sen-pi","senpee"])
+    @asyncio.coroutine
+    def senpi(self, ctx):
+        """sen-pi's quote generator
+        This is a shiptoast command and will not work on some channels."""
+        if (shiptoast_check(self, ctx.message)):
+            if ctx.invoked_subcommand is None:
+                yield from self.bot.say("sen-pi: " + random.choice(copypastas["senpi"]))
 
 
     @commands.group(pass_context=True)
