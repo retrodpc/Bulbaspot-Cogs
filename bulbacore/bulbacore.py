@@ -844,9 +844,9 @@ class Bulbacore:
             if (woody_count < 1) or (woody_count > 3202):
                 woody_count = randint(1,3201)
             if woody_count in [348, 475, 481, 530, 1492, 1549, 2500]:
-                yield from self.bot.say("http://dpc.hol.es/woody/{}.gif".format(woody_count))
+                yield from self.bot.say("http://famitracker.org/~dpc/woody/{}.gif".format(woody_count))
             else:
-                yield from self.bot.say("http://dpc.hol.es/woody/{}.jpg".format(woody_count))
+                yield from self.bot.say("http://famitracker.org/~dpc/woody/{}.jpg".format(woody_count))
 
 
     @commands.command(pass_context=True,aliases=['cute'])
@@ -857,7 +857,7 @@ class Bulbacore:
         if (shiptoast_check(self, ctx.message)):
             if (animal_count < 1) or (animal_count > 104):
                 animal_count = randint(1,104)
-            yield from self.bot.say("http://dpc.hol.es/Animal/{}.gif".format(animal_count))
+            yield from self.bot.say("http://famitracker.org/~dpc/Animal/{}.gif".format(animal_count))
 
 
     @commands.command(pass_context=True,aliases=['disclaimer'])
