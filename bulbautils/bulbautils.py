@@ -16,6 +16,10 @@ def decToHex(dec: int):
     conversion = ''	# (Re-)initiate string
     # dec referenced as division
 
+    # special case if dec is already 0
+    if dec == 0:
+        return "00"
+
     while dec != 0:
         remainder = dec % 16
         dec = dec // 16
@@ -25,9 +29,8 @@ def decToHex(dec: int):
     return conversion
 
 
-def reverseString(string):
+def reverseString(string: str):
     """Reverses a string."""
-    string = str(string)
     return string[::-1]
 
 
@@ -106,6 +109,7 @@ class Bulbautils:
             return
         elif (rate <= 0 or rate > 31250):
             yield from self.bot.say("Sample rate needs to be between 1 Hz and 31250 Hz... Type ``?help deltapcm`` to get usage information.")
+            return
         
         try:
             convertedHex = calcDeltaHex(semitone_change, rate)
@@ -118,8 +122,7 @@ class Bulbautils:
             yield from self.bot.say("ERROR: Overflow ! Type ``?help deltapcm`` to get usage information.")
         else:
             if (len(convertedHex) == 1):    # Check if value not less than 10 (in hex) and add 0 if so
-                convertedHex += "0"
-                convertedHex = reverseString(convertedHex)
+                convertedHex = "0" + convertedHex
             yield from self.bot.say("Your delta command is: ``20{}``".format(convertedHex))
 
 
