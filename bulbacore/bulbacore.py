@@ -422,11 +422,11 @@ def minesweeper_gen(mines: int = 25, rows: int = 4, columns: int = 6):
 
     # define symbols
     bomb = "||\uD83D\uDCA3||"
-    zero = "||0\uFE0F||"
-    one = "||1\uFE0F||"
-    two = "||2\uFE0F||"
-    three = "||3\uFE0F||"
-    four = "||4\uFE0F||"
+    zero = "||0\u20E3||"
+    one = "||1\u20E3||"
+    two = "||2\u20E3||"
+    three = "||3\u20E3||"
+    four = "||4\u20E3||"
 
     # instantiate variables that we'll need later
     mine_count = mines
