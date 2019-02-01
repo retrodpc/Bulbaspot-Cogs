@@ -414,6 +414,75 @@ def kill_gen(ctx):
     else: response += "some shit broke and we don't know what call dpc :DDDDD"
     return response
 
+def minesweeper_gen(mines: int = 25, rows: int = 4, columns: int = 6):
+    # sanity checks
+    rows = (lambda:10, lambda:rows)[rows > 0]()
+    columns = (lambda:10, lambda:columns)[columns > 0]()
+    mines = (lambda:rows*columns/4, lambda:mines)[(mines > 0) and (mines < rows * columns)]()
+
+    # define symbols
+    bomb = "||\uD83D\uDCA3||"
+    zero = "||0\uFE0F||"
+    one = "||1\uFE0F||"
+    two = "||2\uFE0F||"
+    three = "||3\uFE0F||"
+    four = "||4\uFE0F||"
+
+    # instantiate variables that we'll need later
+    mine_count = mines
+    output = ""
+
+    # fill with mines
+    map = [[None for y in range(columns)] for x in range(rows)]
+    while mine_count > 0:
+        mine_x = random.randint(0, rows-1)
+        mine_y = random.randint(0, columns-1)
+        if map[mine_x][mine_y] == None:
+            map[mine_x][mine_y] = bomb
+            mine_count -= 1
+
+    # fill the rest of the map
+    for row_index in range(rows):
+        for column_index in range(columns):
+            # if it's a bomb then skip the count
+            if map[row_index][column_index] == bomb:
+                pass
+            else:
+                # compute the number
+                nearby_count = 0
+                if row_index != 0:
+                    if map[row_index-1][column_index] == bomb:
+                        nearby_count += 1
+                if row_index != rows-1:
+                    if map[row_index+1][column_index] == bomb:
+                        nearby_count += 1
+                if column_index != 0:
+                    if map[row_index][column_index-1] == bomb:
+                        nearby_count += 1
+                if column_index != columns-1:
+                    if map[row_index][column_index+1] == bomb:
+                        nearby_count += 1
+                # save the number to the cell
+                if nearby_count == 0:
+                    map[row_index][column_index] = zero
+                elif nearby_count == 1:
+                    map[row_index][column_index] = one
+                elif nearby_count == 2:
+                    map[row_index][column_index] = two
+                elif nearby_count == 3:
+                    map[row_index][column_index] = three
+                elif nearby_count == 4:
+                    map[row_index][column_index] = four
+
+    # create output
+    for row in map:
+        output += "".join(row)
+        output += "\n"
+    if (len(output) < 2000):
+        return output
+    else:
+        return minesweeper_gen()
+
 
 class Bulbacore:
     """Ivysalt's misc. commands ported over from the old Bulbaspot. Please don't abuse."""
@@ -637,6 +706,14 @@ class Bulbacore:
         """Generates an emphatic wow with a given length."""
         wow_string = wow_gen(length)
         yield from self.bot.say(wow_string)
+
+
+    @commands.command(pass_context=False)
+    @asyncio.coroutine
+    def minesweeper(self, mines: int = 25, rows: int = 10, columns: int = 10):
+        """Generates a minesweeper board with given number of mines, rows and columns."""
+        board = minesweeper_gen(mines, rows, columns)
+        yield from self.bot.say(board)
 
 
     @commands.command(pass_context=True, hidden = True)
