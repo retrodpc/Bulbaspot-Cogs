@@ -427,6 +427,10 @@ def minesweeper_gen(mines: int = 25, rows: int = 4, columns: int = 6):
     two = "||2\u20E3||"
     three = "||3\u20E3||"
     four = "||4\u20E3||"
+    five = "||5\u20E3||"
+    six = "||6\u20E3||"
+    seven = "||7\u20E3||"
+    eight = "||8\u20E3||"
 
     # instantiate variables that we'll need later
     mine_count = mines
@@ -453,9 +457,21 @@ def minesweeper_gen(mines: int = 25, rows: int = 4, columns: int = 6):
                 if row_index != 0:
                     if map[row_index-1][column_index] == bomb:
                         nearby_count += 1
+                    if column_index != 0:
+                        if map[row_index-1][column_index-1] == bomb:
+                            nearby_count += 1
+                    if column_index != columns-1:
+                        if map[row_index-1][column_index+1] == bomb:
+                            nearby_count += 1
                 if row_index != rows-1:
                     if map[row_index+1][column_index] == bomb:
                         nearby_count += 1
+                    if column_index != 0:
+                        if map[row_index+1][column_index-1] == bomb:
+                            nearby_count += 1
+                    if column_index != columns-1:
+                        if map[row_index+1][column_index+1] == bomb:
+                            nearby_count += 1
                 if column_index != 0:
                     if map[row_index][column_index-1] == bomb:
                         nearby_count += 1
@@ -473,6 +489,14 @@ def minesweeper_gen(mines: int = 25, rows: int = 4, columns: int = 6):
                     map[row_index][column_index] = three
                 elif nearby_count == 4:
                     map[row_index][column_index] = four
+                elif nearby_count == 5:
+                    map[row_index][column_index] = five
+                elif nearby_count == 6:
+                    map[row_index][column_index] = six
+                elif nearby_count == 7:
+                    map[row_index][column_index] = seven
+                elif nearby_count == 8:
+                    map[row_index][column_index] = eight
 
     # create output
     for row in map:
